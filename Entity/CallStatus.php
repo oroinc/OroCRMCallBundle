@@ -5,66 +5,63 @@ namespace OroCRM\Bundle\CallBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CallStatus
- *
  * @ORM\Table(name="orocrm_call_status")
  * @ORM\Entity
  */
-
 class CallStatus
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="name", type="string", length=32)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * @ORM\Column(name="label", type="string", length=255, unique=true)
      */
-    protected $status;
-
+    protected $label;
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @param string $name
      */
-    public function getId()
+    public function __construct($name)
     {
-        return $this->id;
+        $this->name = $name;
     }
 
     /**
-     * Set status
-     *
-     * @param string $status
+     * @return integer
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $label
      * @return CallStatus
      */
-    public function setStatus($status)
+    public function setLabel($label)
     {
-        $this->status = $status;
+        $this->label = $label;
     
         return $this;
     }
 
     /**
-     * Get status
-     *
-     * @return string 
+     * @return string
      */
-    public function getStatus()
+    public function getLabel()
     {
-        return $this->status;
+        return $this->label;
     }
 
     public function __toString()
     {
-        return $this->status;
+        return $this->label;
     }
 }
