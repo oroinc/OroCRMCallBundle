@@ -1,20 +1,20 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\DataFixtures\ORM;
+namespace OroCRM\Bundle\CallBundle\Migrations\Data\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use OroCRM\Bundle\CallBundle\Entity\CallDirection;
+use OroCRM\Bundle\CallBundle\Entity\CallStatus;
 
-class LoadCallDirectionData extends AbstractFixture
+class LoadCallStatusData extends AbstractFixture
 {
     /**
      * @var array
      */
     protected $data = array(
-        'incoming' => 'Incoming',
-        'outgoing' => 'Outgoing',
+        'in_progress' => 'In progress',
+        'completed' => 'Completed',
     );
 
     /**
@@ -23,9 +23,9 @@ class LoadCallDirectionData extends AbstractFixture
     public function load(ObjectManager $manager)
     {
         foreach ($this->data as $name => $label) {
-            $callDirection = new CallDirection($name);
-            $callDirection->setLabel($label);
-            $manager->persist($callDirection);
+            $callStatus = new CallStatus($name);
+            $callStatus->setLabel($label);
+            $manager->persist($callStatus);
         }
 
         $manager->flush();
