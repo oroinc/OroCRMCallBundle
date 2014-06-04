@@ -30,20 +30,29 @@ class OroCRMCallBundle implements Migration, ExtendExtensionAwareInterface
      */
     public function up(Schema $schema, QueryBag $queries)
     {
-        /**
-         * Enable notes for Call entity
-         */
+        self::addNoteAssociations($schema, $this->extendExtension);
+    }
+
+    /**
+     * Enable notes for Call entity
+     *
+     * @param Schema          $schema
+     * @param ExtendExtension $extendExtension
+     */
+    public static function addNoteAssociations(Schema $schema, ExtendExtension $extendExtension)
+    {
         $noteTable = $schema->getTable('oro_note');
         $callTable = $schema->getTable('orocrm_call');
 
-        $callOptions['note']['enabled'] = true;
-        $callTable->addOption(ExtendColumn::ORO_OPTIONS_NAME, $callOptions);
+        $options['note']['enabled'] = true;
+
+        $callTable->addOption(ExtendColumn::ORO_OPTIONS_NAME, $options);
 
         $callAssociationName = ExtendHelper::buildAssociationName(
-            $this->extendExtension->getEntityClassByTableName('orocrm_call')
+            $extendExtension->getEntityClassByTableName('orocrm_call')
         );
 
-        $this->extendExtension->addManyToOneRelation(
+        $extendExtension->addManyToOneRelation(
             $schema,
             $noteTable,
             $callAssociationName,
