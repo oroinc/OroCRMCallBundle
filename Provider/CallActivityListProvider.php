@@ -77,7 +77,7 @@ class CallActivityListProvider implements ActivityListProviderInterface
      */
     public function getBriefTemplate()
     {
-        return 'OroCRMCallBundle:Call:activity-list/briefTemplate.html.twig';
+        return 'OroCRMCallBundle:Call:js/activityItemTemplate.js.twig';
     }
 
     /**
@@ -85,7 +85,7 @@ class CallActivityListProvider implements ActivityListProviderInterface
      */
     public function getFullTemplate()
     {
-        return 'OroCRMCallBundle:Call:activity-list/fullTemplate.html.twig';
+        //return 'OroCRMCallBundle:Call:activity-list/fullTemplate.js.twig';
     }
 
     /**
