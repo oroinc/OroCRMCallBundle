@@ -1,5 +1,0 @@
-oro_api:
-    entities:
-        OroCRM\Bundle\CallBundle\Entity\Call: ~
-        OroCRM\Bundle\CallBundle\Entity\CallDirection: ~
-        OroCRM\Bundle\CallBundle\Entity\CallStatus: ~
