@@ -1,5 +1,5 @@
 {
-    "name": "oro/call-bundle",
+    "name": "oro/crm-call-bundle",
     "description": "Oro CRM Calls",
     "keywords": ["OroCRM", "Call"],
     "homepage": "https://github.com/orocrm/CallBundle",
