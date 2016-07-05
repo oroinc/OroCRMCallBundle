@@ -17,9 +17,6 @@
         : 'orocrm.call.log_call'|trans
     %}
 
-    {# do not render callStatus field #}
-    {% do form.callStatus.setRendered %}
-
     {% set formFields = [] %}
     {% if form.owner is defined %}
         {% set formFields = formFields|merge([form_row(form.owner)]) %}
@@ -32,6 +29,10 @@
         form_row(form.direction),
         form_row(form.duration)
     ]) %}
+
+    <div class="hide">
+        {{ form_row(form.callStatus) }}
+    </div>
 
     {% set additionalData = [] %}
     {% for child in form.children if child.vars.extra_field is defined and child.vars.extra_field %}
