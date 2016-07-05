@@ -20,6 +20,8 @@
                 </div>
             </div>
         {% endif %}
+        {# do not render callStatus field #}
+        {% do form.callStatus.setRendered %}
         <div class="form-container">
             <form id="{{ form.vars.id }}" name="{{ form.vars.name }}" action="{{ formAction }}" method="post">
                 <fieldset class="form form-horizontal">
@@ -33,9 +35,6 @@
                         {{ form_row(form.phoneNumber) }}
                         {{ form_row(form.direction) }}
                         {{ form_row(form.duration) }}
-                        <div class="hide">
-                            {{ form_row(form.callStatus) }}
-                        </div>
                     </div>
                     <div class="span6">
                         {{ form_rest(form) }}
