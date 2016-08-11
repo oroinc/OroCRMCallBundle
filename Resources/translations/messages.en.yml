@@ -68,3 +68,9 @@ orocrm:
 
         block:
             additional: Additional
+
+        callstatus:
+            entity_label: Call Status
+            entity_plural_label: Call Statuses
+            label.label: Label
+            name.label: Name
