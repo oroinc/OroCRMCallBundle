@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "oro/platform": "1.10.x-dev"
+        "oro/platform": "1.10.*"
     },
     "autoload": {
         "psr-0": { "OroCRM\\Bundle\\CallBundle": "src/" }
