@@ -7,12 +7,26 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
 
+use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
+
 /**
  * CallStatus
  *
  * @ORM\Table(name="orocrm_call_status")
  * @ORM\Entity
  * @Gedmo\TranslationEntity(class="OroCRM\Bundle\CallBundle\Entity\CallStatusTranslation")
+ * @Config(
+ *      defaultValues={
+ *          "grouping"={
+ *              "groups"={"dictionary"}
+ *          },
+ *          "dictionary"={
+ *              "virtual_fields"={"label"},
+ *              "search_fields"={"label"},
+ *              "representation_field"="label",
+ *          }
+ *      }
+ * )
  */
 class CallStatus implements Translatable
 {
