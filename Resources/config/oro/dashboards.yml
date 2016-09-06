@@ -1,4 +1,4 @@
-oro_dashboard_config:
+dashboards:
     widgets:
         recent_calls:
             label:       orocrm.dashboard.recent_calls.title
