@@ -10,16 +10,16 @@
                 {{ AC.activity_contexts(entity, target, true) }}
             </div>
         {% endif %}
-        {{ ui.renderProperty('orocrm.call.subject.label'|trans, entity.subject) }}
-        {#{{ ui.renderProperty('orocrm.call.call_status.label'|trans, entity.callStatus ? entity.callStatus.label : null) }}#}
-        {{ ui.renderSwitchableHtmlProperty('orocrm.call.notes.label'|trans, entity.notes) }}
-        {{ ui.renderProperty('orocrm.call.call_date_time.label'|trans, entity.callDateTime|oro_format_datetime) }}
+        {{ ui.renderProperty('oro.call.subject.label'|trans, entity.subject) }}
+        {#{{ ui.renderProperty('oro.call.call_status.label'|trans, entity.callStatus ? entity.callStatus.label : null) }}#}
+        {{ ui.renderSwitchableHtmlProperty('oro.call.notes.label'|trans, entity.notes) }}
+        {{ ui.renderProperty('oro.call.call_date_time.label'|trans, entity.callDateTime|oro_format_datetime) }}
     </div>
     <div class="responsive-block">
-        {{ ui.renderHtmlProperty('orocrm.call.phone_number.label'|trans, ui.renderPhoneWithActions(entity.phoneNumber, entity)) }}
-        {{ ui.renderProperty('orocrm.call.direction.label'|trans, entity.direction ? entity.direction.label : null) }}
+        {{ ui.renderHtmlProperty('oro.call.phone_number.label'|trans, ui.renderPhoneWithActions(entity.phoneNumber, entity)) }}
+        {{ ui.renderProperty('oro.call.direction.label'|trans, entity.direction ? entity.direction.label : null) }}
         {# Don't use time formatting here because it's a time interval #}
-        {{ ui.renderProperty('orocrm.call.duration.label'|trans, entity.duration|oro_format_duration({default: true})) }}
+        {{ ui.renderProperty('oro.call.duration.label'|trans, entity.duration|oro_format_duration({default: true})) }}
     </div>
     <div class="responsive-block">
         {{ entityConfig.renderDynamicFields(entity) }}

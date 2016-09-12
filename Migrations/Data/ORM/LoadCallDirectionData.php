@@ -1,11 +1,11 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Data\ORM;
+namespace Oro\Bundle\CallBundle\Migrations\Data\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use OroCRM\Bundle\CallBundle\Entity\CallDirection;
+use Oro\Bundle\CallBundle\Entity\CallDirection;
 
 class LoadCallDirectionData extends AbstractFixture
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\DependencyInjection;
+namespace Oro\Bundle\CallBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class OroCRMCallExtension extends Extension
+class OroCallExtension extends Extension
 {
     /**
      * {@inheritDoc}

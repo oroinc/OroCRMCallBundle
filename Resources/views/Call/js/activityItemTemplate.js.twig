@@ -1,14 +1,14 @@
 {% extends 'OroActivityListBundle:ActivityList/js:activityItemTemplate.js.twig' %}
 {% import 'OroActivityBundle::macros.html.twig' as AC %}
 
-{% set entityClass = 'OroCRM\\Bundle\\CallBundle\\Entity\\Call' %}
+{% set entityClass = 'Oro\\Bundle\\CallBundle\\Entity\\Call' %}
 {% set entityName = oro_entity_config_value(entityClass, 'label')|trans %}
 
 {% block activityDetails %}
     {{ entityName|raw }}
     <% var template = (verb == 'create')
-        ? {{ 'orocrm.call.created_by'|trans|json_encode|raw }}
-        : {{ 'orocrm.call.changed_by'|trans|json_encode|raw }};
+        ? {{ 'oro.call.created_by'|trans|json_encode|raw }}
+        : {{ 'oro.call.changed_by'|trans|json_encode|raw }};
     %>
     <%= _.template(template, { interpolate: /\{\{(.+?)\}\}/g })({
         user: owner_url ? '<a class="user" href="' + owner_url + '">' +  _.escape(owner) + '</a>' :  '<span class="user">' + _.escape(owner) + '</span>',
@@ -27,17 +27,17 @@
     {% set actions = [action] %}
 
     {% set action %}
-        <a href="<%= routing.generate('orocrm_call_view', {'id': relatedActivityId}) %>"
-           title="{{ 'orocrm.call.view'|trans|raw }}"><i
-                class="icon-eye-open hide-text">{{ 'orocrm.call.view'|trans|raw }}</i></a>
+        <a href="<%= routing.generate('oro_call_view', {'id': relatedActivityId}) %>"
+           title="{{ 'oro.call.view'|trans|raw }}"><i
+                class="icon-eye-open hide-text">{{ 'oro.call.view'|trans|raw }}</i></a>
     {% endset %}
     {% set actions = actions|merge([action]) %}
 
     {% set action %}
         <% if (editable) { %>
         <a href="#" class="action item-edit-button"
-           title="{{ 'orocrm.call.update_call'|trans({'{{ entity }}': entityName})|raw }}">
-            <i class="icon-edit hide-text">{{ 'orocrm.call.update_call'|trans({'{{ entity }}': entityName})|raw }}</i>
+           title="{{ 'oro.call.update_call'|trans({'{{ entity }}': entityName})|raw }}">
+            <i class="icon-edit hide-text">{{ 'oro.call.update_call'|trans({'{{ entity }}': entityName})|raw }}</i>
         </a>
         <% } %>
     {% endset %}
@@ -46,8 +46,8 @@
     {% set action %}
         <% if (removable) { %>
         <a href="#" class="action item-remove-button"
-           title="{{ 'orocrm.call.delete_call'|trans({'{{ entity }}': entityName})|raw }}">
-            <i class="icon-trash hide-text">{{ 'orocrm.call.delete_call'|trans({'{{ entity }}': entityName})|raw }}</i>
+           title="{{ 'oro.call.delete_call'|trans({'{{ entity }}': entityName})|raw }}">
+            <i class="icon-trash hide-text">{{ 'oro.call.delete_call'|trans({'{{ entity }}': entityName})|raw }}</i>
         </a>
         <% } %>
     {% endset %}

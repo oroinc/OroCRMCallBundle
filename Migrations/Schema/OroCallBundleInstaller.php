@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Schema;
+namespace Oro\Bundle\CallBundle\Migrations\Schema;
 
 use Doctrine\DBAL\Schema\Schema;
 
@@ -10,10 +10,9 @@ use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtension;
 use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtensionAwareInterface;
 use Oro\Bundle\MigrationBundle\Migration\Installation;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
+use Oro\Bundle\CallBundle\Migrations\Schema\v1_6\OroCallBundle as TranslationTable;
 
-use OroCRM\Bundle\CallBundle\Migrations\Schema\v1_6\OroCRMCallBundle as TranslationTable;
-
-class OroCRMCallBundleInstaller implements Installation, ActivityExtensionAwareInterface, CommentExtensionAwareInterface
+class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInterface, CommentExtensionAwareInterface
 {
     /** @var CommentExtension */
     protected $comment;
@@ -61,17 +60,17 @@ class OroCRMCallBundleInstaller implements Installation, ActivityExtensionAwareI
         /** Foreign keys generation **/
         $this->addOrocrmCallForeignKeys($schema);
 
-        $this->comment->addCommentAssociation($schema, 'orocrm_call');
+        $this->comment->addCommentAssociation($schema, 'oro_call');
     }
 
     /**
-     * Create orocrm_call table
+     * Create oro_call table
      *
      * @param Schema $schema
      */
     protected function createOrocrmCallTable(Schema $schema)
     {
-        $table = $schema->createTable('orocrm_call');
+        $table = $schema->createTable('oro_call');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('call_direction_name', 'string', ['notnull' => false, 'length' => 32]);
         $table->addColumn('call_status_name', 'string', ['notnull' => false, 'length' => 32]);
@@ -91,17 +90,17 @@ class OroCRMCallBundleInstaller implements Installation, ActivityExtensionAwareI
         $table->addIndex(['call_direction_name'], 'IDX_1FBD1A249F3E257D', []);
         $table->addIndex(['call_date_time'], 'call_dt_idx');
 
-        $this->activityExtension->addActivityAssociation($schema, 'orocrm_call', 'oro_user');
+        $this->activityExtension->addActivityAssociation($schema, 'oro_call', 'oro_user');
     }
 
     /**
-     * Create orocrm_call_direction table
+     * Create oro_call_direction table
      *
      * @param Schema $schema
      */
     protected function createOrocrmCallDirectionTable(Schema $schema)
     {
-        $table = $schema->createTable('orocrm_call_direction');
+        $table = $schema->createTable('oro_call_direction');
         $table->addColumn('name', 'string', ['length' => 32]);
         $table->addColumn('label', 'string', ['length' => 255]);
         $table->setPrimaryKey(['name']);
@@ -109,13 +108,13 @@ class OroCRMCallBundleInstaller implements Installation, ActivityExtensionAwareI
     }
 
     /**
-     * Create orocrm_call table
+     * Create oro_call table
      *
      * @param Schema $schema
      */
     protected function createOrocrmCallStatusTable(Schema $schema)
     {
-        $table = $schema->createTable('orocrm_call_status');
+        $table = $schema->createTable('oro_call_status');
         $table->addColumn('name', 'string', ['length' => 32]);
         $table->addColumn('label', 'string', ['length' => 255]);
         $table->setPrimaryKey(['name']);
@@ -123,21 +122,21 @@ class OroCRMCallBundleInstaller implements Installation, ActivityExtensionAwareI
     }
 
     /**
-     * Create orocrm_call table
+     * Create oro_call table
      *
      * @param Schema $schema
      */
     protected function addOrocrmCallForeignKeys(Schema $schema)
     {
-        $table = $schema->getTable('orocrm_call');
+        $table = $schema->getTable('oro_call');
         $table->addForeignKeyConstraint(
-            $schema->getTable('orocrm_call_direction'),
+            $schema->getTable('oro_call_direction'),
             ['call_direction_name'],
             ['name'],
             ['onDelete' => 'SET NULL', 'onUpdate' => null]
         );
         $table->addForeignKeyConstraint(
-            $schema->getTable('orocrm_call_status'),
+            $schema->getTable('oro_call_status'),
             ['call_status_name'],
             ['name'],
             ['onDelete' => 'SET NULL', 'onUpdate' => null]

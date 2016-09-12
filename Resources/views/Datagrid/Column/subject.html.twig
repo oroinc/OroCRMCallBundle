@@ -3,7 +3,7 @@
 
     {% set callId = record.getValue('id') %}
     {{ UI.clientLink({
-        'dataUrl': path('orocrm_call_widget_info', {id : callId}),
+        'dataUrl': path('oro_call_widget_info', {id : callId}),
         'aCss': 'no-hash',
         'label' : value,
         'widget' : {

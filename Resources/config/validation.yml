@@ -1,4 +1,4 @@
-OroCRM\Bundle\CallBundle\Entity\Call:
+Oro\Bundle\CallBundle\Entity\Call:
     properties:
         subject:
             - NotBlank: ~

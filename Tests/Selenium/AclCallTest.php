@@ -1,11 +1,11 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Selenium;
+namespace Oro\Bundle\CallBundle\Tests\Selenium;
 
 use Oro\Bundle\TestFrameworkBundle\Test\Selenium2TestCase;
 use Oro\Bundle\UserBundle\Tests\Selenium\Pages\Roles;
 use Oro\Bundle\UserBundle\Tests\Selenium\Pages\Users;
-use OroCRM\Bundle\CallBundle\Tests\Selenium\Pages\Calls;
+use Oro\Bundle\CallBundle\Tests\Selenium\Pages\Calls;
 
 class AclCallTest extends Selenium2TestCase
 {
@@ -51,7 +51,7 @@ class AclCallTest extends Selenium2TestCase
             ->setEmail($username.'@mail.com')
             ->setRoles(array('Label_' . $role))
             ->setBusinessUnit()
-            ->setOrganization('OroCRM')
+            ->setOrganization('Oro')
             ->uncheckInviteUser()
             ->save()
             ->assertMessage('User saved')
@@ -72,7 +72,7 @@ class AclCallTest extends Selenium2TestCase
 
         $login = $this->login();
         /** @var Calls $login */
-        $login->openCalls('OroCRM\Bundle\CallBundle')
+        $login->openCalls('Oro\Bundle\CallBundle')
             ->add()
             ->assertTitle('Log Call - Calls - Activities')
             ->setCallSubject($callSubject)
@@ -130,7 +130,7 @@ class AclCallTest extends Selenium2TestCase
             ->setPassword('123123q')
             ->submit();
         /** @var Calls $login */
-        $login->openCalls('OroCRM\Bundle\CallBundle')
+        $login->openCalls('Oro\Bundle\CallBundle')
             ->filterBy('Subject', $callSubject)
             ->assertNoActionMenu('Delete');
     }
@@ -148,7 +148,7 @@ class AclCallTest extends Selenium2TestCase
             ->setPassword('123123q')
             ->submit();
         /** @var Calls $login */
-        $login->openCalls('OroCRM\Bundle\CallBundle')
+        $login->openCalls('Oro\Bundle\CallBundle')
             ->filterBy('Subject', $callSubject)
             ->assertNoActionMenu('Update');
     }
@@ -166,7 +166,7 @@ class AclCallTest extends Selenium2TestCase
             ->setPassword('123123q')
             ->submit();
         /** @var Calls $login */
-        $login->openCalls('OroCRM\Bundle\CallBundle')
+        $login->openCalls('Oro\Bundle\CallBundle')
             ->assertElementNotPresent(
                 "//div[@class='pull-right title-buttons-container']//a[contains(., 'Log call')]"
             );
@@ -185,7 +185,7 @@ class AclCallTest extends Selenium2TestCase
             ->setPassword('123123q')
             ->submit();
         /** @var Calls $login */
-        $login->openCalls('OroCRM\Bundle\CallBundle')
+        $login->openCalls('Oro\Bundle\CallBundle')
             ->assertTitle('403 - Forbidden');
     }
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\EventListener;
+namespace Oro\Bundle\CallBundle\EventListener;
 
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
-use OroCRM\Bundle\CallBundle\Entity\Manager\CallActivityManager;
+use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
 
 class EntityListener
 {

@@ -5,7 +5,7 @@
 'Call logged successfully': 'Call saved'
 'Call deleted successfully': 'Call deleted successfully'
 
-orocrm:
+oro:
     dashboard:
         recent_calls:
             title: Recent calls
@@ -43,7 +43,7 @@ orocrm:
         view:        View call log
 
         #
-        # OroCRM/Bundle/CallBundle/Entity/Call
+        # Oro/Bundle/CallBundle/Entity/Call
         #
         entity_label:          Call
         entity_plural_label:   Calls

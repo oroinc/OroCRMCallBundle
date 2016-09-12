@@ -1,14 +1,14 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Selenium;
+namespace Oro\Bundle\CallBundle\Tests\Selenium;
 
 use Oro\Bundle\TestFrameworkBundle\Test\Selenium2TestCase;
-use OroCRM\Bundle\CallBundle\Tests\Selenium\Pages\Calls;
+use Oro\Bundle\CallBundle\Tests\Selenium\Pages\Calls;
 
 /**
  * Class CreateCallTest
  *
- * @package OroCRM\Bundle\CallBundle\Tests\Selenium
+ * @package Oro\Bundle\CallBundle\Tests\Selenium
  * {@inheritdoc}
  */
 class CreateCallTest extends Selenium2TestCase
@@ -24,7 +24,7 @@ class CreateCallTest extends Selenium2TestCase
 
         $login = $this->login();
         /** @var Calls $login */
-        $login->openCalls('OroCRM\Bundle\CallBundle')
+        $login->openCalls('Oro\Bundle\CallBundle')
             ->assertTitle('All - Calls - Activities')
             ->add()
             ->assertTitle('Log Call - Calls - Activities')
@@ -50,7 +50,7 @@ class CreateCallTest extends Selenium2TestCase
 
         $login = $this->login();
         /** @var Calls $login */
-        $login->openCalls('OroCRM\Bundle\CallBundle')
+        $login->openCalls('Oro\Bundle\CallBundle')
             ->filterBy('Subject', $callSubject)
             ->open(array($callSubject))
             ->assertTitle($callSubject . ' - Calls - Activities')
@@ -74,13 +74,13 @@ class CreateCallTest extends Selenium2TestCase
     {
         $login = $this->login();
         /** @var Calls $login */
-        $login->openCalls('OroCRM\Bundle\CallBundle')
+        $login->openCalls('Oro\Bundle\CallBundle')
             ->filterBy('Subject', $newCallSubject)
             ->delete(array($newCallSubject))
             ->assertMessage('Item deleted')
             ->assertTitle('All - Calls - Activities');
 
-        $login->openCalls('OroCRM\Bundle\CallBundle')
+        $login->openCalls('Oro\Bundle\CallBundle')
             ->assertNoDataMessage('No records found');
     }
 }

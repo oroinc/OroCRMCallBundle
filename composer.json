@@ -1,12 +1,12 @@
 {
     "name": "oro/crm-call-bundle",
-    "description": "OroCRM Call Bundle",
-    "keywords": ["OroCRM", "Call"],
+    "description": "Oro Call Bundle",
+    "keywords": ["Oro", "Call"],
     "license": "OSL-3.0",
     "authors": [
         {
             "name": "Oro, Inc",
-            "homepage": "http://www.orocrm.com"
+            "homepage": "http://www.oro.com"
         }
     ],
     "require": {
@@ -14,9 +14,9 @@
         "oro/platform": "1.x-dev"
     },
     "autoload": {
-        "psr-0": { "OroCRM\\Bundle\\CallBundle": "src/" }
+        "psr-0": { "Oro\\Bundle\\CallBundle": "src/" }
     },
-    "target-dir": "src/OroCRM/Bundle/CallBundle",
+    "target-dir": "src/Oro/Bundle/CallBundle",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {

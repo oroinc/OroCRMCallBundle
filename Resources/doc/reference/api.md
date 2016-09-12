@@ -43,7 +43,7 @@ $request = [
                 "type"       => 'activity'
             ],
             [
-                "entityName" => 'OroCRM\Bundle\ContactBundle\Entity\Contact',
+                "entityName" => 'Oro\Bundle\ContactBundle\Entity\Contact',
                 "entityId"   => 2,
                 "type"       => 'activity'
             ],
@@ -55,7 +55,7 @@ $request = [
  - URL encoded
 
 ```
-call[subject]=Subject&call[owner]=1&call[callDateTime]=2015-01-01T12:00:00&call[phoneNumber]=123-123-123&call[direction]=outgoing&call[duration]=00:00:05&call[callStatus]=completed&call[associations][0][entityName]=Oro%5CBundle%5CUserBundle%5CEntity%5CUser&call[associations][0][entityId]=1&call[associations][0][type]=activity&call[associations][1][entityName]=OroCRM%5CBundle%5CContactBundle%5CEntity%5CContact&call[associations][1][entityId]=2
+call[subject]=Subject&call[owner]=1&call[callDateTime]=2015-01-01T12:00:00&call[phoneNumber]=123-123-123&call[direction]=outgoing&call[duration]=00:00:05&call[callStatus]=completed&call[associations][0][entityName]=Oro%5CBundle%5CUserBundle%5CEntity%5CUser&call[associations][0][entityId]=1&call[associations][0][type]=activity&call[associations][1][entityName]=Oro%5CBundle%5CContactBundle%5CEntity%5CContact&call[associations][1][entityId]=2
 ```
 
 ###### Sample response:
@@ -110,7 +110,7 @@ Content:
     "owner": "michael.wagner_39d92",
     "callStatus": null,
     "direction": "Incoming",
-    "organization": "OroCRM"
+    "organization": "Oro"
   },
   {
     "id": 2,
@@ -124,7 +124,7 @@ Content:
     "owner": "michael.hodges_97152",
     "callStatus": null,
     "direction": "Outgoing",
-    "organization": "OroCRM"
+    "organization": "Oro"
   }
 ]
 ```
@@ -167,7 +167,7 @@ Content:
    "owner": "william.jacobs_9108d",
    "callStatus": null,
    "direction": "Incoming",
-   "organization": "OroCRM"
+   "organization": "Oro"
  }
  ```
 

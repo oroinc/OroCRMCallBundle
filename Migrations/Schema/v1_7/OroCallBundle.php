@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Schema\v1_7;
+namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_7;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\PostgreSQL92Platform;
@@ -13,7 +13,7 @@ use Oro\Bundle\MigrationBundle\Migration\ParametrizedSqlMigrationQuery;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 use Oro\Bundle\MigrationBundle\Migration\SqlMigrationQuery;
 
-class OroCRMCallBundle implements Migration, DatabasePlatformAwareInterface
+class OroCallBundle implements Migration, DatabasePlatformAwareInterface
 {
     /** @var AbstractPlatform */
     protected $platform;
@@ -31,7 +31,7 @@ class OroCRMCallBundle implements Migration, DatabasePlatformAwareInterface
         $queries->addPreQuery($this->getPlatformSQL());
 
         // migrate oro_entity_config_field
-        $entityClass = 'OroCRM\\Bundle\\CallBundle\\Entity\\Call';
+        $entityClass = 'Oro\\Bundle\\CallBundle\\Entity\\Call';
 
         $migrateFieldSql = 'UPDATE oro_entity_config_field SET type = :field_type' .
                            ' WHERE field_name = :field_name' .
@@ -54,7 +54,7 @@ class OroCRMCallBundle implements Migration, DatabasePlatformAwareInterface
      */
     private function getPlatformSQL()
     {
-        $migrateDataSQL = 'UPDATE orocrm_call SET duration =' .
+        $migrateDataSQL = 'UPDATE oro_call SET duration =' .
                           ' EXTRACT(HOUR FROM duration_old) * 3600 +' .
                           ' EXTRACT(MINUTE FROM duration_old) * 60 +' .
                           ' EXTRACT(SECOND FROM duration_old) * 1';
@@ -62,22 +62,22 @@ class OroCRMCallBundle implements Migration, DatabasePlatformAwareInterface
         if ($this->platform instanceof PostgreSQL92Platform) {
             return new SqlMigrationQuery(
                 [
-                    'ALTER TABLE orocrm_call RENAME COLUMN duration TO duration_old',
-                    'ALTER TABLE orocrm_call ADD COLUMN duration int NULL DEFAULT NULL',
-                    'COMMENT ON COLUMN orocrm_call.duration IS \'(DC2Type:duration)\'',
+                    'ALTER TABLE oro_call RENAME COLUMN duration TO duration_old',
+                    'ALTER TABLE oro_call ADD COLUMN duration int NULL DEFAULT NULL',
+                    'COMMENT ON COLUMN oro_call.duration IS \'(DC2Type:duration)\'',
                     $migrateDataSQL,
-                    'ALTER TABLE orocrm_call DROP COLUMN duration_old',
+                    'ALTER TABLE oro_call DROP COLUMN duration_old',
                 ]
             );
         }
 
         return new SqlMigrationQuery(
             [
-                'ALTER TABLE orocrm_call CHANGE duration duration_old TIME NULL DEFAULT NULL',
-                'ALTER TABLE orocrm_call ADD COLUMN duration int NULL DEFAULT NULL' .
+                'ALTER TABLE oro_call CHANGE duration duration_old TIME NULL DEFAULT NULL',
+                'ALTER TABLE oro_call ADD COLUMN duration int NULL DEFAULT NULL' .
                 ' COMMENT \'(DC2Type:duration)\'',
                 $migrateDataSQL,
-                'ALTER TABLE orocrm_call DROP COLUMN duration_old',
+                'ALTER TABLE oro_call DROP COLUMN duration_old',
             ]
         );
     }

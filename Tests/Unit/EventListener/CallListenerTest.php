@@ -1,12 +1,12 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Unit\Entity;
+namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
 use Doctrine\ORM\QueryBuilder;
 
 use Oro\Bundle\DataGridBundle\Event\BuildAfter;
 use Oro\Bundle\DataGridBundle\Event\BuildBefore;
-use OroCRM\Bundle\CallBundle\EventListener\Datagrid\CallListener;
+use Oro\Bundle\CallBundle\EventListener\Datagrid\CallListener;
 use Oro\Bundle\UserBundle\Entity\User;
 
 class CallListenerTest extends \PHPUnit_Framework_TestCase

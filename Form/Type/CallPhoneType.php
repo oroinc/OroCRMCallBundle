@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Form\Type;
+namespace Oro\Bundle\CallBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
@@ -17,7 +17,7 @@ class CallPhoneType extends AbstractType
     {
         $defaultConfigs = [
             'allowClear'   => true,
-            'placeholder'  => 'orocrm.call.form.choose_or_enter_phone',
+            'placeholder'  => 'oro.call.form.choose_or_enter_phone',
             'component'    => 'call-phone'
         ];
 
@@ -73,6 +73,6 @@ class CallPhoneType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'orocrm_call_phone';
+        return 'oro_call_phone';
     }
 }

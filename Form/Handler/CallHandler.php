@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Form\Handler;
+namespace Oro\Bundle\CallBundle\Form\Handler;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormFactory;
@@ -11,9 +11,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
 use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
-
-use OroCRM\Bundle\CallBundle\Entity\Call;
-use OroCRM\Bundle\CallBundle\Entity\Manager\CallActivityManager;
+use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
 
 class CallHandler
 {

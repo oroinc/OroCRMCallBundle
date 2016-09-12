@@ -13,8 +13,8 @@
 {% block content_data %}
     {% set id = 'call-log' %}
     {% set title = form.vars.value.id
-        ? 'oro.ui.edit_entity'|trans({'%entityName%': 'orocrm.call.entity_label'|trans})
-        : 'orocrm.call.log_call'|trans
+        ? 'oro.ui.edit_entity'|trans({'%entityName%': 'oro.call.entity_label'|trans})
+        : 'oro.call.log_call'|trans
     %}
 
     {% set formFields = [] %}
@@ -55,7 +55,7 @@
 
     {% if additionalData is not empty %}
         {% set dataBlocks = dataBlocks|merge([{
-            'title': 'orocrm.call.block.additional'|trans,
+            'title': 'oro.call.block.additional'|trans,
             'subblocks': [{
                 'title': '',
                 'useSpan': false,
@@ -73,19 +73,19 @@
 {% endblock content_data %}
 
 {% block navButtons %}
-    {{ UI.cancelButton(path('orocrm_call_index')) }}
+    {{ UI.cancelButton(path('oro_call_index')) }}
     {% set html = UI.saveAndCloseButton({
-        'route': 'orocrm_call_view',
+        'route': 'oro_call_view',
         'params': {'id': '$id'}
     }) %}
-    {% if resource_granted('orocrm_call_create') %}
+    {% if resource_granted('oro_call_create') %}
         {% set html = html ~ UI.saveAndNewButton({
-            'route': 'orocrm_call_create'
+            'route': 'oro_call_create'
         }) %}
     {% endif %}
-    {% if form.vars.value.id or resource_granted('orocrm_call_update') %}
+    {% if form.vars.value.id or resource_granted('oro_call_update') %}
         {% set html = html ~ UI.saveAndStayButton({
-            'route': 'orocrm_call_update',
+            'route': 'oro_call_update',
             'params': {'id': '$id'}
         }) %}
     {% endif %}
@@ -96,17 +96,17 @@
     {% if form.vars.value.id %}
         {% set breadcrumbs = {
             'entity':      form.vars.value,
-            'indexPath':   path('orocrm_call_index'),
-            'indexLabel': 'orocrm.call.entity_plural_label'|trans,
+            'indexPath':   path('oro_call_index'),
+            'indexLabel': 'oro.call.entity_plural_label'|trans,
             'entityTitle': form.vars.value.subject|default('N/A')
         }
         %}
     {% else %}
         {% set breadcrumbs = {
             'entity':      form.vars.value,
-            'indexPath':   path('orocrm_call_index'),
-            'indexLabel': 'orocrm.call.entity_plural_label'|trans,
-            'entityTitle': 'orocrm.call.log_call'|trans
+            'indexPath':   path('oro_call_index'),
+            'indexLabel': 'oro.call.entity_plural_label'|trans,
+            'entityTitle': 'oro.call.log_call'|trans
         }
         %}
     {% endif %}

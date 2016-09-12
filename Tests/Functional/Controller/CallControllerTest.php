@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Controller;
+namespace Oro\Bundle\CallBundle\Tests\Controller;
 
 use Symfony\Component\Form\Form;
 
@@ -23,20 +23,20 @@ class CallControllerTest extends WebTestCase
 
     public function testIndex()
     {
-        $this->client->request('GET', $this->getUrl('orocrm_call_index'));
+        $this->client->request('GET', $this->getUrl('oro_call_index'));
         $result = $this->client->getResponse();
         $this->assertHtmlResponseStatusCodeEquals($result, 200);
     }
 
     public function testCreate()
     {
-        $crawler = $this->client->request('GET', $this->getUrl('orocrm_call_create'));
+        $crawler = $this->client->request('GET', $this->getUrl('oro_call_create'));
         /** @var Form $form */
         $form = $crawler->selectButton('Save and Close')->form();
-        $form['orocrm_call_form[subject]'] = 'Test Call';
-        $form['orocrm_call_form[duration]'] = '00:00:05';
-        $form['orocrm_call_form[notes]'] = 'Call Notes';
-        $form['orocrm_call_form[phoneNumber]'] = '123-123-123';
+        $form['oro_call_form[subject]'] = 'Test Call';
+        $form['oro_call_form[duration]'] = '00:00:05';
+        $form['oro_call_form[notes]'] = 'Call Notes';
+        $form['oro_call_form[phoneNumber]'] = '123-123-123';
 
         $this->client->followRedirects(true);
         $crawler = $this->client->submit($form);
@@ -45,7 +45,7 @@ class CallControllerTest extends WebTestCase
         $this->assertHtmlResponseStatusCodeEquals($result, 200);
         $this->assertContains("Call saved", $crawler->html());
 
-        $call = self::getContainer()->get('doctrine.orm.entity_manager')->getRepository('OroCRMCallBundle:Call')
+        $call = self::getContainer()->get('doctrine.orm.entity_manager')->getRepository('OroCallBundle:Call')
             ->findOneBySubject('Test Call');
         $this->assertNotNull($call);
     }
@@ -66,11 +66,11 @@ class CallControllerTest extends WebTestCase
         $id = $result['id'];
         $crawler = $this->client->request(
             'GET',
-            $this->getUrl('orocrm_call_update', array('id' => $result['id']))
+            $this->getUrl('oro_call_update', array('id' => $result['id']))
         );
         /** @var Form $form */
         $form = $crawler->selectButton('Save and Close')->form();
-        $form['orocrm_call_form[subject]'] = 'Test Update Call';
+        $form['oro_call_form[subject]'] = 'Test Update Call';
 
         $this->client->followRedirects(true);
         $crawler = $this->client->submit($form);
@@ -89,7 +89,7 @@ class CallControllerTest extends WebTestCase
     {
         $crawler = $this->client->request(
             'GET',
-            $this->getUrl('orocrm_call_view', array('id' => $id))
+            $this->getUrl('oro_call_view', array('id' => $id))
         );
 
         $result = $this->client->getResponse();
@@ -112,7 +112,7 @@ class CallControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            $this->getUrl('orocrm_call_update', array('id' => $id))
+            $this->getUrl('oro_call_update', array('id' => $id))
         );
 
         $result = $this->client->getResponse();

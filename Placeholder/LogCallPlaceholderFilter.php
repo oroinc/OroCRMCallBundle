@@ -1,12 +1,11 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Placeholder;
+namespace Oro\Bundle\CallBundle\Placeholder;
 
 use Doctrine\Common\Util\ClassUtils;
 
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
-
-use OroCRM\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\Call;
 
 class LogCallPlaceholderFilter
 {

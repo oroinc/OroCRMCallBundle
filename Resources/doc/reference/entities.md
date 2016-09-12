@@ -1,7 +1,7 @@
 Call Entities
 ----------------
 
-OroCRMCallBundle provides one main entity and two property entities (CallStatus, CallDirection)
+OroCallBundle provides one main entity and two property entities (CallStatus, CallDirection)
 
 ### Classes Description
 

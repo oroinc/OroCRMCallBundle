@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Schema\v1_3;
+namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_3;
 
 use Doctrine\DBAL\Schema\Schema;
 
@@ -19,7 +19,7 @@ use Oro\Bundle\MigrationBundle\Tools\DbIdentifierNameGenerator;
 /**
  *
  */
-class OroCRMCallBundle implements
+class OroCallBundle implements
     Migration,
     OrderedMigrationInterface,
     NameGeneratorAwareInterface,
@@ -65,7 +65,7 @@ class OroCRMCallBundle implements
         $queries->addPreQuery($this->getFillContactActivityQuery());
         $queries->addPreQuery($this->getFillPhoneQuery());
 
-        $callTable = $schema->getTable('orocrm_call');
+        $callTable = $schema->getTable('oro_call');
 
         // relation with account
         $callTable->removeForeignKey('FK_1FBD1A2411A6570A');
@@ -90,7 +90,7 @@ class OroCRMCallBundle implements
     {
         $sql = 'INSERT INTO %s (call_id, user_id)'
             . ' SELECT id, owner_id'
-            . ' FROM orocrm_call'
+            . ' FROM oro_call'
             . ' WHERE owner_id IS NOT NULL';
 
         return sprintf($sql, $this->getAssociationTableName('oro_user'));
@@ -103,7 +103,7 @@ class OroCRMCallBundle implements
     {
         $sql = 'INSERT INTO %s (call_id, account_id)'
             . ' SELECT id, related_account_id'
-            . ' FROM orocrm_call'
+            . ' FROM oro_call'
             . ' WHERE related_account_id IS NOT NULL';
 
         return sprintf($sql, $this->getAssociationTableName('orocrm_account'));
@@ -116,7 +116,7 @@ class OroCRMCallBundle implements
     {
         $sql = 'INSERT INTO %s (call_id, contact_id)'
             . ' SELECT id, related_contact_id'
-            . ' FROM orocrm_call'
+            . ' FROM oro_call'
             . ' WHERE related_contact_id IS NOT NULL';
 
         return sprintf($sql, $this->getAssociationTableName('orocrm_contact'));
@@ -128,8 +128,8 @@ class OroCRMCallBundle implements
     protected function getFillPhoneQuery()
     {
         return
-            'UPDATE orocrm_call SET phone_number = ('
-            . 'SELECT phone FROM orocrm_contact_phone WHERE id = orocrm_call.contact_phone_id'
+            'UPDATE oro_call SET phone_number = ('
+            . 'SELECT phone FROM orocrm_contact_phone WHERE id = oro_call.contact_phone_id'
             . ') WHERE contact_phone_id IS NOT NULL';
     }
 
@@ -140,7 +140,7 @@ class OroCRMCallBundle implements
      */
     protected function getAssociationTableName($targetTableName)
     {
-        $sourceClassName = $this->extendExtension->getEntityClassByTableName('orocrm_call');
+        $sourceClassName = $this->extendExtension->getEntityClassByTableName('oro_call');
         $targetClassName = $this->extendExtension->getEntityClassByTableName($targetTableName);
 
         $associationName = ExtendHelper::buildAssociationName(
@@ -179,7 +179,7 @@ class OroCRMCallBundle implements
             . ' WHERE class_name = :class'
             . ' )';
 
-        $callClassName = $this->extendExtension->getEntityClassByTableName('orocrm_call');
+        $callClassName = $this->extendExtension->getEntityClassByTableName('oro_call');
 
         $query = new ParametrizedSqlMigrationQuery();
         $query->addSql(

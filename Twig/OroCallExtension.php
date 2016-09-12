@@ -1,10 +1,10 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Twig;
+namespace Oro\Bundle\CallBundle\Twig;
 
-use OroCRM\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter;
+use Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter;
 
-class OroCRMCallExtension extends \Twig_Extension
+class OroCallExtension extends \Twig_Extension
 {
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
@@ -41,6 +41,6 @@ class OroCRMCallExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'orocrm_call_extension';
+        return 'oro_call_extension';
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Selenium\Pages;
+namespace Oro\Bundle\CallBundle\Tests\Selenium\Pages;
 
 use Oro\Bundle\TestFrameworkBundle\Pages\AbstractPageEntity;
 
 /**
  * Class Call
- * @package OroCRM\Bundle\CallBundle\Tests\Selenium\Pages
+ * @package Oro\Bundle\CallBundle\Tests\Selenium\Pages
  * {@inheritdoc}
  */
 class Call extends AbstractPageEntity
@@ -26,7 +26,7 @@ class Call extends AbstractPageEntity
      */
     public function setCallSubject($call)
     {
-        $this->$call = $this->test->byXpath("//*[@data-ftid='orocrm_call_form_subject']");
+        $this->$call = $this->test->byXpath("//*[@data-ftid='oro_call_form_subject']");
         $this->$call->clear();
         $this->$call->value($call);
 
@@ -39,7 +39,7 @@ class Call extends AbstractPageEntity
      */
     public function setPhoneNumber($phone)
     {
-        $this->test->byXpath("//div[starts-with(@id,'s2id_orocrm_call_form_phoneNumber')]/a")->click();
+        $this->test->byXpath("//div[starts-with(@id,'s2id_oro_call_form_phoneNumber')]/a")->click();
         $this->waitForAjax();
         $this->test->byXpath("//div[@id='select2-drop']/div/input")->value($phone);
         $this->waitForAjax();
@@ -54,7 +54,7 @@ class Call extends AbstractPageEntity
      */
     public function setContact($contact)
     {
-        $this->test->byXpath("//div[starts-with(@id,'s2id_orocrm_call_form_relatedContact')]/a")->click();
+        $this->test->byXpath("//div[starts-with(@id,'s2id_oro_call_form_relatedContact')]/a")->click();
         $this->waitForAjax();
         $this->test->byXpath("//div[@id='select2-drop']/div/input")->value($contact);
         $this->waitForAjax();

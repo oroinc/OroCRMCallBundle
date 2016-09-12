@@ -1,13 +1,13 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Unit\Form\Handler;
+namespace Oro\Bundle\CallBundle\Tests\Unit\Form\Handler;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use OroCRM\Bundle\CallBundle\Entity\Call;
-use OroCRM\Bundle\CallBundle\Form\Handler\CallApiHandler;
+use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Form\Handler\CallApiHandler;
 
 class CallApiHandlerTest extends \PHPUnit_Framework_TestCase
 {
