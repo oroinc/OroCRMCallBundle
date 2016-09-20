@@ -46,8 +46,8 @@ use Oro\Bundle\CallBundle\Model\ExtendCall;
  *          "activity"={
  *              "route"="oro_call_activity_view",
  *              "acl"="oro_call_view",
- *              "action_button_widget"="orocrm_log_call_button",
- *              "action_link_widget"="orocrm_log_call_link"
+ *              "action_button_widget"="oro_log_call_button",
+ *              "action_link_widget"="oro_log_call_link"
  *          },
  *          "grid"={
  *              "default"="calls-grid",
