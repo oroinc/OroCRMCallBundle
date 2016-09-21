@@ -79,7 +79,7 @@ class ActivityListenerTest extends WebTestCase
      */
     protected function findContact($firstName)
     {
-        return $this->getRegistry()->getRepository('OroContactBundle:Contact')->findOneByFirstName($firstName);
+        return $this->getRegistry()->getRepository('OroCRMContactBundle:Contact')->findOneByFirstName($firstName);
     }
 
     /**
