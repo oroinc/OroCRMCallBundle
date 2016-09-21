@@ -54,7 +54,7 @@ class OroCallBundle implements Migration, DatabasePlatformAwareInterface
      */
     private function getPlatformSQL()
     {
-        $migrateDataSQL = 'UPDATE oro_call SET duration =' .
+        $migrateDataSQL = 'UPDATE orocrm_call SET duration =' .
                           ' EXTRACT(HOUR FROM duration_old) * 3600 +' .
                           ' EXTRACT(MINUTE FROM duration_old) * 60 +' .
                           ' EXTRACT(SECOND FROM duration_old) * 1';
@@ -62,22 +62,22 @@ class OroCallBundle implements Migration, DatabasePlatformAwareInterface
         if ($this->platform instanceof PostgreSQL92Platform) {
             return new SqlMigrationQuery(
                 [
-                    'ALTER TABLE oro_call RENAME COLUMN duration TO duration_old',
-                    'ALTER TABLE oro_call ADD COLUMN duration int NULL DEFAULT NULL',
-                    'COMMENT ON COLUMN oro_call.duration IS \'(DC2Type:duration)\'',
+                    'ALTER TABLE orocrm_call RENAME COLUMN duration TO duration_old',
+                    'ALTER TABLE orocrm_call ADD COLUMN duration int NULL DEFAULT NULL',
+                    'COMMENT ON COLUMN orocrm_call.duration IS \'(DC2Type:duration)\'',
                     $migrateDataSQL,
-                    'ALTER TABLE oro_call DROP COLUMN duration_old',
+                    'ALTER TABLE orocrm_call DROP COLUMN duration_old',
                 ]
             );
         }
 
         return new SqlMigrationQuery(
             [
-                'ALTER TABLE oro_call CHANGE duration duration_old TIME NULL DEFAULT NULL',
-                'ALTER TABLE oro_call ADD COLUMN duration int NULL DEFAULT NULL' .
+                'ALTER TABLE orocrm_call CHANGE duration duration_old TIME NULL DEFAULT NULL',
+                'ALTER TABLE orocrm_call ADD COLUMN duration int NULL DEFAULT NULL' .
                 ' COMMENT \'(DC2Type:duration)\'',
                 $migrateDataSQL,
-                'ALTER TABLE oro_call DROP COLUMN duration_old',
+                'ALTER TABLE orocrm_call DROP COLUMN duration_old',
             ]
         );
     }

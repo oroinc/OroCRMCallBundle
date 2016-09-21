@@ -27,6 +27,6 @@ class OroCallBundle implements Migration, CommentExtensionAwareInterface
      */
     public function up(Schema $schema, QueryBag $queries)
     {
-        $this->comment->addCommentAssociation($schema, 'oro_call');
+        $this->comment->addCommentAssociation($schema, 'orocrm_call');
     }
 }

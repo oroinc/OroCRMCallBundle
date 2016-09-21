@@ -35,7 +35,7 @@ class OroCallBundle implements Migration
      */
     public static function addOrganization(Schema $schema)
     {
-        $table = $schema->getTable('oro_call');
+        $table = $schema->getTable('orocrm_call');
         $table->addColumn('organization_id', 'integer', ['notnull' => false]);
         $table->addIndex(['organization_id'], 'IDX_1FBD1A2432C8A3DE', []);
         $table->addForeignKeyConstraint(

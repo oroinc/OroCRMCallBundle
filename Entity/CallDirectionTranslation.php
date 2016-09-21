@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractTranslation;
 
 /**
- * @ORM\Table(name="oro_call_direction_trans", indexes={
+ * @ORM\Table(name="orocrm_call_direction_trans", indexes={
  *      @ORM\Index(
  *          name="oro_call_direction_trans_idx", columns={"locale", "object_class", "field", "foreign_key"}
  *      )

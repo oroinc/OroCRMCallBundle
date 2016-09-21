@@ -15,8 +15,8 @@ class OroCallBundle implements Migration
     {
         // @codingStandardsIgnoreStart
 
-        /** Generate table oro_call **/
-        $table = $schema->createTable('oro_call');
+        /** Generate table orocrm_call **/
+        $table = $schema->createTable('orocrm_call');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('call_direction_name', 'string', ['notnull' => false, 'length' => 32]);
         $table->addColumn('related_account_id', 'integer', ['notnull' => false]);
@@ -36,33 +36,33 @@ class OroCallBundle implements Migration
         $table->addIndex(['contact_phone_id'], 'IDX_1FBD1A24A156BF5C', []);
         $table->addIndex(['call_status_name'], 'IDX_1FBD1A2476DB3689', []);
         $table->addIndex(['call_direction_name'], 'IDX_1FBD1A249F3E257D', []);
-        /** End of generate table oro_call **/
+        /** End of generate table orocrm_call **/
 
-        /** Generate table oro_call_direction **/
-        $table = $schema->createTable('oro_call_direction');
+        /** Generate table orocrm_call_direction **/
+        $table = $schema->createTable('orocrm_call_direction');
         $table->addColumn('name', 'string', ['length' => 32]);
         $table->addColumn('label', 'string', ['length' => 255]);
         $table->setPrimaryKey(['name']);
         $table->addUniqueIndex(['label'], 'UNIQ_D0EB34BAEA750E8');
-        /** End of generate table oro_call_direction **/
+        /** End of generate table orocrm_call_direction **/
 
-        /** Generate table oro_call_status **/
-        $table = $schema->createTable('oro_call_status');
+        /** Generate table orocrm_call_status **/
+        $table = $schema->createTable('orocrm_call_status');
         $table->addColumn('name', 'string', ['length' => 32]);
         $table->addColumn('label', 'string', ['length' => 255]);
         $table->setPrimaryKey(['name']);
         $table->addUniqueIndex(['label'], 'UNIQ_FBA13581EA750E8');
-        /** End of generate table oro_call_status **/
+        /** End of generate table orocrm_call_status **/
 
-        /** Generate foreign keys for table oro_call **/
-        $table = $schema->getTable('oro_call');
-        $table->addForeignKeyConstraint($schema->getTable('oro_call_direction'), ['call_direction_name'], ['name'], ['onDelete' => 'SET NULL', 'onUpdate' => null]);
+        /** Generate foreign keys for table orocrm_call **/
+        $table = $schema->getTable('orocrm_call');
+        $table->addForeignKeyConstraint($schema->getTable('orocrm_call_direction'), ['call_direction_name'], ['name'], ['onDelete' => 'SET NULL', 'onUpdate' => null]);
         $table->addForeignKeyConstraint($schema->getTable('orocrm_account'), ['related_account_id'], ['id'], ['onDelete' => 'SET NULL', 'onUpdate' => null]);
         $table->addForeignKeyConstraint($schema->getTable('orocrm_contact'), ['related_contact_id'], ['id'], ['onDelete' => 'SET NULL', 'onUpdate' => null]);
-        $table->addForeignKeyConstraint($schema->getTable('oro_call_status'), ['call_status_name'], ['name'], ['onDelete' => 'SET NULL', 'onUpdate' => null]);
+        $table->addForeignKeyConstraint($schema->getTable('orocrm_call_status'), ['call_status_name'], ['name'], ['onDelete' => 'SET NULL', 'onUpdate' => null]);
         $table->addForeignKeyConstraint($schema->getTable('oro_user'), ['owner_id'], ['id'], ['onDelete' => 'SET NULL', 'onUpdate' => null]);
         $table->addForeignKeyConstraint($schema->getTable('orocrm_contact_phone'), ['contact_phone_id'], ['id'], ['onDelete' => 'SET NULL', 'onUpdate' => null]);
-        /** End of generate foreign keys for table oro_call **/
+        /** End of generate foreign keys for table orocrm_call **/
 
         // @codingStandardsIgnoreEnd
     }

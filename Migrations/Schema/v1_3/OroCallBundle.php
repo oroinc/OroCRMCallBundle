@@ -65,7 +65,7 @@ class OroCallBundle implements
         $queries->addPreQuery($this->getFillContactActivityQuery());
         $queries->addPreQuery($this->getFillPhoneQuery());
 
-        $callTable = $schema->getTable('oro_call');
+        $callTable = $schema->getTable('orocrm_call');
 
         // relation with account
         $callTable->removeForeignKey('FK_1FBD1A2411A6570A');
@@ -90,7 +90,7 @@ class OroCallBundle implements
     {
         $sql = 'INSERT INTO %s (call_id, user_id)'
             . ' SELECT id, owner_id'
-            . ' FROM oro_call'
+            . ' FROM orocrm_call'
             . ' WHERE owner_id IS NOT NULL';
 
         return sprintf($sql, $this->getAssociationTableName('oro_user'));
@@ -103,7 +103,7 @@ class OroCallBundle implements
     {
         $sql = 'INSERT INTO %s (call_id, account_id)'
             . ' SELECT id, related_account_id'
-            . ' FROM oro_call'
+            . ' FROM orocrm_call'
             . ' WHERE related_account_id IS NOT NULL';
 
         return sprintf($sql, $this->getAssociationTableName('orocrm_account'));
@@ -116,7 +116,7 @@ class OroCallBundle implements
     {
         $sql = 'INSERT INTO %s (call_id, contact_id)'
             . ' SELECT id, related_contact_id'
-            . ' FROM oro_call'
+            . ' FROM orocrm_call'
             . ' WHERE related_contact_id IS NOT NULL';
 
         return sprintf($sql, $this->getAssociationTableName('orocrm_contact'));
@@ -128,8 +128,8 @@ class OroCallBundle implements
     protected function getFillPhoneQuery()
     {
         return
-            'UPDATE oro_call SET phone_number = ('
-            . 'SELECT phone FROM orocrm_contact_phone WHERE id = oro_call.contact_phone_id'
+            'UPDATE orocrm_call SET phone_number = ('
+            . 'SELECT phone FROM orocrm_contact_phone WHERE id = orocrm_call.contact_phone_id'
             . ') WHERE contact_phone_id IS NOT NULL';
     }
 
@@ -140,7 +140,7 @@ class OroCallBundle implements
      */
     protected function getAssociationTableName($targetTableName)
     {
-        $sourceClassName = $this->extendExtension->getEntityClassByTableName('oro_call');
+        $sourceClassName = $this->extendExtension->getEntityClassByTableName('orocrm_call');
         $targetClassName = $this->extendExtension->getEntityClassByTableName($targetTableName);
 
         $associationName = ExtendHelper::buildAssociationName(
@@ -179,7 +179,7 @@ class OroCallBundle implements
             . ' WHERE class_name = :class'
             . ' )';
 
-        $callClassName = $this->extendExtension->getEntityClassByTableName('oro_call');
+        $callClassName = $this->extendExtension->getEntityClassByTableName('orocrm_call');
 
         $query = new ParametrizedSqlMigrationQuery();
         $query->addSql(

@@ -23,7 +23,7 @@ class AddCreatedAtAndUpdatedAt implements Migration, OrderedMigrationInterface
      */
     public function up(Schema $schema, QueryBag $queries)
     {
-        $table = $schema->getTable('oro_call');
+        $table = $schema->getTable('orocrm_call');
         $table->addColumn('created_at', 'datetime', ['notnull' => false]);
         $table->addColumn('updated_at', 'datetime', ['notnull' => false]);
     }

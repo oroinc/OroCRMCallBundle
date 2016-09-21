@@ -19,14 +19,14 @@ class OroCallBundle implements Migration
     }
 
     /**
-     * Generate table oro_call_direction_trans
+     * Generate table orocrm_call_direction_trans
      *
      * @param Schema $schema
      */
     public static function createCallDirectionTranslationTable(Schema $schema)
     {
-        /** Generate table oro_call_direction_trans **/
-        $table = $schema->createTable('oro_call_direction_trans');
+        /** Generate table orocrm_call_direction_trans **/
+        $table = $schema->createTable('orocrm_call_direction_trans');
         $table->addColumn('id', 'integer', array('autoincrement' => true));
         $table->addColumn('foreign_key', 'string', array('length' => 32));
         $table->addColumn('content', 'string', array('length' => 255));
@@ -39,18 +39,18 @@ class OroCallBundle implements Migration
             'call_direction_translation_idx',
             array()
         );
-        /** End of generate table oro_call_direction_trans **/
+        /** End of generate table orocrm_call_direction_trans **/
     }
 
     /**
-     * Generate table oro_call_status_trans
+     * Generate table orocrm_call_status_trans
      *
      * @param Schema $schema
      */
     public static function createCallStatusTranslationTable(Schema $schema)
     {
-        /** Generate table oro_call_status_trans **/
-        $table = $schema->createTable('oro_call_status_trans');
+        /** Generate table orocrm_call_status_trans **/
+        $table = $schema->createTable('orocrm_call_status_trans');
         $table->addColumn('id', 'integer', array('autoincrement' => true));
         $table->addColumn('foreign_key', 'string', array('length' => 32));
         $table->addColumn('content', 'string', array('length' => 255));
@@ -63,6 +63,6 @@ class OroCallBundle implements Migration
             'call_status_translation_idx',
             array()
         );
-        /** End of generate table oro_call_status_trans **/
+        /** End of generate table orocrm_call_status_trans **/
     }
 }

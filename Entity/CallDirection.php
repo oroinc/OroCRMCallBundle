@@ -12,7 +12,7 @@ use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
 /**
  * CallDirection
  *
- * @ORM\Table(name="oro_call_direction")
+ * @ORM\Table(name="orocrm_call_direction")
  * @ORM\Entity
  * @Gedmo\TranslationEntity(class="Oro\Bundle\CallBundle\Entity\CallDirectionTranslation")
  * @Config(

@@ -12,7 +12,7 @@ use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
 /**
  * CallStatus
  *
- * @ORM\Table(name="oro_call_status")
+ * @ORM\Table(name="orocrm_call_status")
  * @ORM\Entity
  * @Gedmo\TranslationEntity(class="Oro\Bundle\CallBundle\Entity\CallStatusTranslation")
  * @Config(

@@ -17,7 +17,7 @@ use Oro\Bundle\CallBundle\Model\ExtendCall;
  * Call
  *
  * @ORM\Table(
- *      name="oro_call",
+ *      name="orocrm_call",
  *      indexes={@ORM\Index(name="call_dt_idx",columns={"call_date_time"})}
  * )
  * @ORM\Entity

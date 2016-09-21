@@ -60,17 +60,17 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         /** Foreign keys generation **/
         $this->addOrocrmCallForeignKeys($schema);
 
-        $this->comment->addCommentAssociation($schema, 'oro_call');
+        $this->comment->addCommentAssociation($schema, 'orocrm_call');
     }
 
     /**
-     * Create oro_call table
+     * Create orocrm_call table
      *
      * @param Schema $schema
      */
     protected function createOrocrmCallTable(Schema $schema)
     {
-        $table = $schema->createTable('oro_call');
+        $table = $schema->createTable('orocrm_call');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('call_direction_name', 'string', ['notnull' => false, 'length' => 32]);
         $table->addColumn('call_status_name', 'string', ['notnull' => false, 'length' => 32]);
@@ -90,17 +90,17 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         $table->addIndex(['call_direction_name'], 'IDX_1FBD1A249F3E257D', []);
         $table->addIndex(['call_date_time'], 'call_dt_idx');
 
-        $this->activityExtension->addActivityAssociation($schema, 'oro_call', 'oro_user');
+        $this->activityExtension->addActivityAssociation($schema, 'orocrm_call', 'oro_user');
     }
 
     /**
-     * Create oro_call_direction table
+     * Create orocrm_call_direction table
      *
      * @param Schema $schema
      */
     protected function createOrocrmCallDirectionTable(Schema $schema)
     {
-        $table = $schema->createTable('oro_call_direction');
+        $table = $schema->createTable('orocrm_call_direction');
         $table->addColumn('name', 'string', ['length' => 32]);
         $table->addColumn('label', 'string', ['length' => 255]);
         $table->setPrimaryKey(['name']);
@@ -108,13 +108,13 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     }
 
     /**
-     * Create oro_call table
+     * Create orocrm_call table
      *
      * @param Schema $schema
      */
     protected function createOrocrmCallStatusTable(Schema $schema)
     {
-        $table = $schema->createTable('oro_call_status');
+        $table = $schema->createTable('orocrm_call_status');
         $table->addColumn('name', 'string', ['length' => 32]);
         $table->addColumn('label', 'string', ['length' => 255]);
         $table->setPrimaryKey(['name']);
@@ -122,21 +122,21 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     }
 
     /**
-     * Create oro_call table
+     * Create orocrm_call table
      *
      * @param Schema $schema
      */
     protected function addOrocrmCallForeignKeys(Schema $schema)
     {
-        $table = $schema->getTable('oro_call');
+        $table = $schema->getTable('orocrm_call');
         $table->addForeignKeyConstraint(
-            $schema->getTable('oro_call_direction'),
+            $schema->getTable('orocrm_call_direction'),
             ['call_direction_name'],
             ['name'],
             ['onDelete' => 'SET NULL', 'onUpdate' => null]
         );
         $table->addForeignKeyConstraint(
-            $schema->getTable('oro_call_status'),
+            $schema->getTable('orocrm_call_status'),
             ['call_status_name'],
             ['name'],
             ['onDelete' => 'SET NULL', 'onUpdate' => null]
