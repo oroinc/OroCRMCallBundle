@@ -23,7 +23,7 @@ class ActivityListenerTest extends WebTestCase
     {
         $this->initClient();
         $this->loadFixtures([
-            'Oro\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData',
+            'OroCRM\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData',
         ]);
     }
 
