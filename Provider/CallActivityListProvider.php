@@ -79,7 +79,7 @@ class CallActivityListProvider implements
     public function getDescription($entity)
     {
         /** @var $entity Call */
-        return $entity->getNotes();
+        return trim(strip_tags($entity->getNotes()));
     }
 
     /**
