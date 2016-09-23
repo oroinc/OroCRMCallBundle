@@ -12,9 +12,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Oro\Bundle\SecurityBundle\Authentication\Token\UsernamePasswordOrganizationToken;
 use Oro\Bundle\UserBundle\Entity\User;
 use Oro\Bundle\OrganizationBundle\Entity\Organization;
-use OroCRM\Bundle\AccountBundle\Entity\Account;
+use Oro\Bundle\AccountBundle\Entity\Account;
 use Oro\Bundle\CallBundle\Entity\Call;
-use OroCRM\Bundle\ContactBundle\Entity\Contact;
+use Oro\Bundle\ContactBundle\Entity\Contact;
 
 class LoadCallData extends AbstractFixture implements DependentFixtureInterface, ContainerAwareInterface
 {

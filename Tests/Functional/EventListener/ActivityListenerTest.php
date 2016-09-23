@@ -7,11 +7,11 @@ use Doctrine\ORM\EntityManager;
 
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
-use OroCRM\Bundle\ActivityContactBundle\Direction\DirectionProviderInterface;
+use Oro\Bundle\ActivityContactBundle\Direction\DirectionProviderInterface;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\CallDirection;
-use OroCRM\Bundle\ContactBundle\Entity\Contact;
-use OroCRM\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData;
+use Oro\Bundle\ContactBundle\Entity\Contact;
+use Oro\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData;
 
 /**
  * @outputBuffering enabled
