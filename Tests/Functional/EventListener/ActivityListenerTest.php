@@ -23,7 +23,7 @@ class ActivityListenerTest extends WebTestCase
     {
         $this->initClient();
         $this->loadFixtures([
-            'OroCRM\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData',
+            'Oro\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData',
         ]);
     }
 
@@ -79,7 +79,7 @@ class ActivityListenerTest extends WebTestCase
      */
     protected function findContact($firstName)
     {
-        return $this->getRegistry()->getRepository('OroCRMContactBundle:Contact')->findOneByFirstName($firstName);
+        return $this->getRegistry()->getRepository('OroContactBundle:Contact')->findOneByFirstName($firstName);
     }
 
     /**

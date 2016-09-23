@@ -39,7 +39,7 @@ class LoadCallData extends AbstractFixture implements DependentFixtureInterface,
      */
     public function getDependencies()
     {
-        return ['OroCRM\Bundle\DemoDataBundle\Migrations\Data\Demo\ORM\LoadContactData',];
+        return ['Oro\Bundle\DemoDataBundle\Migrations\Data\Demo\ORM\LoadContactData',];
     }
 
     /**
@@ -66,8 +66,8 @@ class LoadCallData extends AbstractFixture implements DependentFixtureInterface,
     protected function persistDemoCalls(
         ObjectManager $om
     ) {
-        $accounts = $om->getRepository('OroCRMAccountBundle:Account')->findAll();
-        $contacts = $om->getRepository('OroCRMContactBundle:Contact')->findAll();
+        $accounts = $om->getRepository('OroAccountBundle:Account')->findAll();
+        $contacts = $om->getRepository('OroContactBundle:Contact')->findAll();
         $callStatus = $om->getRepository('OroCallBundle:CallStatus')->findOneBy([
             'name' => 'completed',
         ]);
@@ -111,7 +111,7 @@ class LoadCallData extends AbstractFixture implements DependentFixtureInterface,
 
             if ($randomPath > 3) {
                 /** @var Contact[] $relatedContacts */
-                $relatedContacts = $call->getActivityTargets('OroCRM\Bundle\ContactBundle\Entity\Contact');
+                $relatedContacts = $call->getActivityTargets('Oro\Bundle\ContactBundle\Entity\Contact');
                 if ($relatedContacts) {
                     if ($call->supportActivityTarget(get_class($relatedContacts[0]->getAccounts()[0]))) {
                         $call->addActivityTarget($relatedContacts[0]->getAccounts()[0]);
