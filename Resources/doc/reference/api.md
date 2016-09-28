@@ -43,7 +43,7 @@ $request = [
                 "type"       => 'activity'
             ],
             [
-                "entityName" => 'Oro\Bundle\ContactBundle\Entity\Contact',
+                "entityName" => 'OroCRM\Bundle\ContactBundle\Entity\Contact',
                 "entityId"   => 2,
                 "type"       => 'activity'
             ],

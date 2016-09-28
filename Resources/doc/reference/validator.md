@@ -9,7 +9,7 @@ One custom constraint is used to have one of the phones entered (chosen from dro
 Validation configuration should be placed in file Resources/config/validation.yml in appropriate bundle.
 
 ```
-Oro\Bundle\ContactBundle\Entity\Contact:
+OroCRM\Bundle\ContactBundle\Entity\Contact:
     properties:
         addresses:
             - Oro\Bundle\AddressBundle\Validator\Constraints\ContainsPrimary: ~
