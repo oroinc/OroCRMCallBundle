@@ -130,7 +130,7 @@ class CallActivityListProvider implements
      */
     public function getTemplate()
     {
-        return 'OroCallBundle:Call:js/activityItemTemplate.js.twig';
+        return 'OroCallBundle:Call:js/activityItemTemplate.html.twig';
     }
 
     /**
