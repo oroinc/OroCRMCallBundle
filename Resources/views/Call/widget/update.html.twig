@@ -46,9 +46,9 @@
                     <div class="widget-actions form-actions">
                         <button class="btn" type="reset">{{ 'Cancel'|trans }}</button>
                         {% if form.vars.value.id %}
-                        <button class="btn btn-primary" type="submit">{{ 'orocrm.call.update_log_call'|trans }}</button>
+                        <button class="btn btn-primary" type="submit">{{ 'oro.call.update_log_call'|trans }}</button>
                         {% else %}
-                        <button class="btn btn-primary" type="submit">{{ 'orocrm.call.log_call'|trans }}</button>
+                        <button class="btn btn-primary" type="submit">{{ 'oro.call.log_call'|trans }}</button>
                         {% endif %}
                         {% placeholder call_log_widget_update_actions with {entity: entity, form: form, formAction: formAction, saved: saved} %}
                     </div>

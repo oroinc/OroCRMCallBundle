@@ -1,10 +1,10 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Unit\Entity;
+namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
-use OroCRM\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\Call;
 
 class CallTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,14 +30,14 @@ class CallTest extends \PHPUnit_Framework_TestCase
             array('callDateTime', new \DateTime()),
             array(
                 'callStatus',
-                $this->getMockBuilder('OroCRM\Bundle\CallBundle\Entity\CallStatus')
+                $this->getMockBuilder('Oro\Bundle\CallBundle\Entity\CallStatus')
                     ->disableOriginalConstructor()
                     ->getMock()
             ),
             array('duration', 1),
             array(
                 'direction',
-                $this->getMockBuilder('OroCRM\Bundle\CallBundle\Entity\CallDirection')
+                $this->getMockBuilder('Oro\Bundle\CallBundle\Entity\CallDirection')
                     ->disableOriginalConstructor()
                     ->getMock()
 

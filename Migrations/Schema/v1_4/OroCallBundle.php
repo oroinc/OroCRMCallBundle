@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Schema\v1_4;
+namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_4;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Types\Type;
@@ -10,7 +10,7 @@ use Oro\Bundle\MigrationBundle\Migration\OrderedMigrationInterface;
 use Oro\Bundle\MigrationBundle\Migration\ParametrizedSqlMigrationQuery;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
-class OroCRMCallBundle implements Migration, OrderedMigrationInterface
+class OroCallBundle implements Migration, OrderedMigrationInterface
 {
     /**
      * {@inheritdoc}

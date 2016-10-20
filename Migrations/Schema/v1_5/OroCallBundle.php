@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Schema\v1_5;
+namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_5;
 
 use Doctrine\DBAL\Schema\Schema;
 
@@ -9,7 +9,7 @@ use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtensionAwareInterface;
 use Oro\Bundle\MigrationBundle\Migration\Migration;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
-class OroCRMCallBundle implements Migration, CommentExtensionAwareInterface
+class OroCallBundle implements Migration, CommentExtensionAwareInterface
 {
     /** @var CommentExtension */
     protected $comment;

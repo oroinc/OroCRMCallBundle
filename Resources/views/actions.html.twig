@@ -12,7 +12,7 @@
     {% import 'OroUIBundle::macros.html.twig' as UI %}
     {{- UI.clientLink({
         'dataUrl': path(
-            'orocrm_call_create', {
+            'oro_call_create', {
                 entityClass: oro_class_name(entity, true),
                 entityId: entity.id,
                 phone: phone is defined ? phone : null
@@ -26,7 +26,7 @@
             'options' : {
                 'alias': 'call-dialog',
                 'dialogOptions' : {
-                    'title' : 'orocrm.call.log_call'|trans,
+                    'title' : 'oro.call.log_call'|trans,
                     'allowMaximize': true,
                     'allowMinimize': true,
                     'dblclick': 'maximize',

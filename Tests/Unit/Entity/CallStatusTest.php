@@ -1,8 +1,8 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Unit\Entity;
+namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
-use OroCRM\Bundle\CallBundle\Entity\CallStatus;
+use Oro\Bundle\CallBundle\Entity\CallStatus;
 
 class CallStatusTest extends \PHPUnit_Framework_TestCase
 {

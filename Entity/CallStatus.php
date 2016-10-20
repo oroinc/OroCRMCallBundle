@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Entity;
+namespace Oro\Bundle\CallBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,7 +14,7 @@ use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
  *
  * @ORM\Table(name="orocrm_call_status")
  * @ORM\Entity
- * @Gedmo\TranslationEntity(class="OroCRM\Bundle\CallBundle\Entity\CallStatusTranslation")
+ * @Gedmo\TranslationEntity(class="Oro\Bundle\CallBundle\Entity\CallStatusTranslation")
  * @Config(
  *      defaultValues={
  *          "grouping"={

@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Form\Type;
+namespace Oro\Bundle\CallBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -9,8 +9,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
-
-use OroCRM\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\Call;
 
 class CallType extends AbstractType
 {
@@ -36,15 +35,15 @@ class CallType extends AbstractType
                 'text',
                 [
                     'required' => true,
-                    'label'    => 'orocrm.call.subject.label'
+                    'label'    => 'oro.call.subject.label'
                 ]
             )
             ->add(
                 'phoneNumber',
-                'orocrm_call_phone',
+                'oro_call_phone',
                 [
                     'required'    => true,
-                    'label'       => 'orocrm.call.phone_number.label',
+                    'label'       => 'oro.call.phone_number.label',
                     'suggestions' => $options['phone_suggestions']
                 ]
             )
@@ -53,7 +52,7 @@ class CallType extends AbstractType
                 'oro_resizeable_rich_text',
                 [
                     'required' => false,
-                    'label'    => 'orocrm.call.notes.label'
+                    'label'    => 'oro.call.notes.label'
                 ]
             )
             ->add(
@@ -61,7 +60,7 @@ class CallType extends AbstractType
                 'oro_datetime',
                 [
                     'required' => true,
-                    'label'    => 'orocrm.call.call_date_time.label'
+                    'label'    => 'oro.call.call_date_time.label'
                 ]
             )
             ->add(
@@ -69,8 +68,8 @@ class CallType extends AbstractType
                 'translatable_entity',
                 [
                     'required' => true,
-                    'label'    => 'orocrm.call.call_status.label',
-                    'class'    => 'OroCRM\Bundle\CallBundle\Entity\CallStatus'
+                    'label'    => 'oro.call.call_status.label',
+                    'class'    => 'Oro\Bundle\CallBundle\Entity\CallStatus'
                 ]
             )
             ->add(
@@ -78,7 +77,7 @@ class CallType extends AbstractType
                 'oro_duration',
                 [
                     'required' => false,
-                    'label'    => 'orocrm.call.duration.label'
+                    'label'    => 'oro.call.duration.label'
                 ]
             )
             ->add(
@@ -86,8 +85,8 @@ class CallType extends AbstractType
                 'translatable_entity',
                 [
                     'required' => true,
-                    'label'    => 'orocrm.call.direction.label',
-                    'class'    => 'OroCRM\Bundle\CallBundle\Entity\CallDirection'
+                    'label'    => 'oro.call.direction.label',
+                    'class'    => 'Oro\Bundle\CallBundle\Entity\CallDirection'
                 ]
             );
 
@@ -136,7 +135,7 @@ class CallType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class'        => 'OroCRM\Bundle\CallBundle\Entity\Call',
+                'data_class'        => 'Oro\Bundle\CallBundle\Entity\Call',
                 'phone_suggestions' => []
             ]
         );
@@ -155,6 +154,6 @@ class CallType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'orocrm_call_form';
+        return 'oro_call_form';
     }
 }

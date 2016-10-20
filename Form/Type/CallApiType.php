@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Form\Type;
+namespace Oro\Bundle\CallBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,7 +12,7 @@ use Oro\Bundle\SoapBundle\Form\EventListener\PatchSubscriber;
 
 class CallApiType extends AbstractType
 {
-    const NAME = 'orocrm_call_form_api';
+    const NAME = 'oro_call_form_api';
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -48,7 +48,7 @@ class CallApiType extends AbstractType
      */
     public function getParent()
     {
-        return 'orocrm_call_form';
+        return 'oro_call_form';
     }
 
     /**

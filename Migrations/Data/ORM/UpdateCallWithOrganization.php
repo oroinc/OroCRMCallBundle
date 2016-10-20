@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Data\ORM;
+namespace Oro\Bundle\CallBundle\Migrations\Data\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -22,6 +22,6 @@ class UpdateCallWithOrganization extends UpdateWithOrganization implements Depen
      */
     public function load(ObjectManager $manager)
     {
-        $this->update($manager, 'OroCRMCallBundle:Call');
+        $this->update($manager, 'OroCallBundle:Call');
     }
 }

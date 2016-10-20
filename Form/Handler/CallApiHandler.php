@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Form\Handler;
+namespace Oro\Bundle\CallBundle\Form\Handler;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 
 use Oro\Bundle\EntityExtendBundle\Tools\AssociationNameGenerator;
-use OroCRM\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\Call;
 
 class CallApiHandler
 {

@@ -1,2 +1,2 @@
 classes:
-  - OroCRM\Bundle\CallBundle\Controller\Api\Soap\CallController
+  - Oro\Bundle\CallBundle\Controller\Api\Soap\CallController

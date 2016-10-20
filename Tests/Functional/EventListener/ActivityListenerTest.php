@@ -1,18 +1,17 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Functional\EventListener;
+namespace Oro\Bundle\CallBundle\Tests\Functional\EventListener;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
 
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
-
-use OroCRM\Bundle\ActivityContactBundle\Direction\DirectionProviderInterface;
-use OroCRM\Bundle\CallBundle\Entity\Call;
-use OroCRM\Bundle\CallBundle\Entity\CallDirection;
-use OroCRM\Bundle\ContactBundle\Entity\Contact;
-use OroCRM\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData;
+use Oro\Bundle\ActivityContactBundle\Direction\DirectionProviderInterface;
+use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\CallDirection;
+use Oro\Bundle\ContactBundle\Entity\Contact;
+use Oro\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData;
 
 /**
  * @outputBuffering enabled
@@ -24,7 +23,7 @@ class ActivityListenerTest extends WebTestCase
     {
         $this->initClient();
         $this->loadFixtures([
-            'OroCRM\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData',
+            'Oro\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData',
         ]);
     }
 
@@ -70,7 +69,7 @@ class ActivityListenerTest extends WebTestCase
      */
     protected function findCallDirection($name)
     {
-        return $this->getRegistry()->getRepository('OroCRMCallBundle:CallDirection')->findOneByName($name);
+        return $this->getRegistry()->getRepository('OroCallBundle:CallDirection')->findOneByName($name);
     }
 
     /**
@@ -80,7 +79,7 @@ class ActivityListenerTest extends WebTestCase
      */
     protected function findContact($firstName)
     {
-        return $this->getRegistry()->getRepository('OroCRMContactBundle:Contact')->findOneByFirstName($firstName);
+        return $this->getRegistry()->getRepository('OroContactBundle:Contact')->findOneByFirstName($firstName);
     }
 
     /**

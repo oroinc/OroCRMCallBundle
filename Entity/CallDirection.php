@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Entity;
+namespace Oro\Bundle\CallBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
@@ -14,7 +14,7 @@ use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
  *
  * @ORM\Table(name="orocrm_call_direction")
  * @ORM\Entity
- * @Gedmo\TranslationEntity(class="OroCRM\Bundle\CallBundle\Entity\CallDirectionTranslation")
+ * @Gedmo\TranslationEntity(class="Oro\Bundle\CallBundle\Entity\CallDirectionTranslation")
  * @Config(
  *      defaultValues={
  *          "grouping"={

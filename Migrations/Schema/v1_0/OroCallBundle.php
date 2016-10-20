@@ -1,12 +1,12 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Schema\v1_0;
+namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_0;
 
 use Doctrine\DBAL\Schema\Schema;
 use Oro\Bundle\MigrationBundle\Migration\Migration;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
-class OroCRMCallBundle implements Migration
+class OroCallBundle implements Migration
 {
     /**
      * @inheritdoc

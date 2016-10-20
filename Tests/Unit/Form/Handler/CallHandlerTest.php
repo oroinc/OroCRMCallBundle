@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Unit\Form\Handler;
+namespace Oro\Bundle\CallBundle\Tests\Unit\Form\Handler;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormFactory;
@@ -12,11 +12,10 @@ use Oro\Bundle\UserBundle\Entity\User;
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
 use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
-
-use OroCRM\Bundle\CallBundle\Entity\Call;
-use OroCRM\Bundle\CallBundle\Entity\Manager\CallActivityManager;
-use OroCRM\Bundle\CallBundle\Form\Handler\CallHandler;
-use OroCRM\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
+use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
+use Oro\Bundle\CallBundle\Form\Handler\CallHandler;
+use Oro\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
 
 class CallHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -66,7 +65,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $this->callActivityManager = $this->getMockBuilder(
-            'OroCRM\Bundle\CallBundle\Entity\Manager\CallActivityManager'
+            'Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager'
         )
             ->disableOriginalConstructor()
             ->getMock();
@@ -79,8 +78,8 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->entity  = new Call();
         $this->handler = new CallHandler(
-            'orocrm_call_form',
-            'orocrm_call_form',
+            'oro_call_form',
+            'oro_call_form',
             $this->request,
             $this->manager,
             $this->phoneProvider,
@@ -104,7 +103,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->formFactory->expects($this->once())
             ->method('createNamed')
-            ->with('orocrm_call_form', 'orocrm_call_form', $this->entity, [])
+            ->with('oro_call_form', 'oro_call_form', $this->entity, [])
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->any())
@@ -151,7 +150,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->formFactory->expects($this->once())
             ->method('createNamed')
-            ->with('orocrm_call_form', 'orocrm_call_form', $this->entity, [])
+            ->with('oro_call_form', 'oro_call_form', $this->entity, [])
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->never())
@@ -192,8 +191,8 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
         $this->formFactory->expects($this->once())
             ->method('createNamed')
             ->with(
-                'orocrm_call_form',
-                'orocrm_call_form',
+                'oro_call_form',
+                'oro_call_form',
                 $this->entity,
                 [
                     'phone_suggestions' => ['phone1', 'phone2']
@@ -240,8 +239,8 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
         $this->formFactory->expects($this->once())
             ->method('createNamed')
             ->with(
-                'orocrm_call_form',
-                'orocrm_call_form',
+                'oro_call_form',
+                'oro_call_form',
                 $this->entity,
                 [
                     'phone_suggestions' => ['phone1', 'phone2']
@@ -265,7 +264,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
     {
         $this->formFactory->expects($this->once())
             ->method('createNamed')
-            ->with('orocrm_call_form', 'orocrm_call_form', $this->entity, [])
+            ->with('oro_call_form', 'oro_call_form', $this->entity, [])
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->once())
@@ -298,7 +297,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
     {
         $this->formFactory->expects($this->once())
             ->method('createNamed')
-            ->with('orocrm_call_form', 'orocrm_call_form', $this->entity, [])
+            ->with('oro_call_form', 'oro_call_form', $this->entity, [])
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->once())
@@ -346,7 +345,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->formFactory->expects($this->once())
             ->method('createNamed')
-            ->with('orocrm_call_form', 'orocrm_call_form', $this->entity, [])
+            ->with('oro_call_form', 'oro_call_form', $this->entity, [])
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->once())

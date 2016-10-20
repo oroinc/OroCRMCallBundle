@@ -1,13 +1,12 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Entity\Manager;
+namespace Oro\Bundle\CallBundle\Entity\Manager;
 
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
-
-use OroCRM\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\Call;
 
 class CallActivityManager
 {

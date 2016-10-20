@@ -1,10 +1,10 @@
-orocrm_call_bundle:
-    resource: "@OroCRMCallBundle/Controller"
+oro_call_bundle:
+    resource: "@OroCallBundle/Controller"
     type:     annotation
     prefix:   /call
 
-orocrm_call_api:
-    resource: "@OroCRMCallBundle/Controller/Api/Rest/CallController.php"
+oro_call_api:
+    resource: "@OroCallBundle/Controller/Api/Rest/CallController.php"
     type:     rest
     prefix:       api/rest/{version}/
     requirements:
@@ -17,7 +17,7 @@ oro_api_post_call_deprecated:
     path:            /api/rest/{version}/call.{_format}
     methods:         [POST]
     defaults:
-        _controller: OroCRM\Bundle\CallBundle\Controller\Api\Rest\CallController::postAction
+        _controller: Oro\Bundle\CallBundle\Controller\Api\Rest\CallController::postAction
         _format:     json
         version:     latest
     requirements:

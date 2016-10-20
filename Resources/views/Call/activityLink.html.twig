@@ -3,7 +3,7 @@
 {% set options = {
     'dataUrl': entity is not empty
         ? path(
-            'orocrm_call_create', {
+            'oro_call_create', {
             entityClass: oro_class_name(entity, true),
             entityId: entity.id,
             phone: phone is defined ? phone|escape('html') : null
@@ -13,7 +13,7 @@
     'aCss': 'no-hash',
     'iCss': 'icon-phone-sign',
     'dataId': entity is not empty ? entity.id : null,
-    'label' : 'orocrm.call.log_call'|trans,
+    'label' : 'oro.call.log_call'|trans,
     'widget' : {
         'type' : 'dialog',
         'multiple' : true,
@@ -21,7 +21,7 @@
         'options' : {
             'alias': 'call-dialog',
             'dialogOptions' : {
-                'title' : 'orocrm.call.log_call'|trans,
+                'title' : 'oro.call.log_call'|trans,
                 'allowMaximize': true,
                 'allowMinimize': true,
                 'dblclick': 'maximize',

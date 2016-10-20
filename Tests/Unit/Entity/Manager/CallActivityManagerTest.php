@@ -1,10 +1,10 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Tests\Unit\Entity\Manager;
+namespace Oro\Bundle\CallBundle\Tests\Unit\Entity\Manager;
 
-use OroCRM\Bundle\CallBundle\Entity\Call;
-use OroCRM\Bundle\CallBundle\Entity\Manager\CallActivityManager;
-use OroCRM\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
+use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
+use Oro\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
 
 class CallActivityManagerTest extends \PHPUnit_Framework_TestCase
 {

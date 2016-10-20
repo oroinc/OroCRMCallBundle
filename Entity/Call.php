@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Entity;
+namespace Oro\Bundle\CallBundle\Entity;
 
 use BeSimple\SoapBundle\ServiceDefinition\Annotation as Soap;
 
@@ -11,8 +11,7 @@ use Oro\Bundle\UserBundle\Entity\User;
 use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
 use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\ConfigField;
 use Oro\Bundle\EntityBundle\EntityProperty\DatesAwareInterface;
-
-use OroCRM\Bundle\CallBundle\Model\ExtendCall;
+use Oro\Bundle\CallBundle\Model\ExtendCall;
 
 /**
  * Call
@@ -24,7 +23,7 @@ use OroCRM\Bundle\CallBundle\Model\ExtendCall;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  * @Config(
- *      routeName="orocrm_call_index",
+ *      routeName="oro_call_index",
  *      defaultValues={
  *          "entity"={
  *              "icon"="icon-phone-sign"
@@ -45,10 +44,10 @@ use OroCRM\Bundle\CallBundle\Model\ExtendCall;
  *              "groups"={"activity"}
  *          },
  *          "activity"={
- *              "route"="orocrm_call_activity_view",
- *              "acl"="orocrm_call_view",
- *              "action_button_widget"="orocrm_log_call_button",
- *              "action_link_widget"="orocrm_log_call_link"
+ *              "route"="oro_call_activity_view",
+ *              "acl"="oro_call_view",
+ *              "action_button_widget"="oro_log_call_button",
+ *              "action_link_widget"="oro_log_call_link"
  *          },
  *          "grid"={
  *              "default"="calls-grid",
@@ -112,7 +111,7 @@ class Call extends ExtendCall implements DatesAwareInterface
     /**
      * @var CallStatus
      *
-     * @ORM\ManyToOne(targetEntity="OroCRM\Bundle\CallBundle\Entity\CallStatus")
+     * @ORM\ManyToOne(targetEntity="Oro\Bundle\CallBundle\Entity\CallStatus")
      * @ORM\JoinColumn(name="call_status_name", referencedColumnName="name", onDelete="SET NULL")
      * @Soap\ComplexType("string", nillable=true)
      */
@@ -129,7 +128,7 @@ class Call extends ExtendCall implements DatesAwareInterface
     /**
      * @var CallDirection
      *
-     * @ORM\ManyToOne(targetEntity="OroCRM\Bundle\CallBundle\Entity\CallDirection")
+     * @ORM\ManyToOne(targetEntity="Oro\Bundle\CallBundle\Entity\CallDirection")
      * @ORM\JoinColumn(name="call_direction_name", referencedColumnName="name", onDelete="SET NULL")
      * @Soap\ComplexType("string", nillable=true)
      */

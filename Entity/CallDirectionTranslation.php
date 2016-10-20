@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Entity;
+namespace Oro\Bundle\CallBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractTranslation;
@@ -8,7 +8,7 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractTranslation;
 /**
  * @ORM\Table(name="orocrm_call_direction_trans", indexes={
  *      @ORM\Index(
- *          name="orocrm_call_direction_trans_idx", columns={"locale", "object_class", "field", "foreign_key"}
+ *          name="oro_call_direction_trans_idx", columns={"locale", "object_class", "field", "foreign_key"}
  *      )
  * })
  * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")

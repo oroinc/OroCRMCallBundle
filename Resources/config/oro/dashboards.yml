@@ -1,11 +1,11 @@
 dashboards:
     widgets:
         recent_calls:
-            label:       orocrm.dashboard.recent_calls.title
+            label:       oro.dashboard.recent_calls.title
             route:       oro_dashboard_widget
-            route_parameters: { bundle: OroCRMCallBundle, name: recentCalls }
-            acl:         orocrm_call_view
-            description: orocrm.dashboard.recent_calls.description
+            route_parameters: { bundle: OroCallBundle, name: recentCalls }
+            acl:         oro_call_view
+            description: oro.dashboard.recent_calls.description
             icon:   bundles/orocrmcall/img/recent_calls.png
             configuration:
                 owners:

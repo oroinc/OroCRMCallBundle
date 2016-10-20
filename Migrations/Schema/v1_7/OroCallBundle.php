@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Schema\v1_7;
+namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_7;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\PostgreSQL92Platform;
@@ -13,7 +13,7 @@ use Oro\Bundle\MigrationBundle\Migration\ParametrizedSqlMigrationQuery;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 use Oro\Bundle\MigrationBundle\Migration\SqlMigrationQuery;
 
-class OroCRMCallBundle implements Migration, DatabasePlatformAwareInterface
+class OroCallBundle implements Migration, DatabasePlatformAwareInterface
 {
     /** @var AbstractPlatform */
     protected $platform;
@@ -31,7 +31,7 @@ class OroCRMCallBundle implements Migration, DatabasePlatformAwareInterface
         $queries->addPreQuery($this->getPlatformSQL());
 
         // migrate oro_entity_config_field
-        $entityClass = 'OroCRM\\Bundle\\CallBundle\\Entity\\Call';
+        $entityClass = 'Oro\\Bundle\\CallBundle\\Entity\\Call';
 
         $migrateFieldSql = 'UPDATE oro_entity_config_field SET type = :field_type' .
                            ' WHERE field_name = :field_name' .

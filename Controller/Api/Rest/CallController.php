@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Controller\Api\Rest;
+namespace Oro\Bundle\CallBundle\Controller\Api\Rest;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +14,6 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 use Oro\Bundle\SecurityBundle\Annotation\Acl;
 use Oro\Bundle\SecurityBundle\Annotation\AclAncestor;
-
 use Oro\Bundle\SoapBundle\Form\Handler\ApiFormHandler;
 use Oro\Bundle\SoapBundle\Controller\Api\Rest\RestController;
 use Oro\Bundle\SoapBundle\Entity\Manager\ApiEntityManager;
@@ -44,7 +43,7 @@ class CallController extends RestController implements ClassResourceInterface
      *      description="Get all calls items",
      *      resource=true
      * )
-     * @AclAncestor("orocrm_call_view")
+     * @AclAncestor("oro_call_view")
      * @return Response
      */
     public function cgetAction()
@@ -61,7 +60,7 @@ class CallController extends RestController implements ClassResourceInterface
      *      description="Get call item",
      *      resource=true
      * )
-     * @AclAncestor("orocrm_call_view")
+     * @AclAncestor("oro_call_view")
      * @return Response
      */
     public function getAction($id)
@@ -78,7 +77,7 @@ class CallController extends RestController implements ClassResourceInterface
      *      description="Update call",
      *      resource=true
      * )
-     * @AclAncestor("orocrm_call_update")
+     * @AclAncestor("oro_call_update")
      * @return Response
      */
     public function putAction($id)
@@ -93,7 +92,7 @@ class CallController extends RestController implements ClassResourceInterface
      *      description="Create new call",
      *      resource=true
      * )
-     * @AclAncestor("orocrm_call_create")
+     * @AclAncestor("oro_call_create")
      */
     public function postAction()
     {
@@ -110,10 +109,10 @@ class CallController extends RestController implements ClassResourceInterface
      *      resource=true
      * )
      * @Acl(
-     *      id="orocrm_call_delete",
+     *      id="oro_call_delete",
      *      type="entity",
      *      permission="DELETE",
-     *      class="OroCRMCallBundle:Call"
+     *      class="OroCallBundle:Call"
      * )
      * @return Response
      */
@@ -129,7 +128,7 @@ class CallController extends RestController implements ClassResourceInterface
      */
     public function getManager()
     {
-        return $this->get('orocrm_call.call.manager.api');
+        return $this->get('oro_call.call.manager.api');
     }
 
     /**
@@ -137,7 +136,7 @@ class CallController extends RestController implements ClassResourceInterface
      */
     public function getForm()
     {
-        return $this->get('orocrm_call.call.form.api');
+        return $this->get('oro_call.call.form.api');
     }
 
     /**
@@ -145,6 +144,6 @@ class CallController extends RestController implements ClassResourceInterface
      */
     public function getFormHandler()
     {
-        return $this->get('orocrm_call.call.form.handler.api');
+        return $this->get('oro_call.call.form.handler.api');
     }
 }

@@ -1,7 +1,7 @@
 datagrids:
     calls-grid:
-        extended_entity_name: %orocrm_call.call.entity.class%
-        acl_resource: orocrm_call_view
+        extended_entity_name: %oro_call.call.entity.class%
+        acl_resource: oro_call_view
         source:
             type: orm
             query:
@@ -11,15 +11,15 @@ datagrids:
                     - CONCAT(call.phoneNumber, '') as phone
                     - call.callDateTime as dateTime
                 from:
-                    - { table: %orocrm_call.call.entity.class%, alias: call }
+                    - { table: %oro_call.call.entity.class%, alias: call }
         columns:
             subject:
-                label: orocrm.call.subject.label
+                label: oro.call.subject.label
             phone:
-                label: orocrm.call.phone_number.label
+                label: oro.call.phone_number.label
                 frontend_type: phone
             dateTime:
-                label: orocrm.call.call_date_time.label
+                label: oro.call.call_date_time.label
                 frontend_type: datetime
         filters:
             columns:
@@ -46,11 +46,11 @@ datagrids:
             id: ~
             view_link:
                 type:       url
-                route:      orocrm_call_view
+                route:      oro_call_view
                 params:     [ id ]
             update_link:
                 type:       url
-                route:      orocrm_call_update
+                route:      oro_call_update
                 params:     [ id ]
             delete_link:
                 type:       url
@@ -59,20 +59,20 @@ datagrids:
         actions:
             view:
                 type:          navigate
-                acl_resource:  orocrm_call_view
+                acl_resource:  oro_call_view
                 label:         oro.grid.action.view
                 icon:          eye-open
                 link:          view_link
                 rowAction:     true
             update:
                 type:          navigate
-                acl_resource:  orocrm_call_create
+                acl_resource:  oro_call_create
                 label:         oro.grid.action.update
                 icon:          edit
                 link:          update_link
             delete:
                 type:          delete
-                acl_resource:  orocrm_call_delete
+                acl_resource:  oro_call_delete
                 label:         oro.grid.action.delete
                 icon:          trash
                 link:          delete_link
@@ -82,7 +82,7 @@ datagrids:
             entity_pagination: true
 
     widget-base-calls-grid:
-        acl_resource: orocrm_call_view
+        acl_resource: oro_call_view
         source:
             type: orm
             query:
@@ -92,18 +92,18 @@ datagrids:
                     - CONCAT(call.phoneNumber, '') as phone
                     - call.callDateTime as dateTime
                 from:
-                    - { table: %orocrm_call.call.entity.class%, alias: call }
+                    - { table: %oro_call.call.entity.class%, alias: call }
         columns:
             dateTime:
-                label: orocrm.call.call_date_time.label
+                label: oro.call.call_date_time.label
                 frontend_type: datetime
             subject:
-                label: orocrm.call.subject.label
+                label: oro.call.subject.label
                 type: twig
-                template: OroCRMCallBundle:Datagrid:Column/subject.html.twig
+                template: OroCallBundle:Datagrid:Column/subject.html.twig
                 frontend_type: html
             phone:
-                label: orocrm.call.phone_number.label
+                label: oro.call.phone_number.label
                 frontend_type: phone
         sorters:
             columns:
@@ -164,7 +164,7 @@ datagrids:
                 pageSize:
                     items: [10]
                     default_per_page: 10
-        acl_resource: orocrm_call_view
+        acl_resource: oro_call_view
         source:
             type: orm
             query:
@@ -175,7 +175,7 @@ datagrids:
                     - call.callDateTime as dateTime
                     - directionType.name as callDirection
                 from:
-                    - { table: %orocrm_call.call.entity.class%, alias: call }
+                    - { table: %oro_call.call.entity.class%, alias: call }
                 join:
                     left:
                         - { join: call.direction, alias: directionType }
@@ -184,17 +184,17 @@ datagrids:
                 type: twig
                 label: ~
                 frontend_type: html
-                template: OroCRMCallBundle:Datagrid:Column/direction.html.twig
+                template: OroCallBundle:Datagrid:Column/direction.html.twig
             dateTime:
-                label: orocrm.call.datagrid.date_time
+                label: oro.call.datagrid.date_time
                 frontend_type: datetime
             subject:
                 type: twig
-                label: orocrm.call.subject.label
+                label: oro.call.subject.label
                 frontend_type: html
-                template: OroCRMCallBundle:Datagrid:Column/subject.html.twig
+                template: OroCallBundle:Datagrid:Column/subject.html.twig
             phone:
-                label: orocrm.call.phone_number.label
+                label: oro.call.phone_number.label
                 frontend_type: phone
         sorters:
             columns:
@@ -204,8 +204,8 @@ datagrids:
                 dateTime: DESC
 
     call-for-context-grid:
-        extended_entity_name: %orocrm_call.call.entity.class%
-        acl_resource: orocrm_call_view
+        extended_entity_name: %oro_call.call.entity.class%
+        acl_resource: oro_call_view
         options:
             entityHint: calls
             entity_pagination: true
@@ -222,16 +222,16 @@ datagrids:
                     - CONCAT(call.phoneNumber, '') as phone
                     - call.callDateTime as dateTime
                 from:
-                    - { table: %orocrm_call.call.entity.class%, alias: call }
+                    - { table: %oro_call.call.entity.class%, alias: call }
         columns:
             id:
-                label: orocrm.call.id.label
+                label: oro.call.id.label
             subject:
-                label: orocrm.call.subject.label
+                label: oro.call.subject.label
             phone:
-                label: orocrm.call.phone_number.label
+                label: oro.call.phone_number.label
             dateTime:
-                label: orocrm.call.call_date_time.label
+                label: oro.call.call_date_time.label
                 frontend_type: datetime
         filters:
             columns:

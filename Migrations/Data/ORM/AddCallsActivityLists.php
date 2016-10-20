@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Migrations\Data\ORM;
+namespace Oro\Bundle\CallBundle\Migrations\Data\ORM;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -14,7 +14,7 @@ class AddCallsActivityLists extends AddActivityListsData implements DependentFix
      */
     public function getDependencies()
     {
-        return ['OroCRM\Bundle\CallBundle\Migrations\Data\ORM\UpdateCallWithOrganization'];
+        return ['Oro\Bundle\CallBundle\Migrations\Data\ORM\UpdateCallWithOrganization'];
     }
 
     /**
@@ -24,7 +24,7 @@ class AddCallsActivityLists extends AddActivityListsData implements DependentFix
     {
         $this->addActivityListsForActivityClass(
             $manager,
-            'OroCRMCallBundle:Call',
+            'OroCallBundle:Call',
             'owner',
             'organization'
         );

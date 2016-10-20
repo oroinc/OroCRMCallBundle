@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Provider;
+namespace Oro\Bundle\CallBundle\Provider;
 
 use Oro\Bundle\ActivityBundle\Tools\ActivityAssociationHelper;
 use Oro\Bundle\ActivityListBundle\Entity\ActivityList;
@@ -11,16 +11,15 @@ use Oro\Bundle\CommentBundle\Model\CommentProviderInterface;
 use Oro\Bundle\CommentBundle\Tools\CommentAssociationHelper;
 use Oro\Bundle\EntityBundle\ORM\DoctrineHelper;
 use Oro\Bundle\EntityConfigBundle\DependencyInjection\Utils\ServiceLink;
-
-use OroCRM\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\Call;
 
 class CallActivityListProvider implements
     ActivityListProviderInterface,
     CommentProviderInterface,
     ActivityListDateProviderInterface
 {
-    const ACTIVITY_CLASS = 'OroCRM\Bundle\CallBundle\Entity\Call';
-    const ACL_CLASS = 'OroCRM\Bundle\CallBundle\Entity\Call';
+    const ACTIVITY_CLASS = 'Oro\Bundle\CallBundle\Entity\Call';
+    const ACL_CLASS = 'Oro\Bundle\CallBundle\Entity\Call';
 
     /** @var DoctrineHelper */
     protected $doctrineHelper;
@@ -131,7 +130,7 @@ class CallActivityListProvider implements
      */
     public function getTemplate()
     {
-        return 'OroCRMCallBundle:Call:js/activityItemTemplate.js.twig';
+        return 'OroCallBundle:Call:js/activityItemTemplate.html.twig';
     }
 
     /**
@@ -140,8 +139,8 @@ class CallActivityListProvider implements
     public function getRoutes()
     {
         return [
-            'itemView'   => 'orocrm_call_widget_info',
-            'itemEdit'   => 'orocrm_call_update',
+            'itemView'   => 'oro_call_widget_info',
+            'itemEdit'   => 'oro_call_update',
             'itemDelete' => 'oro_api_delete_call'
         ];
     }

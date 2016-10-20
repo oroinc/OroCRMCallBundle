@@ -1,13 +1,13 @@
 search:
-    OroCRM\Bundle\CallBundle\Entity\Call:
-        alias: orocrm_call
-        label: orocrm.call.entity_plural_label
+    Oro\Bundle\CallBundle\Entity\Call:
+        alias: oro_call
+        label: oro.call.entity_plural_label
         title_fields: [subject, phoneNumber]
         route:
-            name: orocrm_call_update
+            name: oro_call_update
             parameters:
                 id: id
-        search_template: OroCRMCallBundle:Call:searchResult.html.twig
+        search_template: OroCallBundle:Call:searchResult.html.twig
         fields:
             -
                 name: subject

@@ -1,6 +1,6 @@
 <?php
 
-namespace OroCRM\Bundle\CallBundle\Controller\Api\Soap;
+namespace Oro\Bundle\CallBundle\Controller\Api\Soap;
 
 use Symfony\Component\Form\FormInterface;
 use BeSimple\SoapBundle\ServiceDefinition\Annotation as Soap;
@@ -15,7 +15,7 @@ class CallController extends SoapController
      * @Soap\Method("getCalls")
      * @Soap\Param("page", phpType="int")
      * @Soap\Param("limit", phpType="int")
-     * @Soap\Result(phpType = "OroCRM\Bundle\CallBundle\Entity\Call[]")
+     * @Soap\Result(phpType = "Oro\Bundle\CallBundle\Entity\Call[]")
      */
     public function cgetAction($page = 1, $limit = 10)
     {
@@ -25,7 +25,7 @@ class CallController extends SoapController
     /**
      * @Soap\Method("getCall")
      * @Soap\Param("id", phpType = "int")
-     * @Soap\Result(phpType = "OroCRM\Bundle\CallBundle\Entity\Call")
+     * @Soap\Result(phpType = "Oro\Bundle\CallBundle\Entity\Call")
      */
     public function getAction($id)
     {
@@ -34,7 +34,7 @@ class CallController extends SoapController
 
     /**
      * @Soap\Method("createCall")
-     * @Soap\Param("call", phpType = "OroCRM\Bundle\CallBundle\Entity\Call")
+     * @Soap\Param("call", phpType = "Oro\Bundle\CallBundle\Entity\Call")
      * @Soap\Result(phpType = "int")
      */
     public function createAction($call)
@@ -45,7 +45,7 @@ class CallController extends SoapController
     /**
      * @Soap\Method("updateCall")
      * @Soap\Param("id", phpType = "int")
-     * @Soap\Param("call", phpType = "OroCRM\Bundle\CallBundle\Entity\Call")
+     * @Soap\Param("call", phpType = "Oro\Bundle\CallBundle\Entity\Call")
      * @Soap\Result(phpType = "boolean")
      */
     public function updateAction($id, $call)
@@ -68,7 +68,7 @@ class CallController extends SoapController
      */
     public function getManager()
     {
-        return $this->container->get('orocrm_call.call.manager.api');
+        return $this->container->get('oro_call.call.manager.api');
     }
 
     /**
@@ -76,7 +76,7 @@ class CallController extends SoapController
      */
     public function getForm()
     {
-        return $this->container->get('orocrm_call.call.form.api');
+        return $this->container->get('oro_call.call.form.api');
     }
 
     /**
@@ -84,6 +84,6 @@ class CallController extends SoapController
      */
     public function getFormHandler()
     {
-        return $this->container->get('orocrm_call.call.form.handler.api');
+        return $this->container->get('oro_call.call.form.handler.api');
     }
 }
