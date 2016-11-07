@@ -42,9 +42,6 @@ oro:
         changed_by:  added by {{ user }}, updated by {{ editor }}
         view:        View call log
 
-        contexts:
-            label:   Contexts
-
         #
         # Oro/Bundle/CallBundle/Entity/Call
         #
