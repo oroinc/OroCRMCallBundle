@@ -21,6 +21,8 @@ datagrids:
             dateTime:
                 label: oro.call.call_date_time.label
                 frontend_type: datetime
+            contexts:
+                label: oro.call.contexts.label
         filters:
             columns:
                 subject:
@@ -80,6 +82,8 @@ datagrids:
             entityHint: calls
             export: true
             entity_pagination: true
+            contexts:
+                enabled: true
 
     widget-base-calls-grid:
         acl_resource: oro_call_view

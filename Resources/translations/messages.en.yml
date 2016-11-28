@@ -24,6 +24,9 @@ oro:
             call.saved.message: Call saved
             call.deleted.message: Call deleted successfully
 
+        contexts:
+            label:     Contexts
+
         datagrid:
             date_time:    Call date
 
