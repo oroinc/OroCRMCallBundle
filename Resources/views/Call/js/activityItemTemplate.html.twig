@@ -29,7 +29,9 @@
     {% set action %}
         <a href="<%= routing.generate('oro_call_view', {'id': relatedActivityId}) %>"
            title="{{ 'oro.call.view'|trans|raw }}"><i
-                class="fa-eye hide-text">{{ 'oro.call.view'|trans|raw }}</i></a>
+                class="fa-eye hide-text">{{ 'oro.call.view'|trans|raw }}</i>
+            {{ 'oro.call.view'|trans|raw }}
+        </a>
     {% endset %}
     {% set actions = actions|merge([action]) %}
 
@@ -38,6 +40,7 @@
         <a href="#" class="action item-edit-button"
            title="{{ 'oro.call.update_call'|trans({'{{ entity }}': entityName}) }}">
             <i class="fa-pencil-square-o hide-text">{{ 'oro.call.update_call'|trans({'{{ entity }}': entityName}) }}</i>
+            {{ 'oro.call.update_call'|trans({'{{ entity }}': entityName}) }}
         </a>
         <% } %>
     {% endset %}
@@ -48,6 +51,7 @@
         <a href="#" class="action item-remove-button"
            title="{{ 'oro.call.delete_call'|trans({'{{ entity }}': entityName}) }}">
             <i class="fa-trash-o hide-text">{{ 'oro.call.delete_call'|trans({'{{ entity }}': entityName}) }}</i>
+            {{ 'oro.call.delete_call'|trans({'{{ entity }}': entityName}) }}
         </a>
         <% } %>
     {% endset %}
