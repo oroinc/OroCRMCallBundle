@@ -28,9 +28,9 @@
 
     {% set action %}
         <a href="<%= routing.generate('oro_call_view', {'id': relatedActivityId}) %>"
-           title="{{ 'oro.call.view'|trans|raw }}"><i
-                class="fa-eye hide-text">{{ 'oro.call.view'|trans|raw }}</i>
-            {{ 'oro.call.view'|trans|raw }}
+           title="{{ 'oro.call.view_call'|trans({'{{ entity }}': entityName}) }}"><i
+                class="fa-eye hide-text">{{ 'oro.call.view_call'|trans({'{{ entity }}': entityName}) }}</i>
+            {{ 'oro.call.view_call'|trans({'{{ entity }}': entityName}) }}
         </a>
     {% endset %}
     {% set actions = actions|merge([action]) %}
