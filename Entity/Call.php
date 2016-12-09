@@ -26,7 +26,7 @@ use Oro\Bundle\CallBundle\Model\ExtendCall;
  *      routeName="oro_call_index",
  *      defaultValues={
  *          "entity"={
- *              "icon"="icon-phone-sign"
+ *              "icon"="fa-phone-square"
  *          },
  *          "ownership"={
  *              "owner_type"="USER",
