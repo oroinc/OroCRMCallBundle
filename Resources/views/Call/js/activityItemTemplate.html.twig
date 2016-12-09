@@ -38,7 +38,8 @@
     {% set action %}
         <% if (editable) { %>
         <a href="#" class="action item-edit-button"
-           title="{{ 'oro.call.update_call'|trans({'{{ entity }}': entityName}) }}">
+           title="{{ 'oro.call.update_call'|trans({'{{ entity }}': entityName}) }}"
+           data-action-extra-options="{{ {dialogOptions: {width: 1000}}|json_encode }}">
             <i class="fa-pencil-square-o hide-text">{{ 'oro.call.update_call'|trans({'{{ entity }}': entityName}) }}</i>
             {{ 'oro.call.update_call'|trans({'{{ entity }}': entityName}) }}
         </a>
