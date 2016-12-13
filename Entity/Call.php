@@ -2,8 +2,6 @@
 
 namespace Oro\Bundle\CallBundle\Entity;
 
-use BeSimple\SoapBundle\ServiceDefinition\Annotation as Soap;
-
 use Doctrine\ORM\Mapping as ORM;
 
 use Oro\Bundle\OrganizationBundle\Entity\Organization;
@@ -64,7 +62,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Soap\ComplexType("int", nillable=true)
      */
     protected $id;
 
@@ -72,7 +69,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      * @var User
      * @ORM\ManyToOne(targetEntity="Oro\Bundle\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", onDelete="SET NULL")
-     * @Soap\ComplexType("string", nillable=true)
      */
     protected $owner;
 
@@ -80,7 +76,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      * @var string
      *
      * @ORM\Column(name="subject", type="string", length=255)
-     * @Soap\ComplexType("string")
      */
     protected $subject;
 
@@ -88,7 +83,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      * @var string
      *
      * @ORM\Column(name="phone_number", type="string", length=255, nullable=true)
-     * @Soap\ComplexType("string", nillable=true)
      */
     protected $phoneNumber;
 
@@ -96,7 +90,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      * @var string
      *
      * @ORM\Column(name="notes", type="text", nullable=true)
-     * @Soap\ComplexType("string", nillable=true)
      */
     protected $notes;
 
@@ -104,7 +97,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      * @var \DateTime
      *
      * @ORM\Column(name="call_date_time", type="datetime")
-     * @Soap\ComplexType("dateTime", nillable=true)
      */
     protected $callDateTime;
 
@@ -113,7 +105,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      *
      * @ORM\ManyToOne(targetEntity="Oro\Bundle\CallBundle\Entity\CallStatus")
      * @ORM\JoinColumn(name="call_status_name", referencedColumnName="name", onDelete="SET NULL")
-     * @Soap\ComplexType("string", nillable=true)
      */
     protected $callStatus;
 
@@ -121,7 +112,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      * @var int
      *
      * @ORM\Column(name="duration", type="duration", nullable=true)
-     * @Soap\ComplexType("int", nillable=true)
      */
     protected $duration;
 
@@ -130,7 +120,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      *
      * @ORM\ManyToOne(targetEntity="Oro\Bundle\CallBundle\Entity\CallDirection")
      * @ORM\JoinColumn(name="call_direction_name", referencedColumnName="name", onDelete="SET NULL")
-     * @Soap\ComplexType("string", nillable=true)
      */
     protected $direction;
 
@@ -167,7 +156,6 @@ class Call extends ExtendCall implements DatesAwareInterface
      *
      * @ORM\ManyToOne(targetEntity="Oro\Bundle\OrganizationBundle\Entity\Organization")
      * @ORM\JoinColumn(name="organization_id", referencedColumnName="id", onDelete="SET NULL")
-     * @Soap\ComplexType("string", nillable=true)
      */
     protected $organization;
 
