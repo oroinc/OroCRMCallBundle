@@ -20,6 +20,11 @@ api:
                             documentation: Completely replace association between records and the call
                         delete_relationship:
                             documentation: Delete association between records and the call
+            filters:
+                fields:
+                    updatedAt:
+                        exclude: false #add updateAt to filters
+
         Oro\Bundle\CallBundle\Entity\CallDirection:
             exclude: false # override exclude rule from entity.yml
         Oro\Bundle\CallBundle\Entity\CallStatus: ~
