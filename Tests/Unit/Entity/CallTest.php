@@ -23,7 +23,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
     public function getSetDataProvider()
     {
         return array(
-            array('owner', $this->getMock('Oro\Bundle\UserBundle\Entity\User')),
+            array('owner', $this->createMock('Oro\Bundle\UserBundle\Entity\User')),
             array('subject', 'test'),
             array('phoneNumber', 'test'),
             array('notes', 'test'),
@@ -42,7 +42,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
                     ->getMock()
 
             ),
-            array('organization', $this->getMock('Oro\Bundle\OrganizationBundle\Entity\Organization')),
+            array('organization', $this->createMock('Oro\Bundle\OrganizationBundle\Entity\Organization')),
         );
     }
 

@@ -181,7 +181,7 @@ class CallListenerTest extends \PHPUnit_Framework_TestCase
             $config->expects($this->never())->method('offsetUnsetByPath');
         }
 
-        $dataGrid = $this->getMock('Oro\Bundle\DataGridBundle\Datagrid\DatagridInterface');
+        $dataGrid = $this->createMock('Oro\Bundle\DataGridBundle\Datagrid\DatagridInterface');
 
         $dataGrid->expects($this->any())
             ->method('getParameters')
@@ -205,7 +205,7 @@ class CallListenerTest extends \PHPUnit_Framework_TestCase
             ->method('getQueryBuilder')
             ->will($this->returnValue($queryBuilder));
 
-        $dataGrid = $this->getMock('Oro\Bundle\DataGridBundle\Datagrid\DatagridInterface');
+        $dataGrid = $this->createMock('Oro\Bundle\DataGridBundle\Datagrid\DatagridInterface');
 
         $dataGrid->expects($this->any())
             ->method('getDatasource')
@@ -224,7 +224,7 @@ class CallListenerTest extends \PHPUnit_Framework_TestCase
      */
     protected function createParameterBag(array $data)
     {
-        $parameters = $this->getMock('Oro\Bundle\DataGridBundle\Datagrid\ParameterBag');
+        $parameters = $this->createMock('Oro\Bundle\DataGridBundle\Datagrid\ParameterBag');
 
         $parameters->expects($this->any())
             ->method('has')

@@ -18,8 +18,6 @@
         "psr-0": { "Oro\\Bundle\\CallBundle": "src/" }
     },
     "target-dir": "src/Oro/Bundle/CallBundle",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "extra": {
         "branch-alias": {
             "dev-master": "1.x-dev"
