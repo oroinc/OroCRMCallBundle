@@ -2,12 +2,28 @@ api:
     entities:
         Oro\Bundle\CallBundle\Entity\Call:
             fields:
+                activityTargets:
+                    description: A records to which the Call record associated with
+                    data_type: association:manyToMany:activity
                 direction:
                     exclude: false # override exclude rule from entity.yml
             filters:
                 fields:
-                    updatedAt:
-                        exclude: false #add updateAt to filters
+                    updatedAt: ~ # enable manually because this field is not indexed
+            subresources:
+                activityTargets:
+                    actions:
+                        get_subresource:
+                            documentation: Get full information about records to which the call associated
+                        get_relationship:
+                            documentation: Get records to which the call associated
+                        add_relationship:
+                            documentation: Associate records with the call
+                        update_relationship:
+                            documentation: Completely replace association between records and the call
+                        delete_relationship:
+                            documentation: Delete association between records and the call
+
         Oro\Bundle\CallBundle\Entity\CallDirection:
             exclude: false # override exclude rule from entity.yml
         Oro\Bundle\CallBundle\Entity\CallStatus: ~
