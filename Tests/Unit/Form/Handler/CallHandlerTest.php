@@ -60,7 +60,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
         $this->manager             = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->phoneProvider       = $this->getMock('Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface');
+        $this->phoneProvider       = $this->createMock('Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface');
         $this->activityManager = $this->getMockBuilder('Oro\Bundle\ActivityBundle\Manager\ActivityManager')
             ->disableOriginalConstructor()
             ->getMock();
