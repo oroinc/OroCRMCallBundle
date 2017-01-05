@@ -7,7 +7,7 @@
         {# Display contexts targets in the activity list item view #}
         {% if renderContexts is defined and renderContexts %}
             <div class="activity-context-activity-list">
-                {{ AC.activity_contexts(entity, target, true) }}
+                {{ AC.activity_contexts(entity) }}
             </div>
         {% endif %}
         {{ ui.renderProperty('oro.call.subject.label'|trans, entity.subject) }}
