@@ -145,7 +145,6 @@ class CallController extends Controller
     {
         return [
             'entity'         => $entity,
-            'target'         => $this->getTargetEntity(),
             'renderContexts' => (bool)$renderContexts
         ];
     }
@@ -178,22 +177,5 @@ class CallController extends Controller
             'form'       => $this->get('oro_call.call.form.handler')->getForm()->createView(),
             'formAction' => $formAction
         );
-    }
-
-    /**
-     * Get target entity
-     *
-     * @return object|null
-     */
-    protected function getTargetEntity()
-    {
-        $entityRoutingHelper = $this->get('oro_entity.routing_helper');
-        $targetEntityClass   = $entityRoutingHelper->getEntityClassName($this->getRequest(), 'targetActivityClass');
-        $targetEntityId      = $entityRoutingHelper->getEntityId($this->getRequest(), 'targetActivityId');
-        if (!$targetEntityClass || !$targetEntityId) {
-            return null;
-        }
-
-        return $entityRoutingHelper->getEntity($targetEntityClass, $targetEntityId);
     }
 }
