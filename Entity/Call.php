@@ -19,7 +19,7 @@ use OroCRM\Bundle\CallBundle\Model\ExtendCall;
  *
  * @ORM\Table(
  *      name="orocrm_call",
- *      indexes={@ORM\Index(name="call_dt_idx",columns={"call_date_time"})}
+ *      indexes={@ORM\Index(name="call_dt_idx",columns={"call_date_time", "id"})}
  * )
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()

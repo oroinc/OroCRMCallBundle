@@ -34,7 +34,7 @@ class OroCRMCallBundleInstaller implements Installation, ActivityExtensionAwareI
      */
     public function getMigrationVersion()
     {
-        return 'v1_7';
+        return 'v1_8';
     }
 
     /**
@@ -89,7 +89,7 @@ class OroCRMCallBundleInstaller implements Installation, ActivityExtensionAwareI
         $table->addIndex(['owner_id'], 'IDX_1FBD1A247E3C61F9', []);
         $table->addIndex(['call_status_name'], 'IDX_1FBD1A2476DB3689', []);
         $table->addIndex(['call_direction_name'], 'IDX_1FBD1A249F3E257D', []);
-        $table->addIndex(['call_date_time'], 'call_dt_idx');
+        $table->addIndex(['call_date_time', 'id'], 'call_dt_idx');
 
         $this->activityExtension->addActivityAssociation($schema, 'orocrm_call', 'oro_user');
     }
