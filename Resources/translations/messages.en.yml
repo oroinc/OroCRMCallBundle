@@ -15,7 +15,7 @@ oro:
     call:
         menu:
             call_list.description: List of calls
-            shortcut_call_list.label: Show calls list
+            shortcut_call_list.label: Show Calls list
             shortcut_call_list.description: List of calls
         form:
             choose_or_enter_phone: Choose or enter a phone number ...
