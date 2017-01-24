@@ -15,9 +15,9 @@
         "oro/platform": "1.x-dev"
     },
     "autoload": {
-        "psr-0": { "Oro\\Bundle\\CallBundle": "src/" }
+        "psr-4": { "Oro\\Bundle\\CallBundle\\": "" },
+        "exclude-from-classmap": ["/Tests/"]
     },
-    "target-dir": "src/Oro/Bundle/CallBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.x-dev"
