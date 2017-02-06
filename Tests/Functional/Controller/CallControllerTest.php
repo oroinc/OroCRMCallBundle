@@ -6,10 +6,6 @@ use Symfony\Component\Form\Form;
 
 use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
 
-/**
- * @outputBuffering enabled
- * @dbIsolation
- */
 class CallControllerTest extends WebTestCase
 {
     protected function setUp()
