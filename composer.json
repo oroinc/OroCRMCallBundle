@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": ">=5.6",
-        "oro/platform": "2.0.0"
+        "oro/platform": "2.0.*"
     },
     "autoload": {
         "psr-0": { "Oro\\Bundle\\CallBundle": "src/" }
@@ -20,7 +20,7 @@
     "target-dir": "src/Oro/Bundle/CallBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.x-dev"
+            "dev-master": "2.x-dev"
         }
     }
 }
