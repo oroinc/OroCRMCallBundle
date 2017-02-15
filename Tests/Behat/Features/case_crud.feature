@@ -22,7 +22,7 @@ Feature: Activity cases
       | Related Contact | Charlie Sheen          |
       | Related Account | Bruce                  |
     When I save and close form
-    Then I should see Test case subject in grid with:
+    Then I should see Test case subject with:
       | Subject         | Test case subject      |
       | Description     | Case for behat testing |
       | Resolution      | Create through form and check |
@@ -30,5 +30,33 @@ Feature: Activity cases
       | Source          | Web                    |
       | Status          | In Progress            |
       | Priority        | High                   |
+      | Related Contact | Charlie Sheen          |
+      | Related Account | Bruce                  |
+
+  Scenario: Edit case
+    Given I click "Edit Case"
+    When I fill in "Subject" with ""
+    And I save and close form
+    Then I should see validation errors:
+      | Subject         | This value should not be blank.  |
+    When I fill form with:
+      | Subject         | Edited test case       |
+      | Description     | Edited case for testing|
+      | Resolution      | Edit through form      |
+      | Assigned To     | John Doe               |
+      | Source          | Other                  |
+      | Status          | Resolved               |
+      | Priority        | Normal                 |
+      | Related Contact | Charlie Sheen          |
+      | Related Account | Bruce                  |
+    And I save and close form
+    Then I should see Edited test case with:
+      | Subject         | Edited test case       |
+      | Description     | Edited case for testing|
+      | Resolution      | Edit through form      |
+      | Assigned To     | John Doe               |
+      | Source          | Other                  |
+      | Status          | Resolved               |
+      | Priority        | Normal                 |
       | Related Contact | Charlie Sheen          |
       | Related Account | Bruce                  |
