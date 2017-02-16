@@ -4,8 +4,8 @@ navigation:
             call_list:
                 label: 'oro.call.entity_plural_label'
                 route: 'oro_call_index'
+                position: 20
                 extras:
-                    position: 20
                     routes: ['oro_call_*']
                     description: 'oro.call.menu.call_list.description'
             shortcut_call_list:
