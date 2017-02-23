@@ -50,24 +50,46 @@ oro:
         #
         entity_label:          Call
         entity_plural_label:   Calls
-        entity_description:    Represent call
-        id.label:              Id
-        subject.label:         Subject
-        phone_number.label:    Phone number
+        entity_description:    The information about calls made or received by users.
+        id:
+            label:             Id
+            description:       The unique identifier of the call record.
+        subject:
+            label:             Subject
+            description:       Defines what the call was about.
+        phone_number:
+            label:             Phone number
+            description:       The phone number that the call was made to / received from.
         owner.label:           Owner
-        notes.label:           Additional comments
-        duration.label:        Duration
-        direction.label:       Direction
-        call_status.label:     Call status
-        call_date_time.label:  Call date & time
+        notes:
+            label:             Additional comments
+            description:       The text of the note made on the call.
+        duration:
+            label:             Duration
+            description:       The duration of the call in seconds.
+        direction:
+            label:             Direction
+            description:       Defines whether the call is outgoing or incoming.
+        call_status:
+            label:             Call status
+            description:       Defines whether the call is completed or in progress.
+        call_date_time:
+            label:             Call date & time
+            description:       The date and time when the call was started.
         organization.label:    Organization
         direction_label.label: Direction
 
         calldirection:
-            entity_label: Direction
-            entity_plural_label: Directions
-            label.label: Label
-            name.label: Name
+            entity_label:         Direction
+            entity_plural_label:  Directions
+            entity_description:   The call direction defines whether the call is incoming or outgoing.
+            label:
+                label:            Label
+                description:      The label of the call direction ('Incoming' or 'Outgoing').
+            name:
+                label:            Name
+                description:      The unique identifier of the call's direction record.
+
 
         block:
             additional: Additional
@@ -75,5 +97,10 @@ oro:
         callstatus:
             entity_label: Call Status
             entity_plural_label: Call Statuses
-            label.label: Label
-            name.label: Name
+            entity_description:   The call status defines whether the call is completed or in progress.
+            label:
+                label:            Label
+                description:      The label of the call status ('Completed' or 'In progress').
+            name:
+                label:            Name
+                description:      The unique identifier of the call's status record.
