@@ -27,6 +27,6 @@ navigation:
 
     titles:
         oro_call_index: ~
-        oro_call_view: '%%subject%%'
-        oro_call_update: '%%subject%% - Edit'
+        oro_call_view: '%subject%'
+        oro_call_update: '%subject% - Edit'
         oro_call_create: 'Log Call'
