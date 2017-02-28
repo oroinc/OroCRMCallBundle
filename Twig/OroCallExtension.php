@@ -2,21 +2,29 @@
 
 namespace Oro\Bundle\CallBundle\Twig;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 use Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter;
 
 class OroCallExtension extends \Twig_Extension
 {
-    /**
-     * @var \Symfony\Component\DependencyInjection\ContainerInterface
-     */
-    protected $logCallPlaceholderFilter;
+    /** @var ContainerInterface */
+    protected $container;
 
     /**
-     * @param LogCallPlaceholderFilter $logCallPlaceholderFilter
+     * @param ContainerInterface $container
      */
-    public function __construct(LogCallPlaceholderFilter $logCallPlaceholderFilter)
+    public function __construct(ContainerInterface $container)
     {
-        $this->logCallPlaceholderFilter = $logCallPlaceholderFilter;
+        $this->container = $container;
+    }
+
+    /**
+     * @return LogCallPlaceholderFilter
+     */
+    protected function getLogCallPlaceholderFilter()
+    {
+        return $this->container->get('oro_call.placeholder.log_call.filter');
     }
 
     /**
@@ -26,12 +34,19 @@ class OroCallExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        $logCallPlaceholderFilter = $this->logCallPlaceholderFilter;
-        return array(
-            new \Twig_SimpleFunction('isCallLogApplicable', function ($entity) use ($logCallPlaceholderFilter) {
-                return $logCallPlaceholderFilter->isApplicable($entity);
-            }),
-        );
+        return [
+            new \Twig_SimpleFunction('isCallLogApplicable', [$this, 'isCallLogApplicable']),
+        ];
+    }
+
+    /**
+     * @param object|null $entity
+     *
+     * @return bool
+     */
+    public function isCallLogApplicable($entity)
+    {
+        return $this->getLogCallPlaceholderFilter()->isApplicable($entity);
     }
 
     /**
