@@ -161,7 +161,7 @@ datagrids:
 
     dashboard-recent-calls-grid:
         options:
-            entityHint: call
+            entityHint: calls
             toolbarOptions:
                 addColumnManager: false
                 hide: true
