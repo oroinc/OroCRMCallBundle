@@ -207,6 +207,10 @@ The list of records that will be deleted, could be limited by filters.
 
 *This field is **required** and must remain defined.*
 
+### activityTargets
+
+A records to which the call record associated with.
+
 ## SUBRESOURCES
 
 ### callStatus
@@ -324,3 +328,59 @@ Example:
 }
 ```
 {@/request}
+
+### activityTargets
+
+#### get_subresource
+
+Get full information about records to which the call associated.
+
+#### get_relationship
+
+Get records to which the call associated.
+
+#### add_relationship
+
+Associate records with the call.
+
+#### update_relationship
+
+Completely replace association between records and the call.
+
+#### delete_relationship
+
+Delete association between records and the call.
+
+
+# Oro\Bundle\CallBundle\Entity\CallDirection
+
+## ACTIONS
+
+### get
+
+Retrieve a specific call direction record.
+
+{@inheritdoc}
+
+### get_list
+
+Retrieve a collection of call direction records.
+
+{@inheritdoc}
+
+
+# Oro\Bundle\CallBundle\Entity\CallStatus
+
+## ACTIONS
+
+### get
+
+Retrieve a specific call status record.
+
+{@inheritdoc}
+
+### get_list
+
+Retrieve a collection of call status records.
+
+{@inheritdoc}
