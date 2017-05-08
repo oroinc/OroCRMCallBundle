@@ -13,7 +13,7 @@ Feature: Call logging
       | Phone number        | 0501468825                                                                        |
       | Direction           | Outgoing                                                                          |
       | Duration            | 60s                                                                               |
-    When I click "Save and Close"
+    When I save and close form
     Then I should be on Call View page
     And I should see Call with:
       | Subject             | Call to Jennyfer                                                                  |
@@ -33,7 +33,7 @@ Feature: Call logging
       | Phone number	      | 0501468826	                                                                      |
       | Direction	          | Outgoing	                                                                      |
       | Duration	          | 59s	                                                                              |
-    When I click "Save and Close"
+    When I save and close form
     Then I should see Call with:
       | Subject         	  | Call to Jennyfer NB                                                               |
       | Additional comments	  | Offered $100 discount on her next purchase, valid November 2016 - February 2017	  |
