@@ -3,7 +3,7 @@ OroCallBundle
 
 CallBundle implements basic call logging for contacts and accounts.
 
-###Table of contents
+### Table of contents
 
 * [Entities](./Resources/doc/reference/entities.md)
 * [Form Type](./Resources/doc/reference/form_type.md)
