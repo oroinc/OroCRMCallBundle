@@ -7,7 +7,10 @@ define(function(require) {
     var Select2Component = require('oro/select2-component');
 
     Select2CallPhoneComponent = Select2Component.extend({
+        /** @property {Array} */
         suggestions: [],
+
+        /** @property {String} */
         value: '',
         initialize: function(options) {
             this.suggestions = _.result(options, 'suggestions') || this.suggestions;
