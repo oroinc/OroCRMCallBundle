@@ -78,12 +78,12 @@
         'route': 'oro_call_view',
         'params': {'id': '$id'}
     }) %}
-    {% if resource_granted('oro_call_create') %}
+    {% if is_granted('oro_call_create') %}
         {% set html = html ~ UI.saveAndNewButton({
             'route': 'oro_call_create'
         }) %}
     {% endif %}
-    {% if form.vars.value.id or resource_granted('oro_call_update') %}
+    {% if form.vars.value.id or is_granted('oro_call_update') %}
         {% set html = html ~ UI.saveAndStayButton({
             'route': 'oro_call_update',
             'params': {'id': '$id'}
