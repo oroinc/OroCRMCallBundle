@@ -5,7 +5,7 @@
 {% oro_title_set({params : {"%subject%": entity.subject|default('N/A') }}) %}
 
 {% block navButtons %}
-    {% if resource_granted('EDIT', entity) %}
+    {% if is_granted('EDIT', entity) %}
         {# Button for add context on the activity list item view page #}
         {{ AC.addContextButton(entity) }}
         {{ UI.editButton({
@@ -13,7 +13,7 @@
             'entity_label': 'oro.call.entity_label'|trans
         })  }}
     {% endif %}
-    {% if resource_granted('DELETE', entity) %}
+    {% if is_granted('DELETE', entity) %}
         {{ UI.deleteButton({
             'dataUrl': path('oro_api_delete_call', {'id': entity.id}),
             'dataRedirect': path('oro_call_index'),
