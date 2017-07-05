@@ -308,11 +308,11 @@ Retrieve the records of the user who is an owner of a specific call record.
 
 #### get_relationship
 
-Retrieve the ID of the user who is an owner of a specific call.
+Retrieve the ID of the user who is an owner of a specific call record.
 
 #### update_relationship
 
-Replace the owner for a specific call.
+Replace the owner of a specific call record.
 
 {@request:json_api}
 Example:
@@ -333,11 +333,11 @@ Example:
 
 #### get_subresource
 
-Get full information about records to which the call associated.
+Retrieve records to which the call associated.
 
 #### get_relationship
 
-Get records to which the call associated.
+Retrieve the IDs of records to which the call associated.
 
 #### add_relationship
 
