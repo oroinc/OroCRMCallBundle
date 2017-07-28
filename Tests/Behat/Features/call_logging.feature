@@ -1,3 +1,4 @@
+@selenium-incompatible
 Feature: Call logging
   In order to keep track of all calls made during my daily work
   As a Sales Manager
