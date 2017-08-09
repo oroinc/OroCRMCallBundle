@@ -1,7 +1,7 @@
 {
     "name": "oro/crm-call-bundle",
     "description": "Oro Call Bundle",
-    "homepage": "https://github.com/orocrm/OroCRMCallBundle.git",
+    "homepage": "https://github.com/oroinc/OroCRMCallBundle.git",
     "keywords": ["Oro", "Call"],
     "license": "OSL-3.0",
     "authors": [
