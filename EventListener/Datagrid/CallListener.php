@@ -79,7 +79,8 @@ class CallListener
             if (!is_array($callIds)) {
                 $callIds = explode(',', $callIds);
             }
-            $queryBuilder->andWhere($queryBuilder->expr()->in('call.id', $callIds));
+            $queryBuilder->andWhere($queryBuilder->expr()->in('call.id', ':callIds'))
+                ->setParameter('callIds', $callIds);
         }
     }
 }
