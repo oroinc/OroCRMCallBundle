@@ -1,4 +1,11 @@
 oro_behat_extension:
+  elements:
+    Call log accordion:
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Element
+      selector:
+        locator: '//div[@class="accordion-heading clearfix"]'
+        type: xpath
+
   pages:
     Call Create:
       class: Oro\Bundle\CallBundle\Tests\Behat\Page\CallCreate
