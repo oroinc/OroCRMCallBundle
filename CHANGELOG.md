@@ -1,5 +1,5 @@
 ## 2.1.0 (2017-03-30)
-[Show detailed list of changes](file-incompatibilities-2-1-0.md)
+[Show detailed list of changes](incompatibilities-2-1-0.md)
 ### Changed
 - The following services were marked as `private`:
     - `oro_call.twig.call_extension`
