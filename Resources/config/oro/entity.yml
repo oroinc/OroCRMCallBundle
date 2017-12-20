@@ -1,5 +1,4 @@
 oro_entity:
     exclusions:
-        - { entity: Oro\Bundle\CallBundle\Entity\CallDirection }
         # Excluded this field cause we added it through virtual field
         - { entity: Oro\Bundle\CallBundle\Entity\Call, field: direction }
