@@ -207,6 +207,22 @@ The list of records that will be deleted, could be limited by filters.
 
 *This field is **required** and must remain defined.*
 
+### callDateTime
+
+#### create
+
+{@inheritdoc}
+
+**The required field**
+
+#### update
+
+{@inheritdoc}
+
+**Please note:**
+
+*This field is **required** and must remain defined.*
+
 ### activityTargets
 
 A records to which the call record associated with.
