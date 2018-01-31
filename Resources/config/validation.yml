@@ -5,6 +5,7 @@ Oro\Bundle\CallBundle\Entity\Call:
             - Length:
                 max: 255
         callDateTime:
+            - NotBlank: ~
             - DateTime: ~
         callStatus:
             - NotBlank: ~
