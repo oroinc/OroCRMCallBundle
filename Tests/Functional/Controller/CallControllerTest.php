@@ -1,6 +1,6 @@
 <?php
 
-namespace Oro\Bundle\CallBundle\Tests\Controller;
+namespace Oro\Bundle\CallBundle\Tests\Functional\Controller;
 
 use Symfony\Component\Form\Form;
 

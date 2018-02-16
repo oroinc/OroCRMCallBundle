@@ -10,8 +10,8 @@ use Oro\Bundle\ActivityListBundle\Model\ActivityListDateProviderInterface;
 use Oro\Bundle\CommentBundle\Model\CommentProviderInterface;
 use Oro\Bundle\CommentBundle\Tools\CommentAssociationHelper;
 use Oro\Bundle\EntityBundle\ORM\DoctrineHelper;
-use Oro\Bundle\EntityConfigBundle\DependencyInjection\Utils\ServiceLink;
 use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Component\DependencyInjection\ServiceLink;
 
 class CallActivityListProvider implements
     ActivityListProviderInterface,
