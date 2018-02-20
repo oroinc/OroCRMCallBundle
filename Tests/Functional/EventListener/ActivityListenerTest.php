@@ -4,14 +4,13 @@ namespace Oro\Bundle\CallBundle\Tests\Functional\EventListener;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
-
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
-use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
 use Oro\Bundle\ActivityContactBundle\Direction\DirectionProviderInterface;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\CallDirection;
 use Oro\Bundle\ContactBundle\Entity\Contact;
 use Oro\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData;
+use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
 
 class ActivityListenerTest extends WebTestCase
 {

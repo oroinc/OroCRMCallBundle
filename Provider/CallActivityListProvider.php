@@ -4,13 +4,13 @@ namespace Oro\Bundle\CallBundle\Provider;
 
 use Oro\Bundle\ActivityBundle\Tools\ActivityAssociationHelper;
 use Oro\Bundle\ActivityListBundle\Entity\ActivityList;
-use Oro\Bundle\ActivityListBundle\Model\ActivityListProviderInterface;
 use Oro\Bundle\ActivityListBundle\Entity\ActivityOwner;
 use Oro\Bundle\ActivityListBundle\Model\ActivityListDateProviderInterface;
+use Oro\Bundle\ActivityListBundle\Model\ActivityListProviderInterface;
+use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CommentBundle\Model\CommentProviderInterface;
 use Oro\Bundle\CommentBundle\Tools\CommentAssociationHelper;
 use Oro\Bundle\EntityBundle\ORM\DoctrineHelper;
-use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Component\DependencyInjection\ServiceLink;
 
 class CallActivityListProvider implements

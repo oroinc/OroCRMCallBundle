@@ -2,13 +2,12 @@
 
 namespace Oro\Bundle\CallBundle\Form\Type;
 
+use Oro\Bundle\SoapBundle\Form\EventListener\PatchSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-
-use Oro\Bundle\SoapBundle\Form\EventListener\PatchSubscriber;
 
 class CallApiType extends AbstractType
 {

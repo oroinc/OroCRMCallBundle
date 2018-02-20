@@ -3,17 +3,17 @@
 namespace Oro\Bundle\CallBundle\Tests\Unit\Form\Handler;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Oro\Bundle\UserBundle\Entity\User;
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
-use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
 use Oro\Bundle\CallBundle\Form\Handler\CallHandler;
 use Oro\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
+use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
+use Oro\Bundle\UserBundle\Entity\User;
 use Symfony\Component\Form\Form;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 

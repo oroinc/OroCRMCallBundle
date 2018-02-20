@@ -3,8 +3,8 @@
 namespace Oro\Bundle\CallBundle\Form\Handler;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Oro\Bundle\EntityExtendBundle\Tools\AssociationNameGenerator;
 use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\EntityExtendBundle\Tools\AssociationNameGenerator;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 

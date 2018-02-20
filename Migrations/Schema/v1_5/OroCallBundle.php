@@ -3,7 +3,6 @@
 namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_5;
 
 use Doctrine\DBAL\Schema\Schema;
-
 use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtension;
 use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtensionAwareInterface;
 use Oro\Bundle\MigrationBundle\Migration\Migration;

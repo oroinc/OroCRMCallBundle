@@ -2,9 +2,8 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Unit\Form\Type;
 
-use Symfony\Component\Form\Test\FormIntegrationTestCase;
-
 use Oro\Bundle\CallBundle\Form\Type\CallType;
+use Symfony\Component\Form\Test\FormIntegrationTestCase;
 
 class CallTypeTest extends FormIntegrationTestCase
 {

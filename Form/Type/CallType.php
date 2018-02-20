@@ -2,14 +2,13 @@
 
 namespace Oro\Bundle\CallBundle\Form\Type;
 
+use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
+use Oro\Bundle\CallBundle\Entity\Call;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
-use Oro\Bundle\CallBundle\Entity\Call;
 
 class CallType extends AbstractType
 {

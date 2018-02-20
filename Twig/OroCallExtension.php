@@ -2,9 +2,8 @@
 
 namespace Oro\Bundle\CallBundle\Twig;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class OroCallExtension extends \Twig_Extension
 {

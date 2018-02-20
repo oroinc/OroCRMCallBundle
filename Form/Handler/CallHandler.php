@@ -5,11 +5,11 @@ namespace Oro\Bundle\CallBundle\Form\Handler;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
-use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
-use Symfony\Component\Form\FormInterface;
+use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class CallHandler
