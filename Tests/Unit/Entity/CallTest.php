@@ -2,9 +2,8 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
-use Symfony\Component\PropertyAccess\PropertyAccess;
-
 use Oro\Bundle\CallBundle\Entity\Call;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class CallTest extends \PHPUnit_Framework_TestCase
 {

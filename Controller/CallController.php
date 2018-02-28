@@ -2,15 +2,14 @@
 
 namespace Oro\Bundle\CallBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-
+use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\SecurityBundle\Annotation\Acl;
 use Oro\Bundle\SecurityBundle\Annotation\AclAncestor;
-use Oro\Bundle\CallBundle\Entity\Call;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class CallController extends Controller
 {
@@ -38,8 +37,10 @@ class CallController extends Controller
      *      permission="CREATE",
      *      class="OroCallBundle:Call"
      * )
+     * @param Request $request
+     * @return array|RedirectResponse
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
         $entity = new Call();
 
@@ -54,9 +55,9 @@ class CallController extends Controller
         $entity->setDirection($callDirection);
 
         $formAction = $this->get('oro_entity.routing_helper')
-            ->generateUrlByRequest('oro_call_create', $this->getRequest());
+            ->generateUrlByRequest('oro_call_create', $request);
 
-        return $this->update($entity, $formAction);
+        return $this->update($request, $entity, $formAction);
     }
 
     /**
@@ -68,12 +69,15 @@ class CallController extends Controller
      *      permission="EDIT",
      *      class="OroCallBundle:Call"
      * )
+     * @param Request $request
+     * @param Call $entity
+     * @return array|RedirectResponse
      */
-    public function updateAction(Call $entity)
+    public function updateAction(Request $request, Call $entity)
     {
         $formAction = $this->get('router')->generate('oro_call_update', ['id' => $entity->getId()]);
 
-        return $this->update($entity, $formAction);
+        return $this->update($request, $entity, $formAction);
     }
 
     /**
@@ -150,17 +154,18 @@ class CallController extends Controller
     }
 
     /**
-     * @param Call   $entity
+     * @param Request $request
+     * @param Call $entity
      * @param string $formAction
      *
      * @return array
      */
-    protected function update(Call $entity, $formAction)
+    protected function update(Request $request, Call $entity, $formAction)
     {
         $saved = false;
 
         if ($this->get('oro_call.call.form.handler')->process($entity)) {
-            if (!$this->getRequest()->get('_widgetContainer')) {
+            if (!$request->get('_widgetContainer')) {
                 $this->get('session')->getFlashBag()->add(
                     'success',
                     $this->get('translator')->trans('oro.call.controller.call.saved.message')

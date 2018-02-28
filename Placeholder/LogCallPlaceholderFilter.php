@@ -3,7 +3,6 @@
 namespace Oro\Bundle\CallBundle\Placeholder;
 
 use Doctrine\Common\Util\ClassUtils;
-
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\CallBundle\Entity\Call;
 

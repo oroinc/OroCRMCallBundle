@@ -3,11 +3,10 @@
 namespace Oro\Bundle\CallBundle\EventListener\Datagrid;
 
 use Doctrine\ORM\EntityManager;
-
+use Oro\Bundle\DataGridBundle\Datagrid\Common\DatagridConfiguration;
 use Oro\Bundle\DataGridBundle\Datasource\Orm\OrmDatasource;
 use Oro\Bundle\DataGridBundle\Event\BuildAfter;
 use Oro\Bundle\DataGridBundle\Event\BuildBefore;
-use Oro\Bundle\DataGridBundle\Datagrid\Common\DatagridConfiguration;
 
 class CallListener
 {

@@ -27,8 +27,7 @@ services:
 
     oro_call.call.form.api:
         class: Symfony\Component\Form\Form
-        factory_method: createNamed
-        factory_service: form.factory
+        factory: ['@form.factory', createNamed]
         arguments:
             - "call"
             - "oro_call_form_api"
@@ -36,11 +35,10 @@ services:
 
     oro_call.call.form.handler:
         class: %oro_call.call.form.handler.class%
-        scope: request
         arguments:
             - "oro_call_form"
             - "oro_call_form"
-            - "@request"
+            - "@request_stack"
             - "@doctrine.orm.entity_manager"
             - "@oro_address.provider.phone"
             - "@oro_activity.manager"
@@ -49,12 +47,11 @@ services:
             - "@form.factory"
 
     oro_call.call.form.handler.api:
-            class: %oro_call.call.form.api.handler.class%
-            scope: request
-            arguments:
-                - "@oro_call.call.form.api"
-                - "@request"
-                - "@doctrine.orm.entity_manager"
+        class: %oro_call.call.form.api.handler.class%
+        arguments:
+            - "@oro_call.call.form.api"
+            - "@request_stack"
+            - "@doctrine.orm.entity_manager"
 
     oro_call.call.manager.api:
         class: %oro_call.call.manager.api.class%

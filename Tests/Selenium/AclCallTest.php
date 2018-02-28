@@ -2,10 +2,10 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Selenium;
 
+use Oro\Bundle\CallBundle\Tests\Selenium\Pages\Calls;
 use Oro\Bundle\TestFrameworkBundle\Test\Selenium2TestCase;
 use Oro\Bundle\UserBundle\Tests\Selenium\Pages\Roles;
 use Oro\Bundle\UserBundle\Tests\Selenium\Pages\Users;
-use Oro\Bundle\CallBundle\Tests\Selenium\Pages\Calls;
 
 class AclCallTest extends Selenium2TestCase
 {

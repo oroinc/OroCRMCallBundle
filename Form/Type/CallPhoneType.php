@@ -5,15 +5,15 @@ namespace Oro\Bundle\CallBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CallPhoneType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $defaultConfigs = [
             'allowClear'   => true,
@@ -57,7 +57,7 @@ class CallPhoneType extends AbstractType
      */
     public function getParent()
     {
-        return 'genemu_jqueryselect2_hidden';
+        return 'oro_select2_hidden';
     }
 
     /**

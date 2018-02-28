@@ -3,14 +3,13 @@
 namespace Oro\Bundle\CallBundle\Migrations\Schema;
 
 use Doctrine\DBAL\Schema\Schema;
-
 use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtension;
 use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtensionAwareInterface;
+use Oro\Bundle\CallBundle\Migrations\Schema\v1_6\OroCallBundle as TranslationTable;
 use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtension;
 use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtensionAwareInterface;
 use Oro\Bundle\MigrationBundle\Migration\Installation;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
-use Oro\Bundle\CallBundle\Migrations\Schema\v1_6\OroCallBundle as TranslationTable;
 
 class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInterface, CommentExtensionAwareInterface
 {

@@ -1,10 +1,9 @@
 <?php
 
-namespace Oro\Bundle\CallBundle\Tests\Controller;
-
-use Symfony\Component\Form\Form;
+namespace Oro\Bundle\CallBundle\Tests\Functional\Controller;
 
 use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Form\Form;
 
 class CallControllerTest extends WebTestCase
 {

@@ -2,20 +2,20 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Unit\Form\Handler;
 
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormFactory;
-use Symfony\Component\HttpFoundation\Request;
-
 use Doctrine\Common\Persistence\ObjectManager;
-
-use Oro\Bundle\UserBundle\Entity\User;
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
-use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
 use Oro\Bundle\CallBundle\Form\Handler\CallHandler;
 use Oro\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
+use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
+use Oro\Bundle\UserBundle\Entity\User;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class CallHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -53,34 +53,22 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->form                = $this->getMockBuilder('Symfony\Component\Form\Form')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $this->request             = new Request();
-        $this->manager             = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $this->phoneProvider       = $this->createMock('Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface');
-        $this->activityManager = $this->getMockBuilder('Oro\Bundle\ActivityBundle\Manager\ActivityManager')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $this->callActivityManager = $this->getMockBuilder(
-            'Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager'
-        )
-            ->disableOriginalConstructor()
-            ->getMock();
-        $this->entityRoutingHelper = $this->getMockBuilder('Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $this->formFactory         = $this->getMockBuilder('Symfony\Component\Form\FormFactory')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->form = $this->createMock(Form::class);
+        $this->request = new Request();
+        $requestStack = new RequestStack();
+        $requestStack->push($this->request);
+        $this->manager = $this->createMock(ObjectManager::class);
+        $this->phoneProvider = $this->createMock(PhoneProviderInterface::class);
+        $this->activityManager = $this->createMock(ActivityManager::class);
+        $this->callActivityManager = $this->createMock(CallActivityManager::class);
+        $this->entityRoutingHelper = $this->createMock(EntityRoutingHelper::class);
+        $this->formFactory = $this->createMock(FormFactory::class);
 
         $this->entity  = new Call();
         $this->handler = new CallHandler(
             'oro_call_form',
             'oro_call_form',
-            $this->request,
+            $requestStack,
             $this->manager,
             $this->phoneProvider,
             $this->activityManager,

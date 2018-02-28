@@ -2,17 +2,15 @@
 
 namespace Oro\Bundle\CallBundle\Form\Handler;
 
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormFactory;
-use Symfony\Component\HttpFoundation\Request;
-
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
-use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
+use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
+use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class CallHandler
 {
@@ -25,8 +23,8 @@ class CallHandler
     /** @var string */
     protected $formType;
 
-    /** @var Request */
-    protected $request;
+    /** @var RequestStack */
+    protected $requestStack;
 
     /** @var ObjectManager */
     protected $manager;
@@ -49,7 +47,7 @@ class CallHandler
     /**
      * @param string                 $formName
      * @param string                 $formType
-     * @param Request                $request
+     * @param RequestStack           $requestStack
      * @param ObjectManager          $manager
      * @param PhoneProviderInterface $phoneProvider
      * @param ActivityManager        $activityManager
@@ -60,7 +58,7 @@ class CallHandler
     public function __construct(
         $formName,
         $formType,
-        Request $request,
+        RequestStack $requestStack,
         ObjectManager $manager,
         PhoneProviderInterface $phoneProvider,
         ActivityManager $activityManager,
@@ -70,7 +68,7 @@ class CallHandler
     ) {
         $this->formName            = $formName;
         $this->formType            = $formType;
-        $this->request             = $request;
+        $this->requestStack        = $requestStack;
         $this->manager             = $manager;
         $this->phoneProvider       = $phoneProvider;
         $this->activityManager     = $activityManager;
@@ -88,14 +86,15 @@ class CallHandler
      */
     public function process(Call $entity)
     {
-        $targetEntityClass = $this->request->get('entityClass');
-        $targetEntityId    = $this->request->get('entityId');
+        $request = $this->requestStack->getCurrentRequest();
+        $targetEntityClass = $request->get('entityClass');
+        $targetEntityId = $request->get('entityId');
 
         $options = [];
-        if ($targetEntityClass && $this->request->getMethod() === 'GET') {
+        if ($targetEntityClass && $request->getMethod() === 'GET') {
             $targetEntity = $this->entityRoutingHelper->getEntity($targetEntityClass, $targetEntityId);
             if (!$entity->getId()) {
-                $phone = $this->request->query->get('phone');
+                $phone = $request->query->get('phone');
                 if (!$phone) {
                     $phone = $this->phoneProvider->getPhoneNumber($targetEntity);
                 }
@@ -116,8 +115,8 @@ class CallHandler
         $this->form = $this->formFactory->createNamed($this->formName, $this->formType, $entity, $options);
         $this->form->setData($entity);
 
-        if (in_array($this->request->getMethod(), array('POST', 'PUT'))) {
-            $this->form->submit($this->request);
+        if (in_array($request->getMethod(), ['POST', 'PUT'], true)) {
+            $this->form->submit($request);
 
             if ($this->form->isValid()) {
                 // TODO: should be refactored after finishing BAP-8722

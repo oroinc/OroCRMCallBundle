@@ -3,7 +3,6 @@
 namespace Oro\Bundle\CallBundle\EventListener;
 
 use Doctrine\ORM\Event\OnFlushEventArgs;
-
 use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
 
 class EntityListener

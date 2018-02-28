@@ -4,7 +4,6 @@ namespace Oro\Bundle\CallBundle\Entity\Manager;
 
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\CallBundle\Entity\Call;
 
