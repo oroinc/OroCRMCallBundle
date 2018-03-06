@@ -9,19 +9,19 @@ parameters:
 
 services:
     oro_call.call.form.type:
-        class: %oro_call.call.form.type.class%
+        class: '%oro_call.call.form.type.class%'
         arguments:
             - "@oro_address.provider.phone"
         tags:
             - { name: form.type, alias: oro_call_form }
 
     oro_call.call.form.type.api:
-        class: %oro_call.call.form.type.api.class%
+        class: '%oro_call.call.form.type.api.class%'
         tags:
             - { name: form.type, alias: oro_call_form_api }
 
     oro_call.form.type.phone:
-        class: %oro_call.form.type.phone.class%
+        class: '%oro_call.form.type.phone.class%'
         tags:
             - { name: form.type, alias: oro_call_phone }
 
@@ -34,7 +34,7 @@ services:
             - null
 
     oro_call.call.form.handler:
-        class: %oro_call.call.form.handler.class%
+        class: '%oro_call.call.form.handler.class%'
         arguments:
             - "oro_call_form"
             - "oro_call_form"
@@ -47,15 +47,15 @@ services:
             - "@form.factory"
 
     oro_call.call.form.handler.api:
-        class: %oro_call.call.form.api.handler.class%
+        class: '%oro_call.call.form.api.handler.class%'
         arguments:
             - "@oro_call.call.form.api"
             - "@request_stack"
             - "@doctrine.orm.entity_manager"
 
     oro_call.call.manager.api:
-        class: %oro_call.call.manager.api.class%
+        class: '%oro_call.call.manager.api.class%'
         parent: oro_soap.manager.entity_manager.abstract
         arguments:
-            - %oro_call.call.entity.class%
+            - '%oro_call.call.entity.class%'
             - "@doctrine.orm.entity_manager"

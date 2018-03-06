@@ -1,6 +1,6 @@
 datagrids:
     calls-grid:
-        extended_entity_name: %oro_call.call.entity.class%
+        extended_entity_name: '%oro_call.call.entity.class%'
         acl_resource: oro_call_view
         source:
             type: orm
@@ -11,7 +11,7 @@ datagrids:
                     - CONCAT(call.phoneNumber, '') as phone
                     - call.callDateTime as dateTime
                 from:
-                    - { table: %oro_call.call.entity.class%, alias: call }
+                    - { table: '%oro_call.call.entity.class%', alias: call }
         columns:
             subject:
                 label: oro.call.subject.label
@@ -96,7 +96,7 @@ datagrids:
                     - CONCAT(call.phoneNumber, '') as phone
                     - call.callDateTime as dateTime
                 from:
-                    - { table: %oro_call.call.entity.class%, alias: call }
+                    - { table: '%oro_call.call.entity.class%', alias: call }
         columns:
             dateTime:
                 label: oro.call.call_date_time.label
@@ -179,7 +179,7 @@ datagrids:
                     - call.callDateTime as dateTime
                     - directionType.name as callDirection
                 from:
-                    - { table: %oro_call.call.entity.class%, alias: call }
+                    - { table: '%oro_call.call.entity.class%', alias: call }
                 join:
                     left:
                         - { join: call.direction, alias: directionType }
@@ -208,7 +208,7 @@ datagrids:
                 dateTime: DESC
 
     call-for-context-grid:
-        extended_entity_name: %oro_call.call.entity.class%
+        extended_entity_name: '%oro_call.call.entity.class%'
         acl_resource: oro_call_view
         options:
             entityHint: calls
@@ -226,7 +226,7 @@ datagrids:
                     - CONCAT(call.phoneNumber, '') as phone
                     - call.callDateTime as dateTime
                 from:
-                    - { table: %oro_call.call.entity.class%, alias: call }
+                    - { table: '%oro_call.call.entity.class%', alias: call }
         columns:
             id:
                 label: oro.call.id.label
