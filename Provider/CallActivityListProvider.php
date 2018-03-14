@@ -136,7 +136,7 @@ class CallActivityListProvider implements
     /**
      * {@inheritdoc}
      */
-    public function getRoutes()
+    public function getRoutes($activityEntity)
     {
         return [
             'itemView'   => 'oro_call_widget_info',
