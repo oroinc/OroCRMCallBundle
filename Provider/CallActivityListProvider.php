@@ -13,6 +13,9 @@ use Oro\Bundle\CommentBundle\Tools\CommentAssociationHelper;
 use Oro\Bundle\EntityBundle\ORM\DoctrineHelper;
 use Oro\Component\DependencyInjection\ServiceLink;
 
+/**
+ * This provider provides additional activity-related information for Call entity
+ */
 class CallActivityListProvider implements
     ActivityListProviderInterface,
     CommentProviderInterface,
@@ -136,7 +139,7 @@ class CallActivityListProvider implements
     /**
      * {@inheritdoc}
      */
-    public function getRoutes()
+    public function getRoutes($activityEntity)
     {
         return [
             'itemView'   => 'oro_call_widget_info',
