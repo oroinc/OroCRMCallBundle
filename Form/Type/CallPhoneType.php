@@ -28,17 +28,20 @@ class CallPhoneType extends AbstractType
                 'configs'     => $defaultConfigs,
             ]
         );
-        $resolver->setNormalizers(
-            [
-                'configs'     => function (Options $options, $configs) use (&$defaultConfigs) {
-                    return array_merge($defaultConfigs, $configs);
-                },
-                'suggestions' => function (Options $options, $suggestions) {
-                    sort($suggestions, SORT_STRING & SORT_FLAG_CASE);
 
-                    return $suggestions;
-                }
-            ]
+        $resolver->setNormalizer(
+            'configs',
+            function (Options $options, $configs) use (&$defaultConfigs) {
+                return array_merge($defaultConfigs, $configs);
+            }
+        )
+        ->setNormalizer(
+            'suggestions',
+            function (Options $options, $suggestions) {
+                sort($suggestions, SORT_STRING & SORT_FLAG_CASE);
+
+                return $suggestions;
+            }
         );
     }
 
