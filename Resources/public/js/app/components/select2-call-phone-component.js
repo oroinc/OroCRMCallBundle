@@ -12,11 +12,23 @@ define(function(require) {
 
         /** @property {String} */
         value: '',
+
+        /**
+         * @inheritDoc
+         */
+        constructor: function Select2CallPhoneComponent() {
+            Select2CallPhoneComponent.__super__.constructor.apply(this, arguments);
+        },
+
+        /**
+         * @inheritDoc
+         */
         initialize: function(options) {
             this.suggestions = _.result(options, 'suggestions') || this.suggestions;
             this.value = _.result(options, 'value') || this.value;
             Select2CallPhoneComponent.__super__.initialize.call(this, options);
         },
+
         preConfig: function(config) {
             var that = this;
             Select2CallPhoneComponent.__super__.preConfig.call(this, config);
