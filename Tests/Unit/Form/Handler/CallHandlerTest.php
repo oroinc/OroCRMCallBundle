@@ -142,7 +142,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->never())
-            ->method('submit');
+            ->method('handleRequest');
 
         $this->assertFalse($this->handler->process($this->entity));
     }
@@ -189,7 +189,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->never())
-            ->method('submit');
+            ->method('handleRequest');
 
         $this->assertFalse($this->handler->process($this->entity));
     }
@@ -237,7 +237,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->never())
-            ->method('submit');
+            ->method('handleRequest');
 
         $this->assertFalse($this->handler->process($this->entity));
         $this->assertEquals('phone2', $this->entity->getPhoneNumber());
@@ -256,7 +256,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->once())
-            ->method('submit')
+            ->method('handleRequest')
             ->with($this->request);
         $this->form->expects($this->once())
             ->method('isValid')
@@ -289,7 +289,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->once())
-            ->method('submit')
+            ->method('handleRequest')
             ->with($this->request);
         $this->form->expects($this->once())
             ->method('isValid')
@@ -337,7 +337,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->form));
 
         $this->form->expects($this->once())
-            ->method('submit')
+            ->method('handleRequest')
             ->with($this->request);
         $this->form->expects($this->once())
             ->method('isValid')
