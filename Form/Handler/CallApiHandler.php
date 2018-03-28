@@ -5,11 +5,14 @@ namespace Oro\Bundle\CallBundle\Form\Handler;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\EntityExtendBundle\Tools\AssociationNameGenerator;
+use Oro\Bundle\FormBundle\Form\Handler\RequestHandlerTrait;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class CallApiHandler
 {
+    use RequestHandlerTrait;
+
     /**
      * @var FormInterface
      */
@@ -49,10 +52,7 @@ class CallApiHandler
 
         $request = $this->requestStack->getCurrentRequest();
         if (in_array($request->getMethod(), ['POST', 'PUT'], true)) {
-            $data = $this->form->getName()
-                ? $request->request->get($this->form->getName())
-                : $request->request->all();
-            $this->form->submit($data);
+            $this->submitPostPutRequest($this->form, $request);
 
             if ($this->form->isValid()) {
                 $this->onSuccess($entity);
