@@ -8,12 +8,15 @@ use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
 use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
+use Oro\Bundle\FormBundle\Form\Handler\RequestHandlerTrait;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class CallHandler
 {
+    use RequestHandlerTrait;
+
     /** @var FormInterface */
     protected $form;
 
@@ -116,7 +119,7 @@ class CallHandler
         $this->form->setData($entity);
 
         if (in_array($request->getMethod(), ['POST', 'PUT'], true)) {
-            $this->form->submit($request);
+            $this->submitPostPutRequest($this->form, $request);
 
             if ($this->form->isValid()) {
                 // TODO: should be refactored after finishing BAP-8722

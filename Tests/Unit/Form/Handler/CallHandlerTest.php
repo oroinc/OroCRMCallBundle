@@ -19,6 +19,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class CallHandlerTest extends \PHPUnit_Framework_TestCase
 {
+    const FORM_DATA = ['field' => 'value'];
+
     /** @var \PHPUnit_Framework_MockObject_MockObject|FormInterface */
     protected $form;
 
@@ -87,6 +89,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
         $this->setId($owner, 321);
         $this->entity->setOwner($owner);
 
+        $this->request->initialize([], self::FORM_DATA);
         $this->request->setMethod('POST');
 
         $this->formFactory->expects($this->once())
@@ -257,7 +260,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->form->expects($this->once())
             ->method('submit')
-            ->with($this->request);
+            ->with(self::FORM_DATA);
         $this->form->expects($this->once())
             ->method('isValid')
             ->will($this->returnValue(false));
@@ -271,6 +274,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
         $this->callActivityManager->expects($this->never())
             ->method('addAssociation');
 
+        $this->request->initialize([], self::FORM_DATA);
         $this->request->setMethod($method);
 
         $this->assertFalse($this->handler->process($this->entity));
@@ -290,7 +294,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->form->expects($this->once())
             ->method('submit')
-            ->with($this->request);
+            ->with(self::FORM_DATA);
         $this->form->expects($this->once())
             ->method('isValid')
             ->will($this->returnValue(true));
@@ -311,6 +315,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
         $this->manager->expects($this->once())
             ->method('flush');
 
+        $this->request->initialize([], self::FORM_DATA);
         $this->request->setMethod($method);
 
         $this->assertTrue($this->handler->process($this->entity));
@@ -328,9 +333,6 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
         $targetEntity  = new TestTarget(123);
         $targetEntity1 = new TestTarget(456);
 
-        $this->request->query->set('entityClass', get_class($targetEntity));
-        $this->request->query->set('entityId', $targetEntity->getId());
-
         $this->formFactory->expects($this->once())
             ->method('createNamed')
             ->with('oro_call_form', 'oro_call_form', $this->entity, [])
@@ -338,7 +340,7 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->form->expects($this->once())
             ->method('submit')
-            ->with($this->request);
+            ->with(self::FORM_DATA);
         $this->form->expects($this->once())
             ->method('isValid')
             ->will($this->returnValue(true));
@@ -382,6 +384,13 @@ class CallHandlerTest extends \PHPUnit_Framework_TestCase
         $this->manager->expects($this->once())
             ->method('flush');
 
+        $this->request->initialize(
+            [
+                'entityClass' => get_class($targetEntity),
+                'entityId' => $targetEntity->getId()
+            ],
+            self::FORM_DATA
+        );
         $this->request->setMethod($method);
 
         $this->assertTrue($this->handler->process($this->entity));
