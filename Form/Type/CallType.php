@@ -68,6 +68,7 @@ class CallType extends AbstractType
                 [
                     'required' => true,
                     'label'    => 'oro.call.call_status.label',
+                    'choice_label' => 'label',
                     'class'    => 'Oro\Bundle\CallBundle\Entity\CallStatus'
                 ]
             )
