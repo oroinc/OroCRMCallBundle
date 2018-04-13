@@ -25,7 +25,7 @@ class CallApiType extends AbstractType
             [
                 'mapped'      => false,
                 'constraints' => [
-                    new Callback([[$this, 'validateAssociations']])
+                    new Callback(['callback' => [$this, 'validateAssociations']])
                 ]
             ]
         );
