@@ -86,7 +86,7 @@ class CallType extends AbstractType
                 [
                     'required' => true,
                     'label'    => 'oro.call.direction.label',
-                    'property' => 'label',
+                    'choice_label' => 'label',
                     'class'    => 'Oro\Bundle\CallBundle\Entity\CallDirection'
                 ]
             );
