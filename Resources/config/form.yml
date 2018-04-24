@@ -30,14 +30,14 @@ services:
         factory: ['@form.factory', createNamed]
         arguments:
             - "call"
-            - "oro_call_form_api"
+            - Oro\Bundle\CallBundle\Form\Type\CallApiType
             - null
 
     oro_call.call.form.handler:
         class: '%oro_call.call.form.handler.class%'
         arguments:
             - "oro_call_form"
-            - "oro_call_form"
+            - Oro\Bundle\CallBundle\Form\Type\CallType
             - "@request_stack"
             - "@doctrine.orm.entity_manager"
             - "@oro_address.provider.phone"
