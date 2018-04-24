@@ -2,7 +2,13 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Unit\Form\Type;
 
+use Oro\Bundle\CallBundle\Form\Type\CallPhoneType;
 use Oro\Bundle\CallBundle\Form\Type\CallType;
+use Oro\Bundle\FormBundle\Form\Type\OroDateTimeType;
+use Oro\Bundle\FormBundle\Form\Type\OroDurationType;
+use Oro\Bundle\FormBundle\Form\Type\OroResizeableRichTextType;
+use Oro\Bundle\TranslationBundle\Form\Type\TranslatableEntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Test\FormIntegrationTestCase;
 
 class CallTypeTest extends FormIntegrationTestCase
@@ -32,21 +38,16 @@ class CallTypeTest extends FormIntegrationTestCase
         $this->type->configureOptions($resolver);
     }
 
-    public function testGetName()
-    {
-        $this->assertEquals('oro_call_form', $this->type->getName());
-    }
-
     public function testBuildForm()
     {
         $expectedFields = [
-            'subject' => 'text',
-            'phoneNumber' => 'oro_call_phone',
-            'notes' => 'oro_resizeable_rich_text',
-            'callDateTime' => 'oro_datetime',
-            'callStatus' => 'translatable_entity',
-            'duration' => 'oro_duration',
-            'direction' => 'translatable_entity'
+            'subject' => TextType::class,
+            'phoneNumber' => CallPhoneType::class,
+            'notes' => OroResizeableRichTextType::class,
+            'callDateTime' => OroDateTimeType::class,
+            'callStatus' => TranslatableEntityType::class,
+            'duration' => OroDurationType::class,
+            'direction' => TranslatableEntityType::class
         ];
 
         $builder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')

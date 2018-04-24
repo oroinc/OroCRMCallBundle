@@ -2,6 +2,7 @@
 
 namespace Oro\Bundle\CallBundle\Form\Type;
 
+use Oro\Bundle\FormBundle\Form\Type\Select2HiddenType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -60,7 +61,7 @@ class CallPhoneType extends AbstractType
      */
     public function getParent()
     {
-        return 'oro_select2_hidden';
+        return Select2HiddenType::class;
     }
 
     /**
