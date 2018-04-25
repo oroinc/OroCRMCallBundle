@@ -2,8 +2,10 @@
 
 namespace Oro\Bundle\CallBundle\Form\Type;
 
+use Oro\Bundle\CallBundle\Form\Type\CallType;
 use Oro\Bundle\SoapBundle\Form\EventListener\PatchSubscriber;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Callback;
@@ -21,7 +23,7 @@ class CallApiType extends AbstractType
         // Add a hidden field to pass form validation
         $builder->add(
             'associations',
-            'hidden',
+            HiddenType::class,
             [
                 'mapped'      => false,
                 'constraints' => [
@@ -50,7 +52,7 @@ class CallApiType extends AbstractType
      */
     public function getParent()
     {
-        return 'oro_call_form';
+        return CallType::class;
     }
 
     /**

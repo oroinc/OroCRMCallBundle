@@ -4,7 +4,13 @@ namespace Oro\Bundle\CallBundle\Form\Type;
 
 use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
 use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Form\Type\CallPhoneType;
+use Oro\Bundle\FormBundle\Form\Type\OroDateTimeType;
+use Oro\Bundle\FormBundle\Form\Type\OroDurationType;
+use Oro\Bundle\FormBundle\Form\Type\OroResizeableRichTextType;
+use Oro\Bundle\TranslationBundle\Form\Type\TranslatableEntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -31,7 +37,7 @@ class CallType extends AbstractType
         $builder
             ->add(
                 'subject',
-                'text',
+                TextType::class,
                 [
                     'required' => true,
                     'label'    => 'oro.call.subject.label'
@@ -39,7 +45,7 @@ class CallType extends AbstractType
             )
             ->add(
                 'phoneNumber',
-                'oro_call_phone',
+                CallPhoneType::class,
                 [
                     'required'    => true,
                     'label'       => 'oro.call.phone_number.label',
@@ -48,7 +54,7 @@ class CallType extends AbstractType
             )
             ->add(
                 'notes',
-                'oro_resizeable_rich_text',
+                OroResizeableRichTextType::class,
                 [
                     'required' => false,
                     'label'    => 'oro.call.notes.label'
@@ -56,7 +62,7 @@ class CallType extends AbstractType
             )
             ->add(
                 'callDateTime',
-                'oro_datetime',
+                OroDateTimeType::class,
                 [
                     'required' => true,
                     'label'    => 'oro.call.call_date_time.label'
@@ -64,16 +70,17 @@ class CallType extends AbstractType
             )
             ->add(
                 'callStatus',
-                'translatable_entity',
+                TranslatableEntityType::class,
                 [
                     'required' => true,
                     'label'    => 'oro.call.call_status.label',
+                    'choice_label' => 'label',
                     'class'    => 'Oro\Bundle\CallBundle\Entity\CallStatus'
                 ]
             )
             ->add(
                 'duration',
-                'oro_duration',
+                OroDurationType::class,
                 [
                     'required' => false,
                     'label'    => 'oro.call.duration.label'
@@ -81,10 +88,11 @@ class CallType extends AbstractType
             )
             ->add(
                 'direction',
-                'translatable_entity',
+                TranslatableEntityType::class,
                 [
                     'required' => true,
                     'label'    => 'oro.call.direction.label',
+                    'choice_label' => 'label',
                     'class'    => 'Oro\Bundle\CallBundle\Entity\CallDirection'
                 ]
             );
