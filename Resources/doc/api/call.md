@@ -17,14 +17,13 @@ Retrieve a collection of call records.
 ### create
 
 Create a new call record.
+
 The created record is returned in the response.
 
 {@inheritdoc}
 
 {@request:json_api}
 Example:
-
-`</api/calls>`
 
 ```JSON
 {  
@@ -75,8 +74,6 @@ Edit a specific call record.
 
 {@request:json_api}
 Example:
-
-`</api/calls/103>`
 
 ```JSON
 {  
@@ -129,7 +126,6 @@ Delete a specific call record.
 ### delete_list
 
 Delete a collection of call records.
-The list of records that will be deleted, could be limited by filters.
 
 {@inheritdoc}
 
@@ -246,8 +242,6 @@ Replace the status configured for a specific call.
 {@request:json_api}
 Example:
 
-`</api/calls/1/relationships/callStatus>`
-
 ```JSON
 {
   "data": {
@@ -274,8 +268,6 @@ Replace the direction configured for a specific call.
 
 {@request:json_api}
 Example:
-
-`</api/calls/1/relationships/direction>`
 
 ```JSON
 {
@@ -304,8 +296,6 @@ Replace the organization that a specific call belongs to.
 {@request:json_api}
 Example:
 
-`</api/calls/1/relationships/organization`
-
 ```JSON
 {
   "data": {
@@ -332,8 +322,6 @@ Replace the owner of a specific call record.
 
 {@request:json_api}
 Example:
-
-`</api/calls/1/relationships/owner>`
 
 ```JSON
 {
