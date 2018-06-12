@@ -13,10 +13,6 @@ use Oro\Bundle\CallBundle\Entity\CallDirection;
 use Oro\Bundle\ContactBundle\Entity\Contact;
 use Oro\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData;
 
-/**
- * @outputBuffering enabled
- * @dbIsolation
- */
 class ActivityListenerTest extends WebTestCase
 {
     public function setUp()
