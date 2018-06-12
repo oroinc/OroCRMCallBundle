@@ -4,10 +4,6 @@ namespace Oro\Bundle\CallBundle\Tests\Functional\API\Rest;
 
 use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
 
-/**
- * @outputBuffering enabled
- * @dbIsolation
- */
 class CallControllerTest extends WebTestCase
 {
     protected function setUp()
