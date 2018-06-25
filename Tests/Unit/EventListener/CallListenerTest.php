@@ -8,7 +8,7 @@ use Oro\Bundle\DataGridBundle\Event\BuildAfter;
 use Oro\Bundle\DataGridBundle\Event\BuildBefore;
 use Oro\Bundle\UserBundle\Entity\User;
 
-class CallListenerTest extends \PHPUnit_Framework_TestCase
+class CallListenerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var CallListener
@@ -16,7 +16,7 @@ class CallListenerTest extends \PHPUnit_Framework_TestCase
     protected $listener;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $entityManager;
 
@@ -137,11 +137,11 @@ class CallListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param \PHPUnit_Framework_MockObject_MockObject $mock
+     * @param \PHPUnit\Framework\MockObject\MockObject $mock
      * @param array $expectations
      */
     protected function applyExpectations(
-        \PHPUnit_Framework_MockObject_MockObject $mock,
+        \PHPUnit\Framework\MockObject\MockObject $mock,
         array $expectations = array()
     ) {
         foreach ($expectations as $number => $expectation) {
@@ -190,7 +190,7 @@ class CallListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param QueryBuilder|\PHPUnit_Framework_MockObject_MockObject $queryBuilder
+     * @param QueryBuilder|\PHPUnit\Framework\MockObject\MockObject $queryBuilder
      * @param array $parameters
      * @return BuildAfter
      */
@@ -219,7 +219,7 @@ class CallListenerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param array $data
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return \PHPUnit\Framework\MockObject\MockObject
      */
     protected function createParameterBag(array $data)
     {

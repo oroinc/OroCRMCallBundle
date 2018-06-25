@@ -6,9 +6,9 @@ use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
 use Oro\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
 
-class CallActivityManagerTest extends \PHPUnit_Framework_TestCase
+class CallActivityManagerTest extends \PHPUnit\Framework\TestCase
 {
-    /** @var \PHPUnit_Framework_MockObject_MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject */
     private $activityManager;
 
     /** @var CallActivityManager */
