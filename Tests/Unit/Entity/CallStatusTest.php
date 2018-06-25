@@ -4,7 +4,7 @@ namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
 use Oro\Bundle\CallBundle\Entity\CallStatus;
 
-class CallStatusTest extends \PHPUnit_Framework_TestCase
+class CallStatusTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider getSetDataProvider

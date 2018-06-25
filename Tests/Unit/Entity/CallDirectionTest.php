@@ -4,7 +4,7 @@ namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
 use Oro\Bundle\CallBundle\Entity\CallDirection;
 
-class CallDirectionTest extends \PHPUnit_Framework_TestCase
+class CallDirectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider getSetDataProvider
