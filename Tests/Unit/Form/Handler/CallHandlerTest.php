@@ -17,32 +17,32 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class CallHandlerTest extends \PHPUnit_Framework_TestCase
+class CallHandlerTest extends \PHPUnit\Framework\TestCase
 {
     const FORM_DATA = ['field' => 'value'];
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|FormInterface */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|FormInterface */
     protected $form;
 
     /** @var Request */
     protected $request;
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|ObjectManager */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|ObjectManager */
     protected $manager;
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|PhoneProviderInterface */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|PhoneProviderInterface */
     protected $phoneProvider;
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|ActivityManager */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|ActivityManager */
     protected $activityManager;
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|CallActivityManager */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|CallActivityManager */
     protected $callActivityManager;
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|EntityRoutingHelper */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|EntityRoutingHelper */
     protected $entityRoutingHelper;
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|FormFactory */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|FormFactory */
     protected $formFactory;
 
     /** @var CallHandler */
