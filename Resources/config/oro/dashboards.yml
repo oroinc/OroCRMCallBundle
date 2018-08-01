@@ -7,6 +7,7 @@ dashboards:
             acl:         oro_call_view
             description: oro.dashboard.recent_calls.description
             icon:   bundles/orocall/img/recent_calls.png
+            icon_class:  fa-volume-control-phone
             configuration:
                 owners:
                     type: Oro\Bundle\UserBundle\Form\Type\WidgetOwnersType
