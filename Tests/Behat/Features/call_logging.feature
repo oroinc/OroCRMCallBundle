@@ -52,7 +52,7 @@ Feature: Call logging
     Given I go to Activities/ Calls
     When I click edit Call to Jennyfer in grid
     Then I should be on Call Edit page
-    And I press "Cancel"
+    And I click "Cancel"
 
   Scenario: Deleting call from grid
     Given there is following Call:
