@@ -163,7 +163,7 @@ datagrids:
         options:
             entityHint: call
             toolbarOptions:
-                addColumnManager: false
+                addDatagridSettingsManager: false
                 hide: true
                 pageSize:
                     items: [10]
