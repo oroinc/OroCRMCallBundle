@@ -21,7 +21,9 @@
             <form id="{{ form.vars.id }}" name="{{ form.vars.name }}" action="{{ formAction }}" method="post">
                 <fieldset class="form form-horizontal">
                     <div class="span6">
-                        {% if form.owner is defined %}{{ form_row(form.owner) }}{% endif %}
+                        {% if form.owner is defined %}
+                            {{ form_row(form.owner) }}
+                        {% endif %}
                         {{ form_row(form.subject) }}
                         {{ form_row(form.notes) }}
                     </div>
@@ -40,6 +42,7 @@
                     <div class="span6">
                         {% placeholder call_log_widget_additional_properties with {entity: entity, form: form, formAction: formAction, saved: saved} %}
                     </div>
+
                     <div class="widget-actions form-actions">
                         <button class="btn" type="reset">{{ 'Cancel'|trans }}</button>
                         {% if form.vars.value.id %}
