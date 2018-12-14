@@ -1,6 +1,6 @@
 {% extends 'OroUIBundle:actions:update.html.twig' %}
 
-{% oro_title_set({params : {"%subject%": form.vars.value.subject|default('N/A') } }) %}
+{% oro_title_set({params : {"%subject%": form.vars.value.subject|default('N/A'|trans) } }) %}
 
 {% block head_script %}
     {{ parent() }}
@@ -98,7 +98,7 @@
             'entity':      form.vars.value,
             'indexPath':   path('oro_call_index'),
             'indexLabel': 'oro.call.entity_plural_label'|trans,
-            'entityTitle': form.vars.value.subject|default('N/A')
+            'entityTitle': form.vars.value.subject|default('N/A'|trans)
         }
         %}
     {% else %}

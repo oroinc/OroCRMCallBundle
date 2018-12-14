@@ -2,7 +2,7 @@
 {% import 'OroDataGridBundle::macros.html.twig' as dataGrid %}
 {% import 'OroActivityBundle::macros.html.twig' as AC %}
 
-{% oro_title_set({params : {"%subject%": entity.subject|default('N/A') }}) %}
+{% oro_title_set({params : {"%subject%": entity.subject|default('N/A'|trans) }}) %}
 
 {% block navButtons %}
     {% if is_granted('EDIT', entity) %}
@@ -36,7 +36,7 @@
         'entity':      entity,
         'indexPath':   path('oro_call_index'),
         'indexLabel':  'oro.call.entity_plural_label'|trans,
-        'entityTitle': entity.subject|default('N/A'),
+        'entityTitle': entity.subject|default('N/A'|trans),
     } %}
     {{ parent() }}
 {% endblock pageHeader %}
