@@ -2,7 +2,6 @@
 
 namespace Oro\Bundle\CallBundle\Form\Type;
 
-use Oro\Bundle\CallBundle\Form\Type\CallType;
 use Oro\Bundle\SoapBundle\Form\EventListener\PatchSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
