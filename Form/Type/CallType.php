@@ -4,7 +4,6 @@ namespace Oro\Bundle\CallBundle\Form\Type;
 
 use Oro\Bundle\AddressBundle\Provider\PhoneProviderInterface;
 use Oro\Bundle\CallBundle\Entity\Call;
-use Oro\Bundle\CallBundle\Form\Type\CallPhoneType;
 use Oro\Bundle\FormBundle\Form\Type\OroDateTimeType;
 use Oro\Bundle\FormBundle\Form\Type\OroDurationType;
 use Oro\Bundle\FormBundle\Form\Type\OroResizeableRichTextType;
