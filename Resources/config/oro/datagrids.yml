@@ -79,7 +79,7 @@ datagrids:
                 icon:          trash
                 link:          delete_link
         options:
-            entityHint: calls
+            entityHint: oro.call.entity_plural_label
             export: true
             entity_pagination: true
             contexts:
@@ -122,7 +122,7 @@ datagrids:
         properties:
             id: ~
         options:
-            entityHint: calls
+            entityHint: oro.call.entity_plural_label
 
     widget-simplyfied-calls-grid:
         extends: widget-base-calls-grid
@@ -161,7 +161,7 @@ datagrids:
 
     dashboard-recent-calls-grid:
         options:
-            entityHint: call
+            entityHint: oro.call.entity_plural_label
             toolbarOptions:
                 addDatagridSettingsManager: false
                 hide: true
@@ -211,7 +211,7 @@ datagrids:
         extended_entity_name: '%oro_call.call.entity.class%'
         acl_resource: oro_call_view
         options:
-            entityHint: calls
+            entityHint: oro.call.entity_plural_label
             entity_pagination: true
             toolbarOptions:
                 pageSize:
