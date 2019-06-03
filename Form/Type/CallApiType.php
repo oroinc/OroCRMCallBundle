@@ -2,15 +2,17 @@
 
 namespace Oro\Bundle\CallBundle\Form\Type;
 
-use Oro\Bundle\CallBundle\Form\Type\CallType;
+use Oro\Bundle\FormBundle\Form\Type\OroUnstructuredHiddenType;
 use Oro\Bundle\SoapBundle\Form\EventListener\PatchSubscriber;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
+/**
+ * The form type for old REST API of Call entity.
+ */
 class CallApiType extends AbstractType
 {
     const NAME = 'oro_call_form_api';
@@ -23,7 +25,7 @@ class CallApiType extends AbstractType
         // Add a hidden field to pass form validation
         $builder->add(
             'associations',
-            HiddenType::class,
+            OroUnstructuredHiddenType::class,
             [
                 'mapped'      => false,
                 'constraints' => [
