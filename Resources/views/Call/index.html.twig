@@ -4,6 +4,8 @@
 {% set gridName = 'calls-grid' %}
 
 {% block navButtons %}
+    {% import 'OroUIBundle::macros.html.twig' as UI %}
+
     {% if is_granted('oro_call_create') %}
         <div class="btn-group">
             {{ UI.addButton({

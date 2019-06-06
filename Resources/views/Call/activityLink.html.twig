@@ -1,5 +1,3 @@
-{% import 'OroUIBundle::macros.html.twig' as UI %}
-
 {% set options = {
     'dataUrl': entity is defined and entity is not null
         ? path(
@@ -33,5 +31,7 @@
 } %}
 
 {% block action_controll %}
+    {% import 'OroUIBundle::macros.html.twig' as UI %}
+
     {{ UI.clientLink(options) }}
 {% endblock %}
