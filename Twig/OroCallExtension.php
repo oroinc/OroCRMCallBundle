@@ -4,8 +4,14 @@ namespace Oro\Bundle\CallBundle\Twig;
 
 use Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class OroCallExtension extends \Twig_Extension
+/**
+ * Provides a Twig function to check if call log is available for an entity:
+ *   - isCallLogApplicable
+ */
+class OroCallExtension extends AbstractExtension
 {
     /** @var ContainerInterface */
     protected $container;
@@ -34,7 +40,7 @@ class OroCallExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('isCallLogApplicable', [$this, 'isCallLogApplicable']),
+            new TwigFunction('isCallLogApplicable', [$this, 'isCallLogApplicable']),
         ];
     }
 

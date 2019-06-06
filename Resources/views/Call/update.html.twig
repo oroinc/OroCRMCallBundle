@@ -73,6 +73,8 @@
 {% endblock content_data %}
 
 {% block navButtons %}
+    {% import 'OroUIBundle::macros.html.twig' as UI %}
+
     {{ UI.cancelButton(path('oro_call_index')) }}
     {% set html = UI.saveAndCloseButton({
         'route': 'oro_call_view',
