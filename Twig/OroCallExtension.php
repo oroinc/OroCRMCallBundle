@@ -3,7 +3,8 @@
 namespace Oro\Bundle\CallBundle\Twig;
 
 use Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\ServiceSubscriberInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -11,7 +12,7 @@ use Twig\TwigFunction;
  * Provides a Twig function to check if call log is available for an entity:
  *   - isCallLogApplicable
  */
-class OroCallExtension extends AbstractExtension
+class OroCallExtension extends AbstractExtension implements ServiceSubscriberInterface
 {
     /** @var ContainerInterface */
     protected $container;
@@ -62,5 +63,15 @@ class OroCallExtension extends AbstractExtension
     public function getName()
     {
         return 'oro_call_extension';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedServices()
+    {
+        return [
+            'oro_call.placeholder.log_call.filter' => LogCallPlaceholderFilter::class,
+        ];
     }
 }
