@@ -4,7 +4,7 @@ search:
         label: oro.call.entity_plural_label
         title_fields: [subject, phoneNumber]
         route:
-            name: oro_call_update
+            name: oro_call_view
             parameters:
                 id: id
         search_template: OroCallBundle:Call:searchResult.html.twig
