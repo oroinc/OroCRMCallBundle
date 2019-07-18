@@ -50,6 +50,7 @@ services:
 
     oro_call.placeholder.log_call.filter:
         class: '%oro_call.placeholder.log_call.filter.class%'
+        public: true
         arguments:
             - "@oro_activity.manager"
 
