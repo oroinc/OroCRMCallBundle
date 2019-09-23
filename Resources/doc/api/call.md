@@ -137,7 +137,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**The required field**
+**The required field.**
 
 ### subject 
 
@@ -145,7 +145,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**The required field**
+**The required field.**
 
 #### update
 
@@ -161,7 +161,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**The required field**
+**The required field.**
 
 #### update
 
@@ -177,7 +177,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**The required field**
+**The required field.**
 
 #### update
 
@@ -193,7 +193,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**The required field**
+**The required field.**
 
 #### update
 
@@ -209,7 +209,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**The required field**
+**The required field.**
 
 #### update
 

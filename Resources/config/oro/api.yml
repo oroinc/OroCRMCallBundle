@@ -14,5 +14,6 @@ api:
         Oro\Bundle\CallBundle\Entity\CallDirection:
             documentation_resource: '@OroCallBundle/Resources/doc/api/call.md'
             exclude: false # override exclude rule from entity.yml
+
         Oro\Bundle\CallBundle\Entity\CallStatus:
             documentation_resource: '@OroCallBundle/Resources/doc/api/call.md'
