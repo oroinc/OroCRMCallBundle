@@ -1,12 +1,11 @@
 define(function(require) {
     'use strict';
 
-    var Select2CallPhoneComponent;
-    var $ = require('jquery');
-    var _ = require('underscore');
-    var Select2Component = require('oro/select2-component');
+    const $ = require('jquery');
+    const _ = require('underscore');
+    const Select2Component = require('oro/select2-component');
 
-    Select2CallPhoneComponent = Select2Component.extend({
+    const Select2CallPhoneComponent = Select2Component.extend({
         /** @property {Array} */
         suggestions: [],
 
@@ -16,8 +15,8 @@ define(function(require) {
         /**
          * @inheritDoc
          */
-        constructor: function Select2CallPhoneComponent() {
-            Select2CallPhoneComponent.__super__.constructor.apply(this, arguments);
+        constructor: function Select2CallPhoneComponent(options) {
+            Select2CallPhoneComponent.__super__.constructor.call(this, options);
         },
 
         /**
@@ -30,21 +29,21 @@ define(function(require) {
         },
 
         preConfig: function(config) {
-            var that = this;
+            const that = this;
             Select2CallPhoneComponent.__super__.preConfig.call(this, config);
             config.minimumResultsForSearch = 0;
             if (this.value !== false) {
                 config.initSelection = function(element, callback) {
-                    var val = element.val();
+                    const val = element.val();
                     callback({id: val, text: val});
                 };
             }
             config.query = function(options) {
-                var data = {results: []};
-                var items = _.clone(that.suggestions);
-                var initialVal = $.trim(that.value);
-                var currentVal = $.trim(options.element.val());
-                var term = $.trim(options.term);
+                const data = {results: []};
+                const items = _.clone(that.suggestions);
+                const initialVal = $.trim(that.value);
+                const currentVal = $.trim(options.element.val());
+                const term = $.trim(options.term);
                 if (initialVal && _.indexOf(items, initialVal) === -1) {
                     items.unshift(initialVal);
                 }
