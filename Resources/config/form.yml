@@ -1,27 +1,18 @@
-parameters:
-    oro_call.call.form.type.class:         Oro\Bundle\CallBundle\Form\Type\CallType
-    oro_call.call.form.handler.class:      Oro\Bundle\CallBundle\Form\Handler\CallHandler
-    oro_call.call.form.api.handler.class:  Oro\Bundle\CallBundle\Form\Handler\CallApiHandler
-    oro_call.form.type.phone.class:        Oro\Bundle\CallBundle\Form\Type\CallPhoneType
-
-    oro_call.call.form.type.api.class:     Oro\Bundle\CallBundle\Form\Type\CallApiType
-    oro_call.call.manager.api.class:       Oro\Bundle\SoapBundle\Entity\Manager\ApiEntityManager
-
 services:
     oro_call.call.form.type:
-        class: '%oro_call.call.form.type.class%'
+        class: Oro\Bundle\CallBundle\Form\Type\CallType
         arguments:
             - "@oro_address.provider.phone"
         tags:
             - { name: form.type, alias: oro_call_form }
 
     oro_call.call.form.type.api:
-        class: '%oro_call.call.form.type.api.class%'
+        class: Oro\Bundle\CallBundle\Form\Type\CallApiType
         tags:
             - { name: form.type, alias: oro_call_form_api }
 
     oro_call.form.type.phone:
-        class: '%oro_call.form.type.phone.class%'
+        class: Oro\Bundle\CallBundle\Form\Type\CallPhoneType
         tags:
             - { name: form.type, alias: oro_call_phone }
 
@@ -36,7 +27,7 @@ services:
             - null
 
     oro_call.call.form.handler:
-        class: '%oro_call.call.form.handler.class%'
+        class: Oro\Bundle\CallBundle\Form\Handler\CallHandler
         # This service marked as public for compatibility with Symfony 4. All dependencies must be refactored after BAP-17037
         public: true
         arguments:
@@ -51,7 +42,7 @@ services:
             - "@form.factory"
 
     oro_call.call.form.handler.api:
-        class: '%oro_call.call.form.api.handler.class%'
+        class: Oro\Bundle\CallBundle\Form\Handler\CallApiHandler
         # This service marked as public for compatibility with Symfony 4. All dependencies must be refactored after BAP-17037
         public: true
         arguments:
@@ -60,7 +51,7 @@ services:
             - "@doctrine.orm.entity_manager"
 
     oro_call.call.manager.api:
-        class: '%oro_call.call.manager.api.class%'
+        class: Oro\Bundle\SoapBundle\Entity\Manager\ApiEntityManager
         # This service marked as public for compatibility with Symfony 4. All dependencies must be refactored after BAP-17037
         public: true
         parent: oro_soap.manager.entity_manager.abstract
