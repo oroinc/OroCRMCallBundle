@@ -1,17 +1,9 @@
 parameters:
     oro_call.call.entity.class:                  Oro\Bundle\CallBundle\Entity\Call
-    oro_call.event_listener.datagrid.call.class: Oro\Bundle\CallBundle\EventListener\Datagrid\CallListener
-
-    oro_call.listener.datagrid.activity.class:   Oro\Bundle\CallBundle\EventListener\Datagrid\ActivityGridListener
-    oro_call.listener.entity_listener.class:     Oro\Bundle\CallBundle\EventListener\EntityListener
-    oro_call.call.activity.manager.class:        Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager
-
-    oro_call.activity_list.provider.class:       Oro\Bundle\CallBundle\Provider\CallActivityListProvider
-    oro_call.placeholder.log_call.filter.class:  Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter
 
 services:
     oro_call.event_listener.datagrid.call:
-        class: '%oro_call.event_listener.datagrid.call.class%'
+        class: Oro\Bundle\CallBundle\EventListener\Datagrid\CallListener
         arguments:
           - "@doctrine.orm.entity_manager"
         tags:
@@ -19,7 +11,7 @@ services:
             - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.after.widget-base-calls-grid, method: onBuildAfter }
 
     oro_call.listener.datagrid.activity:
-        class: '%oro_call.listener.datagrid.activity.class%'
+        class: Oro\Bundle\CallBundle\EventListener\Datagrid\ActivityGridListener
         arguments:
             - "@oro_activity.manager"
             - "@oro_entity.routing_helper"
@@ -27,19 +19,19 @@ services:
             - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.after.activity-call-grid, method: onBuildAfter }
 
     oro_call.listener.entity_listener:
-        class: '%oro_call.listener.entity_listener.class%'
+        class: Oro\Bundle\CallBundle\EventListener\EntityListener
         arguments:
             - "@oro_call.call.activity.manager"
         tags:
             - { name: doctrine.event_listener, event: onFlush }
 
     oro_call.call.activity.manager:
-        class: '%oro_call.call.activity.manager.class%'
+        class: Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager
         arguments:
             - "@oro_activity.manager"
 
     oro_call.activity_list.provider:
-        class: '%oro_call.activity_list.provider.class%'
+        class: Oro\Bundle\CallBundle\Provider\CallActivityListProvider
         arguments:
            - "@oro_entity.doctrine_helper"
            - "@oro_security.owner.entity_owner_accessor.link"
@@ -49,7 +41,7 @@ services:
            - {name: oro_activity_list.provider, priority: 10 }
 
     oro_call.placeholder.log_call.filter:
-        class: '%oro_call.placeholder.log_call.filter.class%'
+        class: Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter
         public: true
         arguments:
             - "@oro_activity.manager"
