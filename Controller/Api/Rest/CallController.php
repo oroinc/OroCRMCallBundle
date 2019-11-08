@@ -2,7 +2,10 @@
 
 namespace Oro\Bundle\CallBundle\Controller\Api\Rest;
 
+use FOS\RestBundle\Controller\Annotations\Delete;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
+use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Routing\ClassResourceInterface;
@@ -16,6 +19,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ * API CRUD controller for Call entity.
+ *
  * @RouteResource("call")
  * @NamePrefix("oro_api_")
  */
@@ -51,7 +56,9 @@ class CallController extends RestController implements ClassResourceInterface
     /**
      * REST GET item
      *
-     * @param string $id
+     * @param int $id
+     *
+     * @Get(requirements={"id"="\d+"})
      *
      * @ApiDoc(
      *      description="Get call item",
@@ -60,7 +67,7 @@ class CallController extends RestController implements ClassResourceInterface
      * @AclAncestor("oro_call_view")
      * @return Response
      */
-    public function getAction($id)
+    public function getAction(int $id)
     {
         return $this->handleGetRequest($id);
     }
@@ -70,6 +77,8 @@ class CallController extends RestController implements ClassResourceInterface
      *
      * @param int $id call item id
      *
+     * @Put(requirements={"id"="\d+"})
+     *
      * @ApiDoc(
      *      description="Update call",
      *      resource=true
@@ -77,7 +86,7 @@ class CallController extends RestController implements ClassResourceInterface
      * @AclAncestor("oro_call_update")
      * @return Response
      */
-    public function putAction($id)
+    public function putAction(int $id)
     {
         return $this->handleUpdateRequest($id);
     }
@@ -101,6 +110,8 @@ class CallController extends RestController implements ClassResourceInterface
      *
      * @param int $id
      *
+     * @Delete(requirements={"id"="\d+"})
+     *
      * @ApiDoc(
      *      description="Delete call",
      *      resource=true
@@ -113,7 +124,7 @@ class CallController extends RestController implements ClassResourceInterface
      * )
      * @return Response
      */
-    public function deleteAction($id)
+    public function deleteAction(int $id)
     {
         return $this->handleDeleteRequest($id);
     }
