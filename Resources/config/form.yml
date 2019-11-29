@@ -18,7 +18,6 @@ services:
 
     oro_call.call.form.api:
         class: Symfony\Component\Form\Form
-        # This service marked as public for compatibility with Symfony 4. All dependencies must be refactored after BAP-17037
         public: true
         factory: ['@form.factory', createNamed]
         arguments:
@@ -28,7 +27,6 @@ services:
 
     oro_call.call.form.handler:
         class: Oro\Bundle\CallBundle\Form\Handler\CallHandler
-        # This service marked as public for compatibility with Symfony 4. All dependencies must be refactored after BAP-17037
         public: true
         arguments:
             - "oro_call_form"
@@ -43,7 +41,6 @@ services:
 
     oro_call.call.form.handler.api:
         class: Oro\Bundle\CallBundle\Form\Handler\CallApiHandler
-        # This service marked as public for compatibility with Symfony 4. All dependencies must be refactored after BAP-17037
         public: true
         arguments:
             - "@oro_call.call.form.api"
@@ -52,7 +49,6 @@ services:
 
     oro_call.call.manager.api:
         class: Oro\Bundle\SoapBundle\Entity\Manager\ApiEntityManager
-        # This service marked as public for compatibility with Symfony 4. All dependencies must be refactored after BAP-17037
         public: true
         parent: oro_soap.manager.entity_manager.abstract
         arguments:
