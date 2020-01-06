@@ -13,14 +13,14 @@ use Oro\Bundle\CommentBundle\Tools\CommentAssociationHelper;
 use Oro\Bundle\EntityBundle\ORM\DoctrineHelper;
 use Oro\Component\DependencyInjection\ServiceLink;
 
+/**
+ * Provides a way to use Call entity in an activity list.
+ */
 class CallActivityListProvider implements
     ActivityListProviderInterface,
     CommentProviderInterface,
     ActivityListDateProviderInterface
 {
-    const ACTIVITY_CLASS = 'Oro\Bundle\CallBundle\Entity\Call';
-    const ACL_CLASS = 'Oro\Bundle\CallBundle\Entity\Call';
-
     /** @var DoctrineHelper */
     protected $doctrineHelper;
 
@@ -58,7 +58,7 @@ class CallActivityListProvider implements
     {
         return $this->activityAssociationHelper->isActivityAssociationEnabled(
             $entityClass,
-            self::ACTIVITY_CLASS,
+            Call::class,
             $accessible
         );
     }
@@ -148,17 +148,9 @@ class CallActivityListProvider implements
     /**
      * {@inheritdoc}
      */
-    public function getActivityClass()
-    {
-        return self::ACTIVITY_CLASS;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getAclClass()
     {
-        return self::ACL_CLASS;
+        return null;
     }
 
     /**
@@ -174,11 +166,11 @@ class CallActivityListProvider implements
      */
     public function isApplicable($entity)
     {
-        if (is_object($entity)) {
-            $entity = $this->doctrineHelper->getEntityClass($entity);
+        if (\is_object($entity)) {
+            return $entity instanceof Call;
         }
 
-        return $entity == self::ACTIVITY_CLASS;
+        return $entity === Call::class;
     }
 
     /**

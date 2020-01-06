@@ -38,7 +38,7 @@ services:
            - "@oro_activity.association_helper"
            - "@oro_comment.association_helper"
         tags:
-           - {name: oro_activity_list.provider, priority: 10 }
+           - { name: oro_activity_list.provider, class: Oro\Bundle\CallBundle\Entity\Call, priority: 10 }
 
     oro_call.placeholder.log_call.filter:
         class: Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter
