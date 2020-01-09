@@ -7,3 +7,9 @@ OroCallBundle adds the Call [activity](https://github.com/oroinc/platform/tree/m
 * [Entities](./Resources/doc/reference/entities.md)
 * [Form Type](./Resources/doc/reference/form_type.md)
 * [Validators](./Resources/doc/reference/validators.md)
+
+Resources
+---------
+
+  * [OroCommerce, OroCRM and OroPlatform Documentation](https://doc.oroinc.com)
+  * [Contributing](https://doc.oroinc.com/community/contribute/)
