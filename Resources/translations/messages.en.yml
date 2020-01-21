@@ -50,6 +50,7 @@ oro:
         #
         entity_label:          Call
         entity_plural_label:   Calls
+        entity_grid_all_view_label: All %entity_plural_label%
         entity_description:    The information about calls made or received by users.
         id:
             label:             Id
@@ -82,6 +83,7 @@ oro:
         calldirection:
             entity_label:         Direction
             entity_plural_label:  Directions
+            entity_grid_all_view_label: All %entity_plural_label%
             entity_description:   The call direction defines whether the call is incoming or outgoing.
             label:
                 label:            Label
@@ -97,6 +99,7 @@ oro:
         callstatus:
             entity_label: Call Status
             entity_plural_label: Call Statuses
+            entity_grid_all_view_label: All %entity_plural_label%
             entity_description:   The call status defines whether the call is completed or in progress.
             label:
                 label:            Label
