@@ -1,6 +1,3 @@
-parameters:
-    oro_call.call.entity.class:                  Oro\Bundle\CallBundle\Entity\Call
-
 services:
     oro_call.event_listener.datagrid.call:
         class: Oro\Bundle\CallBundle\EventListener\Datagrid\CallListener
