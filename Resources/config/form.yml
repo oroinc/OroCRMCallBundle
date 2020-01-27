@@ -52,5 +52,5 @@ services:
         public: true
         parent: oro_soap.manager.entity_manager.abstract
         arguments:
-            - '%oro_call.call.entity.class%'
+            - 'Oro\Bundle\CallBundle\Entity\Call'
             - "@doctrine.orm.entity_manager"
