@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * CRUD controllers for calls.
+ */
 class CallController extends Controller
 {
     /**
@@ -93,7 +96,7 @@ class CallController extends Controller
     public function indexAction()
     {
         return array(
-            'entity_class' => $this->container->getParameter('oro_call.call.entity.class')
+            'entity_class' => Call::class
         );
     }
 
