@@ -6,7 +6,7 @@ Feature: Call logging
   Scenario: Logging outgoing call
     Given I login as administrator
     And I open Call Create page
-    And I fill form with:
+    And fill "Log Call Form" with:
       | Subject             | Call to Jennyfer                                                                  |
       | Additional comments | Offered $40 discount on her next purchase, valid November 2016 - January 2017     |
       | Call date & time    | 2016-10-31 08:00:00                                                               |
@@ -26,7 +26,7 @@ Feature: Call logging
 
   Scenario: Editing call
     Given I click "Edit"
-    And I fill form with:
+    And fill "Log Call Form" with:
       | Subject	              | Call to Jennyfer NB                                                               |
       | Additional comments   | Offered $100 discount on her next purchase, valid November 2016 - February 2017	  |
       | Call date & time	  | 2016-10-29 09:30:00	                                                              |
