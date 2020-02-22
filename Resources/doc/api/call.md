@@ -131,15 +131,7 @@ Delete a collection of call records.
 
 ## FIELDS
 
-### id
-
-#### update
-
-{@inheritdoc}
-
-**The required field.**
-
-### subject 
+### subject
 
 #### create
 
