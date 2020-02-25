@@ -4,6 +4,12 @@ oro_behat_extension:
       selector:
         locator: '//div[@class="accordion-heading"]'
         type: xpath
+    Log Call Form:
+      selector: 'form[name="oro_call_form"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Call date & time: 'oro_call_form[callDateTime]'
 
   pages:
     Call Create:
