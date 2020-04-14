@@ -14,7 +14,7 @@ use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
 
 class ActivityListenerTest extends WebTestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         $this->initClient();
         $this->loadFixtures([

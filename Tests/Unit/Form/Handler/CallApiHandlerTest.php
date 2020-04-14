@@ -39,7 +39,7 @@ class CallApiHandlerTest extends \PHPUnit\Framework\TestCase
      */
     protected $entity;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->form = $this->createMock(Form::class);
         $this->request = new Request();

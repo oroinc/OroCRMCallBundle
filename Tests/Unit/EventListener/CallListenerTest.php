@@ -20,7 +20,7 @@ class CallListenerTest extends \PHPUnit\Framework\TestCase
      */
     protected $entityManager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->entityManager = $this->getMockBuilder('Doctrine\ORM\EntityManager')
             ->disableOriginalConstructor()
@@ -29,7 +29,7 @@ class CallListenerTest extends \PHPUnit\Framework\TestCase
         $this->listener = new CallListener($this->entityManager);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->entityManager);
         unset($this->listener);
