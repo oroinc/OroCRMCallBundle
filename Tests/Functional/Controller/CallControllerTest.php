@@ -38,7 +38,7 @@ class CallControllerTest extends WebTestCase
 
         $result = $this->client->getResponse();
         $this->assertHtmlResponseStatusCodeEquals($result, 200);
-        $this->assertContains("Call saved", $crawler->html());
+        static::assertStringContainsString("Call saved", $crawler->html());
 
         $call = self::getContainer()->get('doctrine.orm.entity_manager')->getRepository('OroCallBundle:Call')
             ->findOneBySubject('Test Call');
@@ -72,7 +72,7 @@ class CallControllerTest extends WebTestCase
 
         $result = $this->client->getResponse();
         $this->assertHtmlResponseStatusCodeEquals($result, 200);
-        $this->assertContains("Call saved", $crawler->html());
+        static::assertStringContainsString("Call saved", $crawler->html());
 
         return $id;
     }
@@ -89,7 +89,7 @@ class CallControllerTest extends WebTestCase
 
         $result = $this->client->getResponse();
         $this->assertHtmlResponseStatusCodeEquals($result, 200);
-        $this->assertContains("Test Update Call", $crawler->html());
+        static::assertStringContainsString("Test Update Call", $crawler->html());
     }
 
     /**
