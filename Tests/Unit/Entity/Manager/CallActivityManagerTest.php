@@ -14,7 +14,7 @@ class CallActivityManagerTest extends \PHPUnit\Framework\TestCase
     /** @var CallActivityManager */
     private $manager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->activityManager = $this->getMockBuilder('Oro\Bundle\ActivityBundle\Manager\ActivityManager')
             ->disableOriginalConstructor()
