@@ -1,7 +1,6 @@
 define(function(require) {
     'use strict';
 
-    const $ = require('jquery');
     const _ = require('underscore');
     const Select2Component = require('oro/select2-component');
 
@@ -41,9 +40,9 @@ define(function(require) {
             config.query = function(options) {
                 const data = {results: []};
                 const items = _.clone(that.suggestions);
-                const initialVal = $.trim(that.value);
-                const currentVal = $.trim(options.element.val());
-                const term = $.trim(options.term);
+                const initialVal = that.value.trim();
+                const currentVal = options.element.val().trim();
+                const term = options.term.trim();
                 if (initialVal && _.indexOf(items, initialVal) === -1) {
                     items.unshift(initialVal);
                 }
