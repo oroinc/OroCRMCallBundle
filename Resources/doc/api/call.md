@@ -26,38 +26,38 @@ The created record is returned in the response.
 Example:
 
 ```JSON
-{  
-   "data":{  
-      "type":"calls",
-      "attributes":{  
-         "subject":"Cold Call",
-         "phoneNumber":"229-407-9032",
-         "callDateTime":"2016-11-21T13:33:49Z",
-         "duration":"217"
+{
+   "data": {
+      "type": "calls",
+      "attributes": {
+         "subject": "Cold Call",
+         "phoneNumber": "229-407-9032",
+         "callDateTime": "2016-11-21T13:33:49Z",
+         "duration": "217"
       },
-      "relationships":{  
-         "owner":{  
-            "data":{  
-               "type":"users",
-               "id":"2"
+      "relationships": {
+         "owner": {
+            "data": {
+               "type": "users",
+               "id": "2"
             }
          },
-         "callStatus":{  
-            "data":{  
-               "type":"callstatuses",
-               "id":"completed"
+         "callStatus": {
+            "data": {
+               "type": "callstatuses",
+               "id": "completed"
             }
          },
-         "direction":{  
-            "data":{  
-               "type":"calldirections",
-               "id":"outgoing"
+         "direction": {
+            "data": {
+               "type": "calldirections",
+               "id": "outgoing"
             }
          },
-         "organization":{  
-            "data":{  
-               "type":"organizations",
-               "id":"1"
+         "organization": {
+            "data": {
+               "type": "organizations",
+               "id": "1"
             }
          }
       }
@@ -78,39 +78,39 @@ The updated record is returned in the response.
 Example:
 
 ```JSON
-{  
-   "data":{  
-      "type":"calls",
-      "id":"103",
-      "attributes":{  
-         "subject":"Cold Call",
-         "phoneNumber":"229-407-9032",
-         "callDateTime":"2016-11-21T13:33:49Z",
-         "duration":"217"
+{
+   "data": {
+      "type": "calls",
+      "id": "103",
+      "attributes": {
+         "subject": "Cold Call",
+         "phoneNumber": "229-407-9032",
+         "callDateTime": "2016-11-21T13:33:49Z",
+         "duration": "217"
       },
-      "relationships":{  
-         "owner":{  
-            "data":{  
-               "type":"users",
-               "id":"2"
+      "relationships": {
+         "owner": {
+            "data": {
+               "type": "users",
+               "id": "2"
             }
          },
-         "callStatus":{  
-            "data":{  
-               "type":"callstatuses",
-               "id":"completed"
+         "callStatus": {
+            "data": {
+               "type": "callstatuses",
+               "id": "completed"
             }
          },
-         "direction":{  
-            "data":{  
-               "type":"calldirections",
-               "id":"outgoing"
+         "direction": {
+            "data": {
+               "type": "calldirections",
+               "id": "outgoing"
             }
          },
-         "organization":{  
-            "data":{  
-               "type":"organizations",
-               "id":"1"
+         "organization": {
+            "data": {
+               "type": "organizations",
+               "id": "1"
             }
          }
       }
