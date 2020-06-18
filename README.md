@@ -1,6 +1,6 @@
 # OroCallBundle
 
-OroCallBundle adds the Call [activity](https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/ActivityBundle) entity to Oro applications and provides the UI for users to log and view logged Call activities for entities which have this activity enabled.
+OroCallBundle adds the Call [activity](https://github.com/oroinc/platform/tree/4.1/src/Oro/Bundle/ActivityBundle) entity to Oro applications and provides the UI for users to log and view logged Call activities for entities which have this activity enabled.
 
 ### Table of contents
 
