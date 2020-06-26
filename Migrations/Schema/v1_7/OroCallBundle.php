@@ -5,7 +5,7 @@ namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_7;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\PostgreSQL92Platform;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types;
 use Oro\Bundle\MigrationBundle\Migration\Extension\DatabasePlatformAwareInterface;
 use Oro\Bundle\MigrationBundle\Migration\Migration;
 use Oro\Bundle\MigrationBundle\Migration\ParametrizedSqlMigrationQuery;
@@ -40,7 +40,7 @@ class OroCallBundle implements Migration, DatabasePlatformAwareInterface
         $migrateEntityFieldQuery->addSql(
             $migrateFieldSql,
             ['field_type' => 'duration', 'field_name' => 'duration', 'class_name' => $entityClass],
-            ['field_type' => Type::STRING, 'field_name' => Type::STRING, 'class_name' => Type::STRING]
+            ['field_type' => Types::STRING, 'field_name' => Types::STRING, 'class_name' => Types::STRING]
         );
 
         $queries->addPostQuery($migrateEntityFieldQuery);

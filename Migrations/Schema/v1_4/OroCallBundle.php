@@ -3,7 +3,7 @@
 namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_4;
 
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types;
 use Oro\Bundle\MigrationBundle\Migration\Migration;
 use Oro\Bundle\MigrationBundle\Migration\OrderedMigrationInterface;
 use Oro\Bundle\MigrationBundle\Migration\ParametrizedSqlMigrationQuery;
@@ -28,7 +28,7 @@ class OroCallBundle implements Migration, OrderedMigrationInterface
             new ParametrizedSqlMigrationQuery(
                 'UPDATE orocrm_call SET created_at = :date, updated_at = :date',
                 ['date' => new \DateTime('now', new \DateTimeZone('UTC'))],
-                ['date' => Type::DATETIME]
+                ['date' => Types::DATETIME_MUTABLE]
             )
         );
         $table = $schema->getTable('orocrm_call');
