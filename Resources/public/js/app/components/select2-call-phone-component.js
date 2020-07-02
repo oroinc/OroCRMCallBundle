@@ -2,7 +2,6 @@ define(function(require) {
     'use strict';
 
     var Select2CallPhoneComponent;
-    var $ = require('jquery');
     var _ = require('underscore');
     var Select2Component = require('oro/select2-component');
 
@@ -42,9 +41,9 @@ define(function(require) {
             config.query = function(options) {
                 var data = {results: []};
                 var items = _.clone(that.suggestions);
-                var initialVal = $.trim(that.value);
-                var currentVal = $.trim(options.element.val());
-                var term = $.trim(options.term);
+                var initialVal = that.value.trim();
+                var currentVal = options.element.val().trim();
+                var term = options.term.trim();
                 if (initialVal && _.indexOf(items, initialVal) === -1) {
                     items.unshift(initialVal);
                 }
