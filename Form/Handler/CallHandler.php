@@ -13,6 +13,9 @@ use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Form handles for call form submission.
+ */
 class CallHandler
 {
     use RequestHandlerTrait;
@@ -86,6 +89,7 @@ class CallHandler
      * @param  Call $entity
      *
      * @return bool  True on successful processing, false otherwise
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function process(Call $entity)
     {
@@ -122,7 +126,6 @@ class CallHandler
             $this->submitPostPutRequest($this->form, $request);
 
             if ($this->form->isValid()) {
-                // TODO: should be refactored after finishing BAP-8722
                 // Contexts handling should be moved to common for activities form handler
                 if ($this->form->has('contexts')) {
                     $contexts = $this->form->get('contexts')->getData();
