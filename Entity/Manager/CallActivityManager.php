@@ -7,6 +7,9 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\CallBundle\Entity\Call;
 
+/**
+ * Adds and/or replaces activity targets on call updates.
+ */
 class CallActivityManager
 {
     /** @var ActivityManager */
@@ -35,6 +38,7 @@ class CallActivityManager
      * Handle onFlush event
      *
      * @param OnFlushEventArgs $event
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function handleOnFlush(OnFlushEventArgs $event)
     {
