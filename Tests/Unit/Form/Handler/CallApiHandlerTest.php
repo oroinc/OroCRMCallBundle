@@ -2,7 +2,7 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Unit\Form\Handler;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Form\Handler\CallApiHandler;
 use Symfony\Component\Form\Form;

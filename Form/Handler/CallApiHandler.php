@@ -2,7 +2,7 @@
 
 namespace Oro\Bundle\CallBundle\Form\Handler;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\EntityExtendBundle\Tools\AssociationNameGenerator;
 use Oro\Bundle\FormBundle\Form\Handler\RequestHandlerTrait;
