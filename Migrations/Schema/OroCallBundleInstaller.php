@@ -5,7 +5,6 @@ namespace Oro\Bundle\CallBundle\Migrations\Schema;
 use Doctrine\DBAL\Schema\Schema;
 use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtension;
 use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtensionAwareInterface;
-use Oro\Bundle\CallBundle\Migrations\Schema\v1_6\OroCallBundle as TranslationTable;
 use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtension;
 use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtensionAwareInterface;
 use Oro\Bundle\MigrationBundle\Migration\Installation;
@@ -32,7 +31,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
      */
     public function getMigrationVersion()
     {
-        return 'v1_8';
+        return 'v1_9';
     }
 
     /**
@@ -53,8 +52,8 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         $this->createOrocrmCallDirectionTable($schema);
         $this->createOrocrmCallStatusTable($schema);
 
-        TranslationTable::createCallDirectionTranslationTable($schema);
-        TranslationTable::createCallStatusTranslationTable($schema);
+        self::createCallDirectionTranslationTable($schema);
+        self::createCallStatusTranslationTable($schema);
 
         /** Foreign keys generation **/
         $this->addOrocrmCallForeignKeys($schema);
@@ -152,5 +151,53 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
             ['id'],
             ['onDelete' => 'SET NULL', 'onUpdate' => null]
         );
+    }
+
+    /**
+     * Generate table orocrm_call_direction_trans
+     *
+     * @param Schema $schema
+     */
+    public static function createCallDirectionTranslationTable(Schema $schema)
+    {
+        /** Generate table orocrm_call_direction_trans **/
+        $table = $schema->createTable('orocrm_call_direction_trans');
+        $table->addColumn('id', 'integer', ['autoincrement' => true]);
+        $table->addColumn('foreign_key', 'string', ['length' => 32]);
+        $table->addColumn('content', 'string', ['length' => 255]);
+        $table->addColumn('locale', 'string', ['length' => 8]);
+        $table->addColumn('object_class', 'string', ['length' => 191]);
+        $table->addColumn('field', 'string', ['length' => 32]);
+        $table->setPrimaryKey(['id']);
+        $table->addIndex(
+            ['locale', 'object_class', 'field', 'foreign_key'],
+            'call_direction_translation_idx',
+            []
+        );
+        /** End of generate table orocrm_call_direction_trans **/
+    }
+
+    /**
+     * Generate table orocrm_call_status_trans
+     *
+     * @param Schema $schema
+     */
+    public static function createCallStatusTranslationTable(Schema $schema)
+    {
+        /** Generate table orocrm_call_status_trans **/
+        $table = $schema->createTable('orocrm_call_status_trans');
+        $table->addColumn('id', 'integer', ['autoincrement' => true]);
+        $table->addColumn('foreign_key', 'string', ['length' => 32]);
+        $table->addColumn('content', 'string', ['length' => 255]);
+        $table->addColumn('locale', 'string', ['length' => 8]);
+        $table->addColumn('object_class', 'string', ['length' => 191]);
+        $table->addColumn('field', 'string', ['length' => 32]);
+        $table->setPrimaryKey(['id']);
+        $table->addIndex(
+            ['locale', 'object_class', 'field', 'foreign_key'],
+            'call_status_translation_idx',
+            []
+        );
+        /** End of generate table orocrm_call_status_trans **/
     }
 }
