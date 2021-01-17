@@ -4,7 +4,7 @@ namespace Oro\Bundle\CallBundle\Twig;
 
 use Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\DependencyInjection\ServiceSubscriberInterface;
+use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
