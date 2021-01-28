@@ -26,7 +26,7 @@
                     <div class="span6">
                         {% if form.owner is defined %}{{ form_row(form.owner) }}{% endif %}
                         {{ form_row(form.subject) }}
-                        {{ form_row(form.notes) }}
+                        {{ form_row(form.notes, { 'attr': {'class': 'narrow-text-field'} }) }}
                     </div>
                     <div class="span6">
                         {{ form_row(form.callDateTime) }}
