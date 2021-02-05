@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "oro/platform": "4.2.*"
+        "oro/platform": "5.0.*"
     },
     "autoload": {
         "psr-4": { "Oro\\Bundle\\CallBundle\\": "" },
@@ -27,7 +27,7 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "4.2-dev"
+            "dev-master": "5.0-dev"
         }
     }
 }
