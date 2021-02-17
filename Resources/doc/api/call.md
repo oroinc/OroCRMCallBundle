@@ -145,9 +145,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**Please note:**
-
-*This field is **required** and must remain defined.*
+**This field must not be empty, if it is passed.**
 
 ### phoneNumber
 
@@ -161,9 +159,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**Please note:**
-
-*This field is **required** and must remain defined.*
+**This field must not be empty, if it is passed.**
 
 ### callStatus
 
@@ -177,9 +173,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**Please note:**
-
-*This field is **required** and must remain defined.*
+**This field must not be empty, if it is passed.**
 
 ### direction
 
@@ -193,9 +187,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**Please note:**
-
-*This field is **required** and must remain defined.*
+**This field must not be empty, if it is passed.**
 
 ### callDateTime
 
@@ -209,9 +201,7 @@ Delete a collection of call records.
 
 {@inheritdoc}
 
-**Please note:**
-
-*This field is **required** and must remain defined.*
+**This field must not be empty, if it is passed.**
 
 ### activityTargets
 
