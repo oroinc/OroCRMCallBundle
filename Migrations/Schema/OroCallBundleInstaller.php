@@ -31,7 +31,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
      */
     public function getMigrationVersion()
     {
-        return 'v1_9';
+        return 'v1_10';
     }
 
     /**
@@ -165,7 +165,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('foreign_key', 'string', ['length' => 32]);
         $table->addColumn('content', 'string', ['length' => 255]);
-        $table->addColumn('locale', 'string', ['length' => 8]);
+        $table->addColumn('locale', 'string', ['length' => 16]);
         $table->addColumn('object_class', 'string', ['length' => 191]);
         $table->addColumn('field', 'string', ['length' => 32]);
         $table->setPrimaryKey(['id']);
@@ -189,7 +189,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('foreign_key', 'string', ['length' => 32]);
         $table->addColumn('content', 'string', ['length' => 255]);
-        $table->addColumn('locale', 'string', ['length' => 8]);
+        $table->addColumn('locale', 'string', ['length' => 16]);
         $table->addColumn('object_class', 'string', ['length' => 191]);
         $table->addColumn('field', 'string', ['length' => 32]);
         $table->setPrimaryKey(['id']);
