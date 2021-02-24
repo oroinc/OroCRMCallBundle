@@ -3,9 +3,11 @@
 namespace Oro\Bundle\CallBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Translatable\Entity\MappedSuperclass\AbstractTranslation;
+use Oro\Bundle\LocaleBundle\Entity\AbstractTranslation;
 
 /**
+ * Represents Gedmo translation dictionary for CallStatus entity.
+ *
  * @ORM\Table(name="orocrm_call_status_trans", indexes={
  *      @ORM\Index(
  *          name="oro_call_status_trans_idx", columns={"locale", "object_class", "field", "foreign_key"}
@@ -21,11 +23,4 @@ class CallStatusTranslation extends AbstractTranslation
      * @ORM\Column(name="foreign_key", type="string", length=32)
      */
     protected $foreignKey;
-
-    /**
-     * @var string $content
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    protected $content;
 }
