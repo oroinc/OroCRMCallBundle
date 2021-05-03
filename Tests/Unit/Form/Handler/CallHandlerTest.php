@@ -11,6 +11,7 @@ use Oro\Bundle\CallBundle\Form\Handler\CallHandler;
 use Oro\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
 use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Oro\Bundle\UserBundle\Entity\User;
+use Oro\Component\Testing\ReflectionUtil;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormInterface;
@@ -83,10 +84,10 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
     public function testProcessWithContexts()
     {
         $context = new User();
-        $this->setId($context, 123);
+        ReflectionUtil::setId($context, 123);
 
         $owner = new User();
-        $this->setId($owner, 321);
+        ReflectionUtil::setId($owner, 321);
         $this->entity->setOwner($owner);
 
         $this->request->initialize([], self::FORM_DATA);
@@ -152,7 +153,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
 
     public function testProcessGetRequestWithTargetEntity()
     {
-        $this->setId($this->entity, 123);
+        ReflectionUtil::setId($this->entity, 123);
         $targetEntity  = new TestTarget(123);
         $targetEntity1 = new TestTarget(456);
 
@@ -402,18 +403,5 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
             array('POST'),
             array('PUT')
         );
-    }
-
-    /**
-     * @param mixed $obj
-     * @param mixed $val
-     */
-    protected function setId($obj, $val)
-    {
-        $class = new \ReflectionClass($obj);
-        $prop = $class->getProperty('id');
-        $prop->setAccessible(true);
-
-        $prop->setValue($obj, $val);
     }
 }
