@@ -20,39 +20,37 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class CallHandlerTest extends \PHPUnit\Framework\TestCase
 {
-    const FORM_DATA = ['field' => 'value'];
+    private const FORM_DATA = ['field' => 'value'];
 
     /** @var \PHPUnit\Framework\MockObject\MockObject|FormInterface */
-    protected $form;
+    private $form;
 
     /** @var Request */
-    protected $request;
+    private $request;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject|ObjectManager */
-    protected $manager;
+    private $manager;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject|PhoneProviderInterface */
-    protected $phoneProvider;
+    private $phoneProvider;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject|ActivityManager */
-    protected $activityManager;
+    private $activityManager;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject|CallActivityManager */
-    protected $callActivityManager;
+    private $callActivityManager;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject|EntityRoutingHelper */
-    protected $entityRoutingHelper;
+    private $entityRoutingHelper;
 
     /** @var \PHPUnit\Framework\MockObject\MockObject|FormFactory */
-    protected $formFactory;
+    private $formFactory;
 
     /** @var CallHandler */
-    protected $handler;
+    private $handler;
 
-    /**
-     * @var Call
-     */
-    protected $entity;
+    /** @var Call */
+    private $entity;
 
     protected function setUp(): void
     {
@@ -67,7 +65,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->entityRoutingHelper = $this->createMock(EntityRoutingHelper::class);
         $this->formFactory = $this->createMock(FormFactory::class);
 
-        $this->entity  = new Call();
+        $this->entity = new Call();
         $this->handler = new CallHandler(
             'oro_call_form',
             'oro_call_form',
@@ -96,31 +94,26 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->formFactory->expects($this->once())
             ->method('createNamed')
             ->with('oro_call_form', 'oro_call_form', $this->entity, [])
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
         $this->form->expects($this->any())
             ->method('get')
-            ->will($this->returnValue($this->form));
-
+            ->willReturn($this->form);
         $this->form->expects($this->any())
             ->method('has')
-            ->will($this->returnValue(true));
-
+            ->willReturn(true);
         $this->form->expects($this->once())
             ->method('isValid')
-            ->will($this->returnValue(true));
-
+            ->willReturn(true);
         $this->form->expects($this->once())
             ->method('setData')
             ->with($this->identicalTo($this->entity));
-
         $this->form->expects($this->any())
             ->method('getData')
-            ->will($this->returnValue([$context]));
+            ->willReturn([$context]);
 
         $this->activityManager->expects($this->never())
             ->method('removeActivityTarget');
-
         $this->activityManager->expects($this->once())
             ->method('setActivityTargets')
             ->with(
@@ -143,7 +136,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->formFactory->expects($this->once())
             ->method('createNamed')
             ->with('oro_call_form', 'oro_call_form', $this->entity, [])
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
         $this->form->expects($this->never())
             ->method('submit');
@@ -165,20 +158,16 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->phoneProvider->expects($this->once())
             ->method('getPhoneNumbers')
             ->with($this->identicalTo($targetEntity))
-            ->will(
-                $this->returnValue(
-                    [
-                        ['phone1', $targetEntity],
-                        ['phone2', $targetEntity],
-                        ['phone1', $targetEntity1]
-                    ]
-                )
-            );
+            ->willReturn([
+                ['phone1', $targetEntity],
+                ['phone2', $targetEntity],
+                ['phone1', $targetEntity1]
+            ]);
 
         $this->entityRoutingHelper->expects($this->once())
             ->method('getEntity')
             ->with(get_class($targetEntity), $targetEntity->getId())
-            ->will($this->returnValue($targetEntity));
+            ->willReturn($targetEntity);
 
         $this->formFactory->expects($this->once())
             ->method('createNamed')
@@ -190,7 +179,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
                     'phone_suggestions' => ['phone1', 'phone2']
                 ]
             )
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
         $this->form->expects($this->never())
             ->method('submit');
@@ -209,24 +198,20 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->phoneProvider->expects($this->once())
             ->method('getPhoneNumber')
             ->with($this->identicalTo($targetEntity))
-            ->will($this->returnValue('phone2'));
+            ->willReturn('phone2');
         $this->phoneProvider->expects($this->once())
             ->method('getPhoneNumbers')
             ->with($this->identicalTo($targetEntity))
-            ->will(
-                $this->returnValue(
-                    [
-                        ['phone1', $targetEntity],
-                        ['phone2', $targetEntity],
-                        ['phone1', $targetEntity1]
-                    ]
-                )
-            );
+            ->willReturn([
+                ['phone1', $targetEntity],
+                ['phone2', $targetEntity],
+                ['phone1', $targetEntity1]
+            ]);
 
         $this->entityRoutingHelper->expects($this->once())
             ->method('getEntity')
             ->with(get_class($targetEntity), $targetEntity->getId())
-            ->will($this->returnValue($targetEntity));
+            ->willReturn($targetEntity);
 
         $this->formFactory->expects($this->once())
             ->method('createNamed')
@@ -238,7 +223,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
                     'phone_suggestions' => ['phone1', 'phone2']
                 ]
             )
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
         $this->form->expects($this->never())
             ->method('submit');
@@ -249,22 +234,20 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider supportedMethods
-     *
-     * @param string $method
      */
-    public function testProcessInvalidData($method)
+    public function testProcessInvalidData(string $method)
     {
         $this->formFactory->expects($this->once())
             ->method('createNamed')
             ->with('oro_call_form', 'oro_call_form', $this->entity, [])
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
         $this->form->expects($this->once())
             ->method('submit')
             ->with(self::FORM_DATA);
         $this->form->expects($this->once())
             ->method('isValid')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->phoneProvider->expects($this->never())
             ->method('getPhoneNumber');
@@ -283,22 +266,20 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider supportedMethods
-     *
-     * @param string $method
      */
-    public function testProcessValidDataWithoutTargetEntity($method)
+    public function testProcessValidDataWithoutTargetEntity(string $method)
     {
         $this->formFactory->expects($this->once())
             ->method('createNamed')
             ->with('oro_call_form', 'oro_call_form', $this->entity, [])
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
         $this->form->expects($this->once())
             ->method('submit')
             ->with(self::FORM_DATA);
         $this->form->expects($this->once())
             ->method('isValid')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->phoneProvider->expects($this->never())
             ->method('getPhoneNumber');
@@ -312,7 +293,6 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->manager->expects($this->once())
             ->method('persist')
             ->with($this->entity);
-
         $this->manager->expects($this->once())
             ->method('flush');
 
@@ -324,64 +304,52 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider supportedMethods
-     *
-     * @param string $method
      */
-    public function testProcessValidDataWithTargetEntity($method)
+    public function testProcessValidDataWithTargetEntity(string $method)
     {
         $this->entity->setPhoneNumber('phone1');
 
-        $targetEntity  = new TestTarget(123);
+        $targetEntity = new TestTarget(123);
         $targetEntity1 = new TestTarget(456);
 
         $this->formFactory->expects($this->once())
             ->method('createNamed')
             ->with('oro_call_form', 'oro_call_form', $this->entity, [])
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
         $this->form->expects($this->once())
             ->method('submit')
             ->with(self::FORM_DATA);
         $this->form->expects($this->once())
             ->method('isValid')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->phoneProvider->expects($this->never())
             ->method('getPhoneNumber');
         $this->phoneProvider->expects($this->once())
             ->method('getPhoneNumbers')
             ->with($this->identicalTo($targetEntity))
-            ->will(
-                $this->returnValue(
-                    [
-                        ['phone1', $targetEntity],
-                        ['phone2', $targetEntity],
-                        ['phone1', $targetEntity1]
-                    ]
-                )
-            );
+            ->willReturn([
+                ['phone1', $targetEntity],
+                ['phone2', $targetEntity],
+                ['phone1', $targetEntity1]
+            ]);
 
         $this->entityRoutingHelper->expects($this->once())
             ->method('getEntity')
             ->with(get_class($targetEntity), $targetEntity->getId())
-            ->will($this->returnValue($targetEntity));
-        // phone1, $targetEntity
-        $this->callActivityManager->expects($this->at(0))
+            ->willReturn($targetEntity);
+        $this->callActivityManager->expects($this->exactly(3))
             ->method('addAssociation')
-            ->with($this->identicalTo($this->entity), $this->identicalTo($targetEntity));
-        // phone2, $targetEntity
-        $this->callActivityManager->expects($this->at(1))
-            ->method('addAssociation')
-            ->with($this->identicalTo($this->entity), $this->identicalTo($targetEntity));
-        // phone1, $targetEntity1
-        $this->callActivityManager->expects($this->at(2))
-            ->method('addAssociation')
-            ->with($this->identicalTo($this->entity), $this->identicalTo($targetEntity1));
+            ->withConsecutive(
+                [$this->identicalTo($this->entity), $this->identicalTo($targetEntity)], // phone1, $targetEntity
+                [$this->identicalTo($this->entity), $this->identicalTo($targetEntity)], // phone2, $targetEntity
+                [$this->identicalTo($this->entity), $this->identicalTo($targetEntity1)] // phone1, $targetEntity1
+            );
 
         $this->manager->expects($this->once())
             ->method('persist')
             ->with($this->entity);
-
         $this->manager->expects($this->once())
             ->method('flush');
 
@@ -397,11 +365,11 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->handler->process($this->entity));
     }
 
-    public function supportedMethods()
+    public function supportedMethods(): array
     {
-        return array(
-            array('POST'),
-            array('PUT')
-        );
+        return [
+            ['POST'],
+            ['PUT']
+        ];
     }
 }

@@ -2,248 +2,158 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Oro\Bundle\CallBundle\EventListener\Datagrid\CallListener;
+use Oro\Bundle\DataGridBundle\Datagrid\Common\DatagridConfiguration;
+use Oro\Bundle\DataGridBundle\Datagrid\DatagridInterface;
+use Oro\Bundle\DataGridBundle\Datagrid\ParameterBag;
+use Oro\Bundle\DataGridBundle\Datasource\Orm\OrmDatasource;
 use Oro\Bundle\DataGridBundle\Event\BuildAfter;
 use Oro\Bundle\DataGridBundle\Event\BuildBefore;
 use Oro\Bundle\UserBundle\Entity\User;
 
 class CallListenerTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var CallListener
-     */
-    protected $listener;
+    /** @var EntityManager|\PHPUnit\Framework\MockObject\MockObject */
+    private $entityManager;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $entityManager;
+    /** @var CallListener */
+    private $listener;
 
     protected function setUp(): void
     {
-        $this->entityManager = $this->getMockBuilder('Doctrine\ORM\EntityManager')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->entityManager = $this->createMock(EntityManager::class);
 
         $this->listener = new CallListener($this->entityManager);
     }
 
-    protected function tearDown(): void
-    {
-        unset($this->entityManager);
-        unset($this->listener);
-    }
-
     /**
-     * @param array $parameters
-     * @param array $expectedUnsets
      * @dataProvider onBuildBeforeDataProvider
      */
-    public function testOnBuildBefore(array $parameters, array $expectedUnsets = array())
+    public function testOnBuildBefore(array $parameters, array $expectedUnsets = [])
     {
-        $buildBeforeEvent = $this->createBuildBeforeEvent($expectedUnsets, $parameters);
-        $this->listener->onBuildBefore($buildBeforeEvent);
+        $config = $this->createMock(DatagridConfiguration::class);
+        if ($expectedUnsets) {
+            $with = [];
+            foreach ($expectedUnsets as $value) {
+                $with[] = [$value];
+            }
+            $config->expects($this->exactly(count($expectedUnsets)))
+                ->method('offsetUnsetByPath')
+                ->withConsecutive(...$with);
+        } else {
+            $config->expects($this->never())
+                ->method('offsetUnsetByPath');
+        }
+
+        $dataGrid = $this->createMock(DatagridInterface::class);
+        $dataGrid->expects($this->any())
+            ->method('getParameters')
+            ->willReturn($this->createParameterBag($parameters));
+
+        $this->listener->onBuildBefore(new BuildBefore($dataGrid, $config));
     }
 
-    /**
-     * @return array
-     */
-    public function onBuildBeforeDataProvider()
+    public function onBuildBeforeDataProvider(): array
     {
-        return array(
-            'no filters' => array(
-                'parameters' => array(),
-            ),
-            'filter by contact' => array(
-                'parameters' => array(
+        return [
+            'no filters' => [
+                'parameters' => [],
+            ],
+            'filter by contact' => [
+                'parameters' => [
                     'contactId' => 1,
-                ),
-                'expectedUnsets' => array(
+                ],
+                'expectedUnsets' => [
                     '[columns][contactName]',
                     '[filters][columns][contactName]',
                     '[sorters][columns][contactName]',
-                ),
-            ),
-            'filter by account' => array(
-                'parameters' => array(
+                ],
+            ],
+            'filter by account' => [
+                'parameters' => [
                     'accountId' => 1,
-                ),
-                'expectedUnsets' => array(
+                ],
+                'expectedUnsets' => [
                     '[columns][accountName]',
                     '[filters][columns][accountName]',
                     '[sorters][columns][accountName]',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
-    /**
-     * @param array $parameters
-     * @param array $entityManagerExpectations
-     * @param array $queryBuilderExpectations
-     * @dataProvider onBuildAfterDataProvider
-     */
-    public function testOnBuildAfter(
-        array $parameters,
-        array $entityManagerExpectations = array(),
-        array $queryBuilderExpectations = array()
-    ) {
-        $queryBuilder = $this->getMockBuilder('Doctrine\ORM\QueryBuilder')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->applyExpectations($this->entityManager, $entityManagerExpectations);
-        $this->applyExpectations($queryBuilder, $queryBuilderExpectations);
-
-        $buildAfterEvent = $this->createBuildAfterEvent($queryBuilder, $parameters);
-        $this->listener->onBuildAfter($buildAfterEvent);
-    }
-
-    /**
-     * @return array
-     */
-    public function onBuildAfterDataProvider()
+    public function testOnBuildAfterWithoutParameters()
     {
+        $parameters = [];
+        $queryBuilder = $this->createMock(QueryBuilder::class);
+
+        $this->entityManager->expects($this->never())
+            ->method('find');
+
+        $queryBuilder->expects($this->never())
+            ->method($this->anything());
+
+        $this->listener->onBuildAfter($this->createBuildAfterEvent($queryBuilder, $parameters));
+    }
+
+    public function testOnBuildAfterFilterByUser()
+    {
+        $parameters = [
+            'userId' => 12
+        ];
         $user = new User();
+        $queryBuilder = $this->createMock(QueryBuilder::class);
 
-        return array(
-            'no filters' => array(
-                'parameters' => array(),
-            ),
-            'filter by user' => array(
-                'parameters' => array(
-                    'userId' => 12,
-                ),
-                'entityManagerExpectations' => array(
-                    0 => array(
-                        'method' => 'find',
-                        'parameters' => array('OroUserBundle:User', 12),
-                        'return' => $user,
-                    )
-                ),
-                'queryBuilderExpectations' => array(
-                    0 => array(
-                        'method' => 'andWhere',
-                        'parameters' => array('call.owner = :user'),
-                    ),
-                    1 => array(
-                        'method' => 'setParameter',
-                        'parameters' => array('user', $user),
-                    )
-                ),
-            ),
-        );
+        $this->entityManager->expects($this->once())
+            ->method('find')
+            ->with('OroUserBundle:User', 12)
+            ->willReturn($user);
+
+        $queryBuilder->expects($this->once())
+            ->method('andWhere')
+            ->with('call.owner = :user')
+            ->willReturnSelf();
+        $queryBuilder->expects($this->once())
+            ->method('setParameter')
+            ->with('user', $this->identicalTo($user))
+            ->willReturnSelf();
+
+        $this->listener->onBuildAfter($this->createBuildAfterEvent($queryBuilder, $parameters));
     }
 
-    /**
-     * @param \PHPUnit\Framework\MockObject\MockObject $mock
-     * @param array $expectations
-     */
-    protected function applyExpectations(
-        \PHPUnit\Framework\MockObject\MockObject $mock,
-        array $expectations = array()
-    ) {
-        foreach ($expectations as $number => $expectation) {
-            $mocker = $mock->expects($this->at($number))
-                ->method($expectation['method']);
-
-            if (!empty($expectation['parameters'])) {
-                call_user_func_array(array($mocker, 'with'), $expectation['parameters']); // ->with(<parameters>)
-            }
-
-            if (!empty($expectation['return'])) {
-                $mocker->will($this->returnValue($expectation['return']));
-            } else {
-                $mocker->will($this->returnSelf());
-            }
-        }
-    }
-
-    /**
-     * @param array $expectedUnsets
-     * @param array $parameters
-     * @return BuildBefore
-     */
-    protected function createBuildBeforeEvent(array $expectedUnsets, array $parameters)
+    private function createBuildAfterEvent(QueryBuilder $queryBuilder, array $parameters): BuildAfter
     {
-        $config = $this->getMockBuilder('Oro\Bundle\DataGridBundle\Datagrid\Common\DatagridConfiguration')
-            ->setMethods(array('offsetUnsetByPath'))
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        if ($expectedUnsets) {
-            foreach ($expectedUnsets as $iteration => $value) {
-                $config->expects($this->at($iteration))->method('offsetUnsetByPath')->with($value);
-            }
-        } else {
-            $config->expects($this->never())->method('offsetUnsetByPath');
-        }
-
-        $dataGrid = $this->createMock('Oro\Bundle\DataGridBundle\Datagrid\DatagridInterface');
-
-        $dataGrid->expects($this->any())
-            ->method('getParameters')
-            ->will($this->returnValue($this->createParameterBag($parameters)));
-
-        return new BuildBefore($dataGrid, $config);
-    }
-
-    /**
-     * @param QueryBuilder|\PHPUnit\Framework\MockObject\MockObject $queryBuilder
-     * @param array $parameters
-     * @return BuildAfter
-     */
-    protected function createBuildAfterEvent($queryBuilder, array $parameters)
-    {
-        $ormDataSource = $this->getMockBuilder('Oro\Bundle\DataGridBundle\Datasource\Orm\OrmDatasource')
-            ->disableOriginalConstructor()
-            ->setMethods(array('getQueryBuilder'))
-            ->getMock();
-        $ormDataSource->expects($this->any())
+        $ormDataSource = $this->createMock(OrmDatasource::class);
+        $ormDataSource->expects($this->once())
             ->method('getQueryBuilder')
-            ->will($this->returnValue($queryBuilder));
+            ->willReturn($queryBuilder);
 
-        $dataGrid = $this->createMock('Oro\Bundle\DataGridBundle\Datagrid\DatagridInterface');
-
-        $dataGrid->expects($this->any())
+        $dataGrid = $this->createMock(DatagridInterface::class);
+        $dataGrid->expects($this->once())
             ->method('getDatasource')
-            ->will($this->returnValue($ormDataSource));
-
-        $dataGrid->expects($this->any())
+            ->willReturn($ormDataSource);
+        $dataGrid->expects($this->once())
             ->method('getParameters')
-            ->will($this->returnValue($this->createParameterBag($parameters)));
+            ->willReturn($this->createParameterBag($parameters));
 
-        return new BuildAfter($dataGrid, $parameters);
+        return new BuildAfter($dataGrid);
     }
 
-    /**
-     * @param array $data
-     * @return \PHPUnit\Framework\MockObject\MockObject
-     */
-    protected function createParameterBag(array $data)
+    private function createParameterBag(array $data): ParameterBag
     {
-        $parameters = $this->createMock('Oro\Bundle\DataGridBundle\Datagrid\ParameterBag');
-
+        $parameters = $this->createMock(ParameterBag::class);
         $parameters->expects($this->any())
             ->method('has')
-            ->will(
-                $this->returnCallback(
-                    function ($key) use ($data) {
-                        return isset($data[$key]);
-                    }
-                )
-            );
-
+            ->willReturnCallback(function ($key) use ($data) {
+                return isset($data[$key]);
+            });
         $parameters->expects($this->any())
             ->method('get')
-            ->will(
-                $this->returnCallback(
-                    function ($key) use ($data) {
-                        return $data[$key];
-                    }
-                )
-            );
+            ->willReturnCallback(function ($key) use ($data) {
+                return $data[$key];
+            });
 
         return $parameters;
     }
