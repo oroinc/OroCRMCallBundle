@@ -11,7 +11,7 @@ use Oro\Bundle\OrganizationBundle\Entity\Organization;
 use Oro\Bundle\UserBundle\Entity\User;
 
 /**
- * Call
+ * Entity that represents Call
  *
  * @ORM\Table(
  *      name="orocrm_call",
@@ -252,10 +252,10 @@ class Call extends ExtendCall implements DatesAwareInterface
     /**
      * Set callDateTime
      *
-     * @param \DateTime $callDateTime
+     * @param \DateTime|null $callDateTime
      * @return Call
      */
-    public function setCallDateTime($callDateTime)
+    public function setCallDateTime(\DateTime $callDateTime = null)
     {
         $this->callDateTime = $callDateTime;
 
@@ -265,9 +265,9 @@ class Call extends ExtendCall implements DatesAwareInterface
     /**
      * Get callDateTime
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCallDateTime()
+    public function getCallDateTime(): ?\DateTime
     {
         return $this->callDateTime;
     }

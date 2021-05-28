@@ -6,7 +6,9 @@ Oro\Bundle\CallBundle\Entity\Call:
                 max: 255
         callDateTime:
             - NotBlank: ~
-            - DateTime: ~
+            - Type:
+                type: \DateTimeInterface
+                message: oro.call.call.call_date_time.type.message
         callStatus:
             - NotBlank: ~
         duration:
