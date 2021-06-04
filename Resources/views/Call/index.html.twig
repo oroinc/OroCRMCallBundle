@@ -1,10 +1,10 @@
-{% extends 'OroUIBundle:actions:index.html.twig' %}
-{% import 'OroDataGridBundle::macros.html.twig' as dataGrid %}
+{% extends '@OroUI/actions/index.html.twig' %}
+{% import '@OroDataGrid/macros.html.twig' as dataGrid %}
 {% set pageTitle = 'oro.call.entity_plural_label'|trans %}
 {% set gridName = 'calls-grid' %}
 
 {% block navButtons %}
-    {% import 'OroUIBundle::macros.html.twig' as UI %}
+    {% import '@OroUI/macros.html.twig' as UI %}
 
     {% if is_granted('oro_call_create') %}
         <div class="btn-group">

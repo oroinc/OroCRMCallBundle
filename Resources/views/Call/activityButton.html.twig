@@ -1,7 +1,7 @@
-{% extends "OroCallBundle:Call:activityLink.html.twig" %}
+{% extends "@OroCall/Call/activityLink.html.twig" %}
 
 {% block action_controll %}
-    {% import 'OroUIBundle::macros.html.twig' as UI %}
+    {% import '@OroUI/macros.html.twig' as UI %}
 
     {% set options = options|merge({
         'aCss': 'no-hash'
