@@ -33,7 +33,7 @@ class CallController extends AbstractController
 
     /**
      * @Route("/create", name="oro_call_create")
-     * @Template("OroCallBundle:Call:update.html.twig")
+     * @Template("@OroCall/Call/update.html.twig")
      * @Acl(
      *      id="oro_call_create",
      *      type="entity",
@@ -145,7 +145,7 @@ class CallController extends AbstractController
      *      requirements={"id"="\d+", "renderContexts"="\d+"},
      *      defaults={"renderContexts"=true}
      * )
-     * @Template("OroCallBundle:Call/widget:info.html.twig")
+     * @Template("@OroCall/Call/widget/info.html.twig")
      * @AclAncestor("oro_call_view")
      */
     public function infoAction(Call $entity, $renderContexts)
