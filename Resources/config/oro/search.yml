@@ -7,7 +7,7 @@ search:
             name: oro_call_view
             parameters:
                 id: id
-        search_template: OroCallBundle:Call:searchResult.html.twig
+        search_template: '@OroCall/Call/searchResult.html.twig'
         fields:
             -
                 name: subject
