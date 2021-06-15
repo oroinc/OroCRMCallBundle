@@ -3,13 +3,17 @@
 namespace Oro\Bundle\CallBundle\Controller;
 
 use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Form\Handler\CallHandler;
+use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Oro\Bundle\SecurityBundle\Annotation\Acl;
 use Oro\Bundle\SecurityBundle\Annotation\AclAncestor;
+use Oro\Bundle\UIBundle\Route\Router;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * CRUD controllers for calls.
@@ -27,7 +31,7 @@ class CallController extends AbstractController
     public function activityAction($entityClass, $entityId)
     {
         return array(
-            'entity' => $this->get('oro_entity.routing_helper')->getEntity($entityClass, $entityId)
+            'entity' => $this->get(EntityRoutingHelper::class)->getEntity($entityClass, $entityId)
         );
     }
 
@@ -57,7 +61,7 @@ class CallController extends AbstractController
             ->findOneByName('outgoing');
         $entity->setDirection($callDirection);
 
-        $formAction = $this->get('oro_entity.routing_helper')
+        $formAction = $this->get(EntityRoutingHelper::class)
             ->generateUrlByRequest('oro_call_create', $request);
 
         return $this->update($request, $entity, $formAction);
@@ -167,14 +171,14 @@ class CallController extends AbstractController
     {
         $saved = false;
 
-        if ($this->get('oro_call.call.form.handler')->process($entity)) {
+        if ($this->get(CallHandler::class)->process($entity)) {
             if (!$request->get('_widgetContainer')) {
                 $this->get('session')->getFlashBag()->add(
                     'success',
-                    $this->get('translator')->trans('oro.call.controller.call.saved.message')
+                    $this->get(TranslatorInterface::class)->trans('oro.call.controller.call.saved.message')
                 );
 
-                return $this->get('oro_ui.router')->redirect($entity);
+                return $this->get(Router::class)->redirect($entity);
             }
             $saved = true;
         }
@@ -182,8 +186,24 @@ class CallController extends AbstractController
         return array(
             'entity'     => $entity,
             'saved'      => $saved,
-            'form'       => $this->get('oro_call.call.form.handler')->getForm()->createView(),
+            'form'       => $this->get(CallHandler::class)->getForm()->createView(),
             'formAction' => $formAction
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedServices()
+    {
+        return array_merge(
+            parent::getSubscribedServices(),
+            [
+                TranslatorInterface::class,
+                EntityRoutingHelper::class,
+                CallHandler::class,
+                Router::class,
+            ]
         );
     }
 }
