@@ -3,7 +3,7 @@ dashboards:
         recent_calls:
             label:       oro.dashboard.recent_calls.title
             route:       oro_dashboard_widget
-            route_parameters: { bundle: OroCallBundle, name: recentCalls }
+            route_parameters: { bundle: OroCall, name: recentCalls }
             acl:         oro_call_view
             description: oro.dashboard.recent_calls.description
             icon:   bundles/orocall/img/recent_calls.png
