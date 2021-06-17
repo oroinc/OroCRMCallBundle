@@ -25,6 +25,9 @@ services:
             - Oro\Bundle\CallBundle\Form\Type\CallApiType
             - null
 
+    Oro\Bundle\CallBundle\Form\Handler\CallHandler:
+        alias: oro_call.call.form.handler
+
     oro_call.call.form.handler:
         class: Oro\Bundle\CallBundle\Form\Handler\CallHandler
         public: true
