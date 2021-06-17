@@ -3,6 +3,9 @@ oro:
         phone:
             required:
                 message: "Phone is required field"
+        duration:
+            not_in_range:
+                message: "Duration should be between {{ min }} and {{ max }}"
         call:
             call_date_time:
                 type:
