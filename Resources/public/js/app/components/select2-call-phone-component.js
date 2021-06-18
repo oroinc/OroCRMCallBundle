@@ -12,14 +12,14 @@ define(function(require) {
         value: '',
 
         /**
-         * @inheritDoc
+         * @inheritdoc
          */
         constructor: function Select2CallPhoneComponent(options) {
             Select2CallPhoneComponent.__super__.constructor.call(this, options);
         },
 
         /**
-         * @inheritDoc
+         * @inheritdoc
          */
         initialize: function(options) {
             this.suggestions = _.result(options, 'suggestions') || this.suggestions;
