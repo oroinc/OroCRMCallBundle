@@ -104,7 +104,7 @@ datagrids:
             subject:
                 label: oro.call.subject.label
                 type: twig
-                template: OroCallBundle:Datagrid:Column/subject.html.twig
+                template: '@OroCall/Datagrid/Column/subject.html.twig'
                 frontend_type: html
             phone:
                 label: oro.call.phone_number.label
@@ -188,7 +188,7 @@ datagrids:
                 type: twig
                 label: ~
                 frontend_type: html
-                template: OroCallBundle:Datagrid:Column/direction.html.twig
+                template: '@OroCall/Datagrid/Column/direction.html.twig'
             dateTime:
                 label: oro.call.datagrid.date_time
                 frontend_type: datetime
@@ -196,7 +196,7 @@ datagrids:
                 type: twig
                 label: oro.call.subject.label
                 frontend_type: html
-                template: OroCallBundle:Datagrid:Column/subject.html.twig
+                template: '@OroCall/Datagrid/Column/subject.html.twig'
             phone:
                 label: oro.call.phone_number.label
                 frontend_type: phone
