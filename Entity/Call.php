@@ -264,8 +264,6 @@ class Call extends ExtendCall implements DatesAwareInterface
 
     /**
      * Get callDateTime
-     *
-     * @return \DateTime|null
      */
     public function getCallDateTime(): ?\DateTime
     {
