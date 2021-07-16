@@ -18,9 +18,6 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     /** @var ActivityExtension */
     protected $activityExtension;
 
-    /**
-     * @param CommentExtension $commentExtension
-     */
     public function setCommentExtension(CommentExtension $commentExtension)
     {
         $this->comment = $commentExtension;
@@ -63,8 +60,6 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
 
     /**
      * Create orocrm_call table
-     *
-     * @param Schema $schema
      */
     protected function createOrocrmCallTable(Schema $schema)
     {
@@ -93,8 +88,6 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
 
     /**
      * Create orocrm_call_direction table
-     *
-     * @param Schema $schema
      */
     protected function createOrocrmCallDirectionTable(Schema $schema)
     {
@@ -107,8 +100,6 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
 
     /**
      * Create orocrm_call table
-     *
-     * @param Schema $schema
      */
     protected function createOrocrmCallStatusTable(Schema $schema)
     {
@@ -121,8 +112,6 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
 
     /**
      * Create orocrm_call table
-     *
-     * @param Schema $schema
      */
     protected function addOrocrmCallForeignKeys(Schema $schema)
     {
@@ -155,8 +144,6 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
 
     /**
      * Generate table orocrm_call_direction_trans
-     *
-     * @param Schema $schema
      */
     public static function createCallDirectionTranslationTable(Schema $schema)
     {
@@ -179,8 +166,6 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
 
     /**
      * Generate table orocrm_call_status_trans
-     *
-     * @param Schema $schema
      */
     public static function createCallStatusTranslationTable(Schema $schema)
     {

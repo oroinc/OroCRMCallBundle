@@ -10,17 +10,11 @@ class EntityListener
     /** @var CallActivityManager */
     protected $callActivityManager;
 
-    /**
-     * @param CallActivityManager $callActivityManager
-     */
     public function __construct(CallActivityManager $callActivityManager)
     {
         $this->callActivityManager = $callActivityManager;
     }
 
-    /**
-     * @param OnFlushEventArgs $event
-     */
     public function onFlush(OnFlushEventArgs $event)
     {
         $this->callActivityManager->handleOnFlush($event);

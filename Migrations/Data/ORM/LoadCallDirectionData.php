@@ -16,9 +16,6 @@ class LoadCallDirectionData extends AbstractFixture
         'outgoing' => 'Outgoing',
     );
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         foreach ($this->data as $name => $label) {
