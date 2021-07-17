@@ -36,8 +36,6 @@ class CallListenerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @param array $parameters
-     * @param array $expectedUnsets
      * @dataProvider onBuildBeforeDataProvider
      */
     public function testOnBuildBefore(array $parameters, array $expectedUnsets = array())
@@ -79,9 +77,6 @@ class CallListenerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @param array $parameters
-     * @param array $entityManagerExpectations
-     * @param array $queryBuilderExpectations
      * @dataProvider onBuildAfterDataProvider
      */
     public function testOnBuildAfter(
@@ -136,10 +131,6 @@ class CallListenerTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @param \PHPUnit\Framework\MockObject\MockObject $mock
-     * @param array $expectations
-     */
     protected function applyExpectations(
         \PHPUnit\Framework\MockObject\MockObject $mock,
         array $expectations = array()

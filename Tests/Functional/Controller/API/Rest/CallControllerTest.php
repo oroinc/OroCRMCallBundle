@@ -49,7 +49,6 @@ class CallControllerTest extends WebTestCase
     }
 
     /**
-     * @param array $request
      * @depends testCreate
      */
     public function testGet(array $request)
@@ -84,7 +83,6 @@ class CallControllerTest extends WebTestCase
     }
 
     /**
-     * @param array $request
      * @depends testCreate
      * @depends testGet
      */
@@ -114,7 +112,6 @@ class CallControllerTest extends WebTestCase
     }
 
     /**
-     * @param array $request
      * @depends testCreate
      */
     public function testDelete(array $request)
@@ -172,8 +169,6 @@ class CallControllerTest extends WebTestCase
     }
 
     /**
-     * @param array $request
-     *
      * @depends testCreateWithSecondsDuration
      */
     public function testGetWithSeconds(array $request)

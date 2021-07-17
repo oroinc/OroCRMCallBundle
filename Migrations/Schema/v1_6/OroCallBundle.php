@@ -19,8 +19,6 @@ class OroCallBundle implements Migration
 
     /**
      * Generate table orocrm_call_direction_trans
-     *
-     * @param Schema $schema
      */
     public static function createCallDirectionTranslationTable(Schema $schema)
     {
@@ -43,8 +41,6 @@ class OroCallBundle implements Migration
 
     /**
      * Generate table orocrm_call_status_trans
-     *
-     * @param Schema $schema
      */
     public static function createCallStatusTranslationTable(Schema $schema)
     {
