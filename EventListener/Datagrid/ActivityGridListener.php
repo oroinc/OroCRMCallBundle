@@ -15,19 +15,12 @@ class ActivityGridListener
     /** @var EntityRoutingHelper */
     protected $entityRoutingHelper;
 
-    /**
-     * @param ActivityManager     $activityManager
-     * @param EntityRoutingHelper $entityRoutingHelper
-     */
     public function __construct(ActivityManager $activityManager, EntityRoutingHelper $entityRoutingHelper)
     {
         $this->activityManager     = $activityManager;
         $this->entityRoutingHelper = $entityRoutingHelper;
     }
 
-    /**
-     * @param BuildAfter $event
-     */
     public function onBuildAfter(BuildAfter $event)
     {
         $datagrid   = $event->getDatagrid();

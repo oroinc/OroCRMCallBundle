@@ -15,9 +15,6 @@ class CallActivityManager
     /** @var ActivityManager */
     protected $activityManager;
 
-    /**
-     * @param ActivityManager $activityManager
-     */
     public function __construct(ActivityManager $activityManager)
     {
         $this->activityManager = $activityManager;
@@ -37,7 +34,6 @@ class CallActivityManager
     /**
      * Handle onFlush event
      *
-     * @param OnFlushEventArgs $event
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function handleOnFlush(OnFlushEventArgs $event)

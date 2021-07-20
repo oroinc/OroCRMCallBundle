@@ -20,9 +20,6 @@ class CallType extends AbstractType
     /** @var PhoneProviderInterface */
     protected $phoneProvider;
 
-    /**
-     * @param PhoneProviderInterface $phoneProvider
-     */
     public function __construct(PhoneProviderInterface $phoneProvider)
     {
         $this->phoneProvider = $phoneProvider;
@@ -106,8 +103,6 @@ class CallType extends AbstractType
 
     /**
      * Adds phone number owner to default contexts
-     *
-     * @param FormEvent $event
      */
     public function addPhoneContextListener(FormEvent $event)
     {

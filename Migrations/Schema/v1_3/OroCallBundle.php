@@ -15,9 +15,6 @@ use Oro\Bundle\MigrationBundle\Migration\ParametrizedSqlMigrationQuery;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 use Oro\Bundle\MigrationBundle\Tools\DbIdentifierNameGenerator;
 
-/**
- *
- */
 class OroCallBundle implements
     Migration,
     OrderedMigrationInterface,

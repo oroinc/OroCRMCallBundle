@@ -15,9 +15,6 @@ class CallListener
      */
     protected $entityManager;
 
-    /**
-     * @param EntityManager $entityManager
-     */
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -25,8 +22,6 @@ class CallListener
 
     /**
      * Remove useless fields in case of filtering
-     *
-     * @param BuildBefore $event
      */
     public function onBuildBefore(BuildBefore $event)
     {
@@ -55,8 +50,6 @@ class CallListener
 
     /**
      * Add required filters
-     *
-     * @param BuildAfter $event
      */
     public function onBuildAfter(BuildAfter $event)
     {
