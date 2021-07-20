@@ -16,9 +16,6 @@ class LoadCallStatusData extends AbstractFixture
         'completed' => 'Completed',
     );
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         foreach ($this->data as $name => $label) {

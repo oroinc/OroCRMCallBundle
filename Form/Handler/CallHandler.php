@@ -157,8 +157,6 @@ class CallHandler
 
     /**
      * "Success" form handler
-     *
-     * @param Call $entity
      */
     protected function onSuccess(Call $entity)
     {
