@@ -14,8 +14,7 @@ use Twig\TwigFunction;
  */
 class OroCallExtension extends AbstractExtension implements ServiceSubscriberInterface
 {
-    /** @var ContainerInterface */
-    protected $container;
+    private ContainerInterface $container;
 
     public function __construct(ContainerInterface $container)
     {
@@ -23,17 +22,7 @@ class OroCallExtension extends AbstractExtension implements ServiceSubscriberInt
     }
 
     /**
-     * @return LogCallPlaceholderFilter
-     */
-    protected function getLogCallPlaceholderFilter()
-    {
-        return $this->container->get('oro_call.placeholder.log_call.filter');
-    }
-
-    /**
-     * Returns a list of functions to add to the existing list.
-     *
-     * @return array An array of functions
+     * {@inheritdoc }
      */
     public function getFunctions()
     {
@@ -53,16 +42,6 @@ class OroCallExtension extends AbstractExtension implements ServiceSubscriberInt
     }
 
     /**
-     * Returns the name of the extension.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return 'oro_call_extension';
-    }
-
-    /**
      * {@inheritdoc}
      */
     public static function getSubscribedServices()
@@ -70,5 +49,10 @@ class OroCallExtension extends AbstractExtension implements ServiceSubscriberInt
         return [
             'oro_call.placeholder.log_call.filter' => LogCallPlaceholderFilter::class,
         ];
+    }
+
+    private function getLogCallPlaceholderFilter(): LogCallPlaceholderFilter
+    {
+        return $this->container->get('oro_call.placeholder.log_call.filter');
     }
 }
