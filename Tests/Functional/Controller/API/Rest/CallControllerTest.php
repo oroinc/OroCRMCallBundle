@@ -34,7 +34,7 @@ class CallControllerTest extends WebTestCase
                 ]
             ]
         ];
-        $this->client->request(
+        $this->client->jsonRequest(
             'POST',
             $this->getUrl('oro_api_post_call'),
             $request
@@ -53,7 +53,7 @@ class CallControllerTest extends WebTestCase
      */
     public function testGet(array $request)
     {
-        $this->client->request(
+        $this->client->jsonRequest(
             'GET',
             $this->getUrl('oro_api_get_calls')
         );
@@ -71,7 +71,7 @@ class CallControllerTest extends WebTestCase
         $this->assertNotEmpty($result);
         $this->assertEquals($request['call']['subject'], reset($result)['subject']);
 
-        $this->client->request(
+        $this->client->jsonRequest(
             'GET',
             $this->getUrl('oro_api_get_call', ['id' => $id])
         );
@@ -89,7 +89,7 @@ class CallControllerTest extends WebTestCase
     public function testUpdate(array $request)
     {
         $request['call']['subject'] .= "_Updated";
-        $this->client->request(
+        $this->client->jsonRequest(
             'PUT',
             $this->getUrl('oro_api_put_call', ['id' => $request['id']]),
             $request
@@ -98,7 +98,7 @@ class CallControllerTest extends WebTestCase
 
         $this->assertEmptyResponseStatusCodeEquals($result, 204);
 
-        $this->client->request(
+        $this->client->jsonRequest(
             'GET',
             $this->getUrl('oro_api_get_call', ['id' => $request['id']])
         );
@@ -116,13 +116,13 @@ class CallControllerTest extends WebTestCase
      */
     public function testDelete(array $request)
     {
-        $this->client->request(
+        $this->client->jsonRequest(
             'DELETE',
             $this->getUrl('oro_api_delete_call', ['id' => $request['id']])
         );
         $result = $this->client->getResponse();
         $this->assertEmptyResponseStatusCodeEquals($result, 204);
-        $this->client->request(
+        $this->client->jsonRequest(
             'GET',
             $this->getUrl('oro_api_get_call', ['id' => $request['id']])
         );
@@ -153,7 +153,7 @@ class CallControllerTest extends WebTestCase
                 ]
             ]
         ];
-        $this->client->request(
+        $this->client->jsonRequest(
             'POST',
             $this->getUrl('oro_api_post_call'),
             $request
@@ -173,7 +173,7 @@ class CallControllerTest extends WebTestCase
      */
     public function testGetWithSeconds(array $request)
     {
-        $this->client->request(
+        $this->client->jsonRequest(
             'GET',
             $this->getUrl('oro_api_get_call', ['id' => $request['id']])
         );
@@ -204,7 +204,7 @@ class CallControllerTest extends WebTestCase
                 ]
             ]
         ];
-        $this->client->request(
+        $this->client->jsonRequest(
             'POST',
             $this->getUrl('oro_api_post_call'),
             $request
