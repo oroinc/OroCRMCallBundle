@@ -2,13 +2,7 @@
 
 namespace Oro\Bundle\CallBundle\Controller\Api\Rest;
 
-use FOS\RestBundle\Controller\Annotations\Delete;
-use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\NamePrefix;
-use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Oro\Bundle\SecurityBundle\Annotation\Acl;
 use Oro\Bundle\SecurityBundle\Annotation\AclAncestor;
@@ -19,12 +13,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * API CRUD controller for Call entity.
- *
- * @RouteResource("call")
- * @NamePrefix("oro_api_")
+ * REST API CRUD controller for Call entity.
  */
-class CallController extends RestController implements ClassResourceInterface
+class CallController extends RestController
 {
     /**
      * REST GET list
@@ -58,8 +49,6 @@ class CallController extends RestController implements ClassResourceInterface
      *
      * @param int $id
      *
-     * @Get(requirements={"id"="\d+"})
-     *
      * @ApiDoc(
      *      description="Get call item",
      *      resource=true
@@ -76,8 +65,6 @@ class CallController extends RestController implements ClassResourceInterface
      * REST PUT
      *
      * @param int $id call item id
-     *
-     * @Put(requirements={"id"="\d+"})
      *
      * @ApiDoc(
      *      description="Update call",
@@ -109,8 +96,6 @@ class CallController extends RestController implements ClassResourceInterface
      * REST DELETE
      *
      * @param int $id
-     *
-     * @Delete(requirements={"id"="\d+"})
      *
      * @ApiDoc(
      *      description="Delete call",
