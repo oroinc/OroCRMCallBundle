@@ -3,16 +3,11 @@ oro_call_bundle:
     type:     annotation
     prefix:   /call
 
-oro_call_api:
-    resource: "@OroCallBundle/Controller/Api/Rest/CallController.php"
-    type:     rest
-    prefix:       api/rest/{version}/
-    requirements:
-        version:  latest|v1
-    defaults:
-        version:  latest
 
-# deprecated API route
+#
+# DEPRECATED OLD REST API ROUTES
+#
+
 oro_api_post_call_deprecated:
     path:            /api/rest/{version}/call.{_format}
     methods:         [POST]
@@ -23,3 +18,77 @@ oro_api_post_call_deprecated:
     requirements:
         _format:     json|html
         version:     latest|v1
+
+
+#
+# OLD REST API ROUTES
+#
+
+oro_api_get_calls:
+    path: '/api/rest/{version}/calls.{_format}'
+    methods: [GET]
+    defaults:
+        _controller: 'Oro\Bundle\CallBundle\Controller\Api\Rest\CallController::cgetAction'
+        _format: json
+        version: latest
+    requirements:
+        _format: json|html
+        version: latest|v1
+
+oro_api_get_call:
+    path: '/api/rest/{version}/calls/{id}.{_format}'
+    methods: [GET]
+    defaults:
+        _controller: 'Oro\Bundle\CallBundle\Controller\Api\Rest\CallController::getAction'
+        _format: json
+        version: latest
+    requirements:
+        id: \d+
+        _format: json|html
+        version: latest|v1
+
+oro_api_put_call:
+    path: '/api/rest/{version}/calls/{id}.{_format}'
+    methods: [PUT]
+    defaults:
+        _controller: 'Oro\Bundle\CallBundle\Controller\Api\Rest\CallController::putAction'
+        _format: json
+        version: latest
+    requirements:
+        id: \d+
+        _format: json|html
+        version: latest|v1
+
+oro_api_post_call:
+    path: '/api/rest/{version}/calls.{_format}'
+    methods: [POST]
+    defaults:
+        _controller: 'Oro\Bundle\CallBundle\Controller\Api\Rest\CallController::postAction'
+        _format: json
+        version: latest
+    requirements:
+        _format: json|html
+        version: latest|v1
+
+oro_api_delete_call:
+    path: '/api/rest/{version}/calls/{id}.{_format}'
+    methods: [DELETE]
+    defaults:
+        _controller: 'Oro\Bundle\CallBundle\Controller\Api\Rest\CallController::deleteAction'
+        _format: json
+        version: latest
+    requirements:
+        id: \d+
+        _format: json|html
+        version: latest|v1
+
+oro_api_options_calls:
+    path: '/api/rest/{version}/calls.{_format}'
+    methods: [OPTIONS]
+    defaults:
+        _controller: 'Oro\Bundle\CallBundle\Controller\Api\Rest\CallController::optionsAction'
+        _format: json
+        version: latest
+    requirements:
+        _format: json|html
+        version: latest|v1
