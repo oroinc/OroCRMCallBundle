@@ -12,32 +12,17 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class CallApiHandlerTest extends \PHPUnit\Framework\TestCase
 {
-    const FORM_DATA = ['field' => 'value'];
+    private const FORM_DATA = ['field' => 'value'];
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|FormInterface
-     */
-    protected $form;
+    private \PHPUnit\Framework\MockObject\MockObject|FormInterface $form;
 
-    /**
-     * @var Request
-     */
-    protected $request;
+    private Request $request;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|ObjectManager
-     */
-    protected $manager;
+    private \PHPUnit\Framework\MockObject\MockObject|ObjectManager $manager;
 
-    /**
-     * @var CallApiHandler
-     */
-    protected $handler;
+    private CallApiHandler $handler;
 
-    /**
-     * @var Call
-     */
-    protected $entity;
+    private Call $entity;
 
     protected function setUp(): void
     {
@@ -51,70 +36,69 @@ class CallApiHandlerTest extends \PHPUnit\Framework\TestCase
         $this->handler = new CallApiHandler($this->form, $requestStack, $this->manager);
     }
 
-    public function testProcessUnsupportedRequest()
+    public function testProcessUnsupportedRequest(): void
     {
-        $this->form->expects($this->once())
+        $this->form->expects(self::once())
             ->method('setData')
             ->with($this->entity);
 
-        $this->form->expects($this->never())
+        $this->form->expects(self::never())
             ->method('submit');
 
-        $this->assertFalse($this->handler->process($this->entity));
+        self::assertFalse($this->handler->process($this->entity));
     }
 
     /**
      * @dataProvider supportedMethods
-     * @param string $method
      */
-    public function testProcessSupportedRequest($method)
+    public function testProcessSupportedRequest(string $method): void
     {
-        $this->form->expects($this->once())
+        $this->form->expects(self::once())
             ->method('setData')
             ->with($this->entity);
 
         $this->request->initialize([], self::FORM_DATA);
         $this->request->setMethod($method);
 
-        $this->form->expects($this->once())
+        $this->form->expects(self::once())
             ->method('submit')
             ->with(self::FORM_DATA);
 
-        $this->assertFalse($this->handler->process($this->entity));
+        self::assertFalse($this->handler->process($this->entity));
     }
 
-    public function supportedMethods()
+    public function supportedMethods(): array
     {
-        return array(
-            array('POST'),
-            array('PUT')
-        );
+        return [
+            ['POST'],
+            ['PUT'],
+        ];
     }
 
-    public function testProcessValidData()
+    public function testProcessValidData(): void
     {
         $this->request->initialize([], self::FORM_DATA);
         $this->request->setMethod('POST');
 
-        $this->form->expects($this->once())
+        $this->form->expects(self::once())
             ->method('setData')
             ->with($this->entity);
 
-        $this->form->expects($this->once())
+        $this->form->expects(self::once())
             ->method('submit')
             ->with(self::FORM_DATA);
 
-        $this->form->expects($this->once())
+        $this->form->expects(self::once())
             ->method('isValid')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
-        $this->manager->expects($this->once())
+        $this->manager->expects(self::once())
             ->method('persist')
             ->with($this->entity);
 
-        $this->manager->expects($this->once())
+        $this->manager->expects(self::once())
             ->method('flush');
 
-        $this->assertTrue($this->handler->process($this->entity));
+        self::assertTrue($this->handler->process($this->entity));
     }
 }
