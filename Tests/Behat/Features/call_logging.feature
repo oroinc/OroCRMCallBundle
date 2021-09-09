@@ -10,7 +10,7 @@ Feature: Call logging
     And fill "Log Call Form" with:
       | Subject             | Call to Jennyfer                                                              |
       | Additional comments | Offered $40 discount on her next purchase, valid November 2016 - January 2017 |
-      | Call date & time    | 2016-10-31 08:00:00                                                           |
+      | Call date & time    | <DateTime:2016-10-31 08:00:00>                                                |
       | Phone number        | 0501468825                                                                    |
       | Direction           | Outgoing                                                                      |
       | Duration            | 60s                                                                           |
@@ -30,7 +30,7 @@ Feature: Call logging
     And fill "Log Call Form" with:
       | Subject             | Call to Jennyfer NB                                                             |
       | Additional comments | Offered $100 discount on her next purchase, valid November 2016 - February 2017 |
-      | Call date & time    | 2016-10-29 09:30:00                                                             |
+      | Call date & time    | <DateTime:2016-10-29 09:30:00>                                                  |
       | Phone number        | 0501468826                                                                      |
       | Direction           | Outgoing                                                                        |
       | Duration            | 59s                                                                             |
