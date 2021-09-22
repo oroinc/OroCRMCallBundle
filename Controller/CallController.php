@@ -173,7 +173,7 @@ class CallController extends AbstractController
 
         if ($this->get(CallHandler::class)->process($entity)) {
             if (!$request->get('_widgetContainer')) {
-                $this->get('session')->getFlashBag()->add(
+                $request->getSession()->getFlashBag()->add(
                     'success',
                     $this->get(TranslatorInterface::class)->trans('oro.call.controller.call.saved.message')
                 );
