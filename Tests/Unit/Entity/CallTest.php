@@ -3,6 +3,10 @@
 namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
 use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\CallDirection;
+use Oro\Bundle\CallBundle\Entity\CallStatus;
+use Oro\Bundle\OrganizationBundle\Entity\Organization;
+use Oro\Bundle\UserBundle\Entity\User;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class CallTest extends \PHPUnit\Framework\TestCase
@@ -10,7 +14,7 @@ class CallTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider getSetDataProvider
      */
-    public function testGetSet($property, $value)
+    public function testGetSet(string $property, mixed $value)
     {
         $obj = new Call();
 
@@ -19,30 +23,19 @@ class CallTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($value, $accessor->getValue($obj, $property));
     }
 
-    public function getSetDataProvider()
+    public function getSetDataProvider(): array
     {
-        return array(
-            array('owner', $this->createMock('Oro\Bundle\UserBundle\Entity\User')),
-            array('subject', 'test'),
-            array('phoneNumber', 'test'),
-            array('notes', 'test'),
-            array('callDateTime', new \DateTime()),
-            array(
-                'callStatus',
-                $this->getMockBuilder('Oro\Bundle\CallBundle\Entity\CallStatus')
-                    ->disableOriginalConstructor()
-                    ->getMock()
-            ),
-            array('duration', 1),
-            array(
-                'direction',
-                $this->getMockBuilder('Oro\Bundle\CallBundle\Entity\CallDirection')
-                    ->disableOriginalConstructor()
-                    ->getMock()
-
-            ),
-            array('organization', $this->createMock('Oro\Bundle\OrganizationBundle\Entity\Organization')),
-        );
+        return [
+            ['owner', $this->createMock(User::class)],
+            ['subject', 'test'],
+            ['phoneNumber', 'test'],
+            ['notes', 'test'],
+            ['callDateTime', new \DateTime()],
+            ['callStatus', $this->createMock(CallStatus::class)],
+            ['duration', 1],
+            ['direction', $this->createMock(CallDirection::class)],
+            ['organization', $this->createMock(Organization::class)],
+        ];
     }
 
     public function testIsUpdatedFlags()
