@@ -14,25 +14,31 @@ class CallApiHandlerTest extends \PHPUnit\Framework\TestCase
 {
     private const FORM_DATA = ['field' => 'value'];
 
-    private \PHPUnit\Framework\MockObject\MockObject|FormInterface $form;
+    /** @var FormInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $form;
 
-    private Request $request;
+    /** @var Request */
+    private $request;
 
-    private \PHPUnit\Framework\MockObject\MockObject|ObjectManager $manager;
+    /** @var ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
+    private $manager;
 
-    private CallApiHandler $handler;
+    /** @var Call */
+    private $entity;
 
-    private Call $entity;
+    /** @var CallApiHandler */
+    private $handler;
 
     protected function setUp(): void
     {
         $this->form = $this->createMock(Form::class);
         $this->request = new Request();
+        $this->manager = $this->createMock(ObjectManager::class);
+        $this->entity = new Call();
+
         $requestStack = new RequestStack();
         $requestStack->push($this->request);
-        $this->manager = $this->createMock(ObjectManager::class);
 
-        $this->entity  = new Call();
         $this->handler = new CallApiHandler($this->form, $requestStack, $this->manager);
     }
 

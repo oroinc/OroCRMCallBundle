@@ -22,35 +22,35 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
 {
     private const FORM_DATA = ['field' => 'value'];
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|FormInterface */
+    /** @var FormInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $form;
 
     /** @var Request */
     private $request;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|ObjectManager */
+    /** @var ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
     private $manager;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|PhoneProviderInterface */
+    /** @var PhoneProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $phoneProvider;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|ActivityManager */
+    /** @var ActivityManager|\PHPUnit\Framework\MockObject\MockObject */
     private $activityManager;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|CallActivityManager */
+    /** @var CallActivityManager|\PHPUnit\Framework\MockObject\MockObject */
     private $callActivityManager;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|EntityRoutingHelper */
+    /** @var EntityRoutingHelper|\PHPUnit\Framework\MockObject\MockObject */
     private $entityRoutingHelper;
 
-    /** @var \PHPUnit\Framework\MockObject\MockObject|FormFactory */
+    /** @var FormFactory|\PHPUnit\Framework\MockObject\MockObject */
     private $formFactory;
-
-    /** @var CallHandler */
-    private $handler;
 
     /** @var Call */
     private $entity;
+
+    /** @var CallHandler */
+    private $handler;
 
     protected function setUp(): void
     {
@@ -64,8 +64,8 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->callActivityManager = $this->createMock(CallActivityManager::class);
         $this->entityRoutingHelper = $this->createMock(EntityRoutingHelper::class);
         $this->formFactory = $this->createMock(FormFactory::class);
-
         $this->entity = new Call();
+
         $this->handler = new CallHandler(
             'oro_call_form',
             'oro_call_form',
@@ -147,7 +147,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
     public function testProcessGetRequestWithTargetEntity()
     {
         ReflectionUtil::setId($this->entity, 123);
-        $targetEntity  = new TestTarget(123);
+        $targetEntity = new TestTarget(123);
         $targetEntity1 = new TestTarget(456);
 
         $this->request->query->set('entityClass', get_class($targetEntity));
@@ -189,7 +189,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
 
     public function testProcessGetRequestWithNewEntity()
     {
-        $targetEntity  = new TestTarget(123);
+        $targetEntity = new TestTarget(123);
         $targetEntity1 = new TestTarget(456);
 
         $this->request->query->set('entityClass', get_class($targetEntity));
