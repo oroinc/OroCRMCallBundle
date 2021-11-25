@@ -29,7 +29,7 @@
     {% set actions = [action] %}
 
     {% set action %}
-        <a href="<%= routing.generate('oro_call_view', {'id': relatedActivityId}) %>"
+        <a href="<%- routing.generate('oro_call_view', {'id': relatedActivityId}) %>"
            class="dropdown-item"
            title="{{ 'oro.call.view_call'|trans({'{{ entity }}': entityName}) }}"><span
                 class="fa-eye hide-text" aria-hidden="true">{{ 'oro.call.view_call'|trans({'{{ entity }}': entityName}) }}</span>
