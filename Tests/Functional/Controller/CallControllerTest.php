@@ -2,15 +2,15 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Functional\Controller;
 
+use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
-use Symfony\Component\Form\Form;
 
 class CallControllerTest extends WebTestCase
 {
     protected function setUp(): void
     {
         $this->initClient(
-            array(),
+            [],
             array_merge($this->generateBasicAuthHeader())
         );
         $this->client->useHashNavigation(true);
@@ -26,7 +26,6 @@ class CallControllerTest extends WebTestCase
     public function testCreate()
     {
         $crawler = $this->client->request('GET', $this->getUrl('oro_call_create'));
-        /** @var Form $form */
         $form = $crawler->selectButton('Save and Close')->form();
         $form['oro_call_form[subject]'] = 'Test Call';
         $form['oro_call_form[duration]'] = '00:00:05';
@@ -38,9 +37,9 @@ class CallControllerTest extends WebTestCase
 
         $result = $this->client->getResponse();
         $this->assertHtmlResponseStatusCodeEquals($result, 200);
-        static::assertStringContainsString("Call saved", $crawler->html());
+        self::assertStringContainsString('Call saved', $crawler->html());
 
-        $call = self::getContainer()->get('doctrine.orm.entity_manager')->getRepository('OroCallBundle:Call')
+        $call = self::getContainer()->get('doctrine.orm.entity_manager')->getRepository(Call::class)
             ->findOneBySubject('Test Call');
         $this->assertNotNull($call);
     }
@@ -52,7 +51,7 @@ class CallControllerTest extends WebTestCase
     {
         $response = $this->client->requestGrid(
             'calls-grid',
-            array('calls-grid[_filter][subject][value]' => 'Test Call')
+            ['calls-grid[_filter][subject][value]' => 'Test Call']
         );
 
         $result = $this->getJsonResponseContent($response, 200);
@@ -61,9 +60,8 @@ class CallControllerTest extends WebTestCase
         $id = $result['id'];
         $crawler = $this->client->request(
             'GET',
-            $this->getUrl('oro_call_update', array('id' => $result['id']))
+            $this->getUrl('oro_call_update', ['id' => $result['id']])
         );
-        /** @var Form $form */
         $form = $crawler->selectButton('Save and Close')->form();
         $form['oro_call_form[subject]'] = 'Test Update Call';
 
@@ -72,7 +70,7 @@ class CallControllerTest extends WebTestCase
 
         $result = $this->client->getResponse();
         $this->assertHtmlResponseStatusCodeEquals($result, 200);
-        static::assertStringContainsString("Call saved", $crawler->html());
+        self::assertStringContainsString('Call saved', $crawler->html());
 
         return $id;
     }
@@ -84,12 +82,12 @@ class CallControllerTest extends WebTestCase
     {
         $crawler = $this->client->request(
             'GET',
-            $this->getUrl('oro_call_view', array('id' => $id))
+            $this->getUrl('oro_call_view', ['id' => $id])
         );
 
         $result = $this->client->getResponse();
         $this->assertHtmlResponseStatusCodeEquals($result, 200);
-        static::assertStringContainsString("Test Update Call", $crawler->html());
+        self::assertStringContainsString('Test Update Call', $crawler->html());
     }
 
     /**
@@ -99,7 +97,7 @@ class CallControllerTest extends WebTestCase
     {
         $this->ajaxRequest(
             'DELETE',
-            $this->getUrl('oro_api_delete_call', array('id' => $id))
+            $this->getUrl('oro_api_delete_call', ['id' => $id])
         );
 
         $result = $this->client->getResponse();
@@ -107,7 +105,7 @@ class CallControllerTest extends WebTestCase
 
         $this->client->request(
             'GET',
-            $this->getUrl('oro_call_update', array('id' => $id))
+            $this->getUrl('oro_call_update', ['id' => $id])
         );
 
         $result = $this->client->getResponse();

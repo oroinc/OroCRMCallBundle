@@ -3,6 +3,7 @@
 namespace Oro\Bundle\CallBundle\Tests\Functional\Controller\API\Rest;
 
 use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
+use Oro\Bundle\UserBundle\Entity\User;
 
 class CallControllerTest extends WebTestCase
 {
@@ -17,19 +18,19 @@ class CallControllerTest extends WebTestCase
     public function testCreate()
     {
         $request = [
-            "call" => [
-                "subject"      => 'Test Call ' . mt_rand(),
-                "owner"        => '1',
-                "duration"     => '00:00:05',
-                "direction"    => 'outgoing',
-                "callDateTime" => date('c'),
-                "phoneNumber"  => '123-123=123',
-                "callStatus"   => 'completed',
-                "associations" => [
+            'call' => [
+                'subject'      => 'Test Call ' . mt_rand(),
+                'owner'        => '1',
+                'duration'     => '00:00:05',
+                'direction'    => 'outgoing',
+                'callDateTime' => date('c'),
+                'phoneNumber'  => '123-123=123',
+                'callStatus'   => 'completed',
+                'associations' => [
                     [
-                        "entityName" => 'Oro\Bundle\UserBundle\Entity\User',
-                        "entityId"   => 1,
-                        "type"       => 'activity'
+                        'entityName' => User::class,
+                        'entityId'   => 1,
+                        'type'       => 'activity'
                     ],
                 ]
             ]
@@ -88,7 +89,7 @@ class CallControllerTest extends WebTestCase
      */
     public function testUpdate(array $request)
     {
-        $request['call']['subject'] .= "_Updated";
+        $request['call']['subject'] .= '_Updated';
         $this->client->jsonRequest(
             'PUT',
             $this->getUrl('oro_api_put_call', ['id' => $request['id']]),
@@ -136,19 +137,19 @@ class CallControllerTest extends WebTestCase
     public function testCreateWithSecondsDuration()
     {
         $request = [
-            "call" => [
-                "subject"      => 'Test Call ' . mt_rand(),
-                "owner"        => '1',
-                "duration"     => '23.5h 13.5s',
-                "direction"    => 'outgoing',
-                "callDateTime" => date('c'),
-                "phoneNumber"  => '123-123=123',
-                "callStatus"   => 'completed',
-                "associations" => [
+            'call' => [
+                'subject'      => 'Test Call ' . mt_rand(),
+                'owner'        => '1',
+                'duration'     => '23.5h 13.5s',
+                'direction'    => 'outgoing',
+                'callDateTime' => date('c'),
+                'phoneNumber'  => '123-123=123',
+                'callStatus'   => 'completed',
+                'associations' => [
                     [
-                        "entityName" => 'Oro\Bundle\UserBundle\Entity\User',
-                        "entityId"   => 1,
-                        "type"       => 'activity'
+                        'entityName' => User::class,
+                        'entityId'   => 1,
+                        'type'       => 'activity'
                     ],
                 ]
             ]
@@ -187,19 +188,19 @@ class CallControllerTest extends WebTestCase
     public function testCreateWithoutCallDateTime()
     {
         $request = [
-            "call" => [
-                "subject"      => 'Test Call ' . mt_rand(),
-                "owner"        => '1',
-                "duration"     => '00:00:05',
-                "direction"    => 'outgoing',
-                "callDateTime" => null,
-                "phoneNumber"  => '123-123=123',
-                "callStatus"   => 'completed',
-                "associations" => [
+            'call' => [
+                'subject'      => 'Test Call ' . mt_rand(),
+                'owner'        => '1',
+                'duration'     => '00:00:05',
+                'direction'    => 'outgoing',
+                'callDateTime' => null,
+                'phoneNumber'  => '123-123=123',
+                'callStatus'   => 'completed',
+                'associations' => [
                     [
-                        "entityName" => 'Oro\Bundle\UserBundle\Entity\User',
-                        "entityId"   => 1,
-                        "type"       => 'activity'
+                        'entityName' => User::class,
+                        'entityId'   => 1,
+                        'type'       => 'activity'
                     ],
                 ]
             ]
