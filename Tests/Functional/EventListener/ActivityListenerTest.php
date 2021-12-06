@@ -17,9 +17,7 @@ class ActivityListenerTest extends WebTestCase
     protected function setUp(): void
     {
         $this->initClient();
-        $this->loadFixtures([
-            'Oro\Bundle\ContactBundle\Tests\Functional\DataFixtures\LoadContactEntitiesData',
-        ]);
+        $this->loadFixtures([LoadContactEntitiesData::class]);
     }
 
     public function testRemoveContactFromContextShouldDecreaseActivityCounter()
@@ -52,7 +50,7 @@ class ActivityListenerTest extends WebTestCase
     /**
      * @return ActivityManager
      */
-    protected function getActivityManager()
+    private function getActivityManager()
     {
         return $this->getContainer()->get('oro_activity.manager');
     }
@@ -62,9 +60,9 @@ class ActivityListenerTest extends WebTestCase
      *
      * @return CallDirection
      */
-    protected function findCallDirection($name)
+    private function findCallDirection($name)
     {
-        return $this->getRegistry()->getRepository('OroCallBundle:CallDirection')->findOneByName($name);
+        return $this->getRegistry()->getRepository(CallDirection::class)->findOneByName($name);
     }
 
     /**
@@ -72,15 +70,15 @@ class ActivityListenerTest extends WebTestCase
      *
      * @return Contact
      */
-    protected function findContact($firstName)
+    private function findContact($firstName)
     {
-        return $this->getRegistry()->getRepository('OroContactBundle:Contact')->findOneByFirstName($firstName);
+        return $this->getRegistry()->getRepository(Contact::class)->findOneByFirstName($firstName);
     }
 
     /**
      * @return EntityManager
      */
-    protected function getEntityManager()
+    private function getEntityManager()
     {
         return $this->getRegistry()->getManager();
     }
@@ -88,7 +86,7 @@ class ActivityListenerTest extends WebTestCase
     /**
      * @return Registry
      */
-    protected function getRegistry()
+    private function getRegistry()
     {
         return $this->getContainer()->get('doctrine');
     }
