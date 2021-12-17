@@ -205,7 +205,7 @@ Delete a collection of call records.
 
 ### activityTargets
 
-A records to which the call record associated with.
+Records associated with the call record.
 
 ## SUBRESOURCES
 
