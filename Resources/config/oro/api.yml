@@ -3,8 +3,6 @@ api:
         Oro\Bundle\CallBundle\Entity\Call:
             documentation_resource: '@OroCallBundle/Resources/doc/api/call.md'
             fields:
-                activityTargets:
-                    data_type: association:manyToMany:activity
                 direction:
                     exclude: false # override exclude rule from entity.yml
             filters:

@@ -203,10 +203,6 @@ Delete a collection of call records.
 
 **This field must not be empty, if it is passed.**
 
-### activityTargets
-
-Records associated with the call record.
-
 ## SUBRESOURCES
 
 ### callStatus
@@ -316,28 +312,6 @@ Example:
 }
 ```
 {@/request}
-
-### activityTargets
-
-#### get_subresource
-
-Retrieve records to which the call associated.
-
-#### get_relationship
-
-Retrieve the IDs of records to which the call associated.
-
-#### add_relationship
-
-Associate records with the call.
-
-#### update_relationship
-
-Completely replace association between records and the call.
-
-#### delete_relationship
-
-Delete association between records and the call.
 
 
 # Oro\Bundle\CallBundle\Entity\CallDirection
