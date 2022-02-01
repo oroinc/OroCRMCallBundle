@@ -7,8 +7,11 @@ Oro\Bundle\CallBundle\Entity\Call:
         callDateTime:
             - NotBlank: ~
             - Type:
-                type: \DateTimeInterface
+                type: DateTimeInterface
                 message: oro.call.call.call_date_time.type.message
+                payload:
+                    jsValidation:
+                        type: DateTime
         callStatus:
             - NotBlank: ~
         duration:
