@@ -2,7 +2,6 @@ search:
     Oro\Bundle\CallBundle\Entity\Call:
         alias: oro_call
         label: oro.call.entity_plural_label
-        title_fields: [subject, phoneNumber]
         route:
             name: oro_call_view
             parameters:
