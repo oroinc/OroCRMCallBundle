@@ -59,64 +59,64 @@ class CallActivityListProvider implements
 
     /**
      * {@inheritdoc}
+     * @param Call $entity
      */
     public function getSubject($entity)
     {
-        /** @var $entity Call */
         return $entity->getSubject();
     }
 
     /**
      * {@inheritdoc}
+     * @param Call $entity
      */
     public function getDescription($entity)
     {
-        /** @var $entity Call */
         return trim(strip_tags($entity->getNotes()));
     }
 
     /**
      * {@inheritdoc}
+     * @param Call $entity
      */
     public function getOwner($entity)
     {
-        /** @var $entity Call */
         return $entity->getOwner();
     }
 
     /**
      * {@inheritdoc}
+     * @param Call $entity
      */
     public function getCreatedAt($entity)
     {
-        /** @var $entity Call */
         return $entity->getCreatedAt();
     }
 
     /**
      * {@inheritdoc}
+     * @param Call $entity
      */
     public function getUpdatedAt($entity)
     {
-        /** @var $entity Call */
         return $entity->getUpdatedAt();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getData(ActivityList $activityListEntity)
+    public function getData(ActivityList $activityList)
     {
         return [];
     }
 
     /**
      * {@inheritdoc}
+     * @param Call $entity
      */
-    public function getOrganization($activityEntity)
+    public function getOrganization($entity)
     {
-        /** @var $activityEntity Call */
-        return $activityEntity->getOrganization();
+        return $entity->getOrganization();
     }
 
     /**
@@ -130,7 +130,7 @@ class CallActivityListProvider implements
     /**
      * {@inheritdoc}
      */
-    public function getRoutes($activityEntity)
+    public function getRoutes($entity)
     {
         return [
             'itemView'   => 'oro_call_widget_info',
@@ -161,6 +161,7 @@ class CallActivityListProvider implements
 
     /**
      * {@inheritdoc}
+     * @param Call $entity
      */
     public function getTargetEntities($entity)
     {
@@ -177,6 +178,7 @@ class CallActivityListProvider implements
 
     /**
      * {@inheritdoc}
+     * @param Call $entity
      */
     public function getActivityOwners($entity, ActivityList $activityList)
     {
@@ -191,6 +193,15 @@ class CallActivityListProvider implements
         $activityOwner->setActivity($activityList);
         $activityOwner->setOrganization($organization);
         $activityOwner->setUser($owner);
+
         return [$activityOwner];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isActivityListApplicable(ActivityList $activityList): bool
+    {
+        return true;
     }
 }
