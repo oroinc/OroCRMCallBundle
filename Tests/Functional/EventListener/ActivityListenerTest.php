@@ -2,8 +2,8 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Functional\EventListener;
 
-use Doctrine\Bundle\DoctrineBundle\Registry;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\ActivityContactBundle\Direction\DirectionProviderInterface;
 use Oro\Bundle\CallBundle\Entity\Call;
@@ -47,47 +47,28 @@ class ActivityListenerTest extends WebTestCase
         $this->assertEquals($secondContacted, $secondContact->getAcContactCount());
     }
 
-    /**
-     * @return ActivityManager
-     */
-    private function getActivityManager()
+    private function getActivityManager(): ActivityManager
     {
         return $this->getContainer()->get('oro_activity.manager');
     }
 
-    /**
-     * @param string $name
-     *
-     * @return CallDirection
-     */
-    private function findCallDirection($name)
+    private function findCallDirection(string $name): CallDirection
     {
-        return $this->getRegistry()->getRepository(CallDirection::class)->findOneByName($name);
+        return $this->getDoctrine()->getRepository(CallDirection::class)->findOneByName($name);
     }
 
-    /**
-     * @param string $firstName
-     *
-     * @return Contact
-     */
-    private function findContact($firstName)
+    private function findContact(string $firstName): Contact
     {
-        return $this->getRegistry()->getRepository(Contact::class)->findOneByFirstName($firstName);
+        return $this->getDoctrine()->getRepository(Contact::class)->findOneByFirstName($firstName);
     }
 
-    /**
-     * @return EntityManager
-     */
-    private function getEntityManager()
+    private function getEntityManager(): EntityManagerInterface
     {
-        return $this->getRegistry()->getManager();
+        return $this->getDoctrine()->getManager();
     }
 
-    /**
-     * @return Registry
-     */
-    private function getRegistry()
+    private function getDoctrine(): ManagerRegistry
     {
-        return $this->getContainer()->get('doctrine');
+        return self::getContainer()->get('doctrine');
     }
 }
