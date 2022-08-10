@@ -1,0 +1,36 @@
+features:
+    call:
+        label: oro.call.feature.label
+        description: oro.call.feature.description
+        allow_if_all_abstain: true
+        routes:
+            - oro_call_index
+            - oro_call_view
+            - oro_call_create
+            - oro_call_update
+            - oro_call_activity_view
+            - oro_call_widget_calls
+            - oro_call_base_widget_calls
+            - oro_call_widget_info
+            - oro_api_get_calls
+            - oro_api_get_call
+            - oro_api_put_call
+            - oro_api_post_call
+            - oro_api_delete_call
+            - oro_api_options_calls
+        entities:
+            - Oro\Bundle\CallBundle\Entity\Call
+            - Oro\Bundle\CallBundle\Entity\CallDirection
+            - Oro\Bundle\CallBundle\Entity\CallStatus
+        api_resources:
+            - Oro\Bundle\CallBundle\Entity\Call
+            - Oro\Bundle\CallBundle\Entity\CallDirection
+            - Oro\Bundle\CallBundle\Entity\CallStatus
+        navigation_items:
+            - application_menu.activities_tab.call_list
+        dashboard_widgets:
+            - recent_calls
+        placeholder_items:
+            - oro_log_call_button
+            - oro_log_call_link
+            - oro_phone_action_log_call_button

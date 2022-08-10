@@ -17,6 +17,11 @@ oro:
             call_list.description: List of calls
             shortcut_call_list.label: Show Calls list
             shortcut_call_list.description: List of calls
+
+        feature:
+            label: Calls
+            description: Enables recording and organizing call-related details, such as the subjects of calls, people involved, and call duration.
+
         form:
             choose_or_enter_phone: Choose or enter a phone number ...
 
@@ -45,9 +50,6 @@ oro:
         changed_by:  added by {{ user }}, updated by {{ editor }}
         view:        View call log
 
-        #
-        # Oro/Bundle/CallBundle/Entity/Call
-        #
         entity_label:          Call
         entity_plural_label:   Calls
         entity_grid_all_view_label: All %entity_plural_label%
