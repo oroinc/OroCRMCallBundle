@@ -5,3 +5,5 @@ Oro\Bundle\CallBundle\Entity\Call:
         notes: 'test'
         organization: '@organization'
         owner: '@admin'
+        callStatus: '@call_in_progress'
+        direction: '@call_incoming'
