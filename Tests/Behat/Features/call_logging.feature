@@ -57,8 +57,8 @@ Feature: Call logging
 
   Scenario: Deleting call from grid
     Given there is following Call:
-      | Subject         |
-      | Call to Charlie |
+      | Subject         | Direction      | CallStatus        | PhoneNumber |
+      | Call to Charlie | @call_outgoing | @call_in_progress | 0501468826  |
     And I reload the page
     And there are two records in grid
     When I click delete Call to Charlie in grid
