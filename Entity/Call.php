@@ -3,10 +3,13 @@
 namespace Oro\Bundle\CallBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Oro\Bundle\CallBundle\Model\ExtendCall;
+use Oro\Bundle\ActivityBundle\Model\ActivityInterface;
+use Oro\Bundle\ActivityBundle\Model\ExtendActivity;
 use Oro\Bundle\EntityBundle\EntityProperty\DatesAwareInterface;
 use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
 use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\ConfigField;
+use Oro\Bundle\EntityExtendBundle\Entity\ExtendEntityInterface;
+use Oro\Bundle\EntityExtendBundle\Entity\ExtendEntityTrait;
 use Oro\Bundle\OrganizationBundle\Entity\Organization;
 use Oro\Bundle\UserBundle\Entity\User;
 
@@ -53,8 +56,11 @@ use Oro\Bundle\UserBundle\Entity\User;
  *      }
  * )
  */
-class Call extends ExtendCall implements DatesAwareInterface
+class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterface
 {
+    use ExtendActivity;
+    use ExtendEntityTrait;
+
     /**
      * @var int
      *
@@ -165,7 +171,6 @@ class Call extends ExtendCall implements DatesAwareInterface
 
     public function __construct()
     {
-        parent::__construct();
         $this->callDateTime = new \DateTime('now', new \DateTimeZone('UTC'));
         $this->duration = 0;
     }
