@@ -5,9 +5,9 @@ namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\CallDirection;
 use Oro\Bundle\CallBundle\Entity\CallStatus;
+use Oro\Bundle\EntityExtendBundle\PropertyAccess;
 use Oro\Bundle\OrganizationBundle\Entity\Organization;
 use Oro\Bundle\UserBundle\Entity\User;
-use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class CallTest extends \PHPUnit\Framework\TestCase
 {
