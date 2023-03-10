@@ -16,12 +16,27 @@ oro_behat_extension:
       selector:
         locator: '//div[@class="accordion-heading"]'
         type: xpath
+
     Log Call Form:
       selector: 'form[name="oro_call_form"]'
       class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
       options:
         mapping:
           Call date & time: 'oro_call_form[callDateTime]'
+
+    Recent Calls:
+        selector:
+            type: 'xpath'
+            locator: '//div[@title="Recent calls"]/../..'
+
+    Recent Calls Actions:
+        selector:
+            type: 'xpath'
+            locator: '//div[@title="Recent calls"]/..//div[@class="default-actions-container"]//button[contains(@id,"dashboard-action")]'
+
+    Recent Calls Grid:
+        class: Oro\Bundle\DataGridBundle\Tests\Behat\Element\Grid
+        selector: 'div[data-page-component-name="dashboard-recent-calls-grid"]'
 
   pages:
     Call Create:
