@@ -1,0 +1,30 @@
+Oro\Bundle\UserBundle\Entity\User:
+    second_user:
+        username: user2
+        email: user2@example.com
+        firstName: New
+        lastName: Owner
+        password: password
+        salt: salt
+        organization: '@organization'
+        owner: '@business_unit'
+
+Oro\Bundle\CallBundle\Entity\Call:
+    call2:
+        subject: 'Test Call 2'
+        phoneNumber: '2'
+        notes: 'test 2'
+        organization: '@organization'
+        owner: '@admin'
+        callDateTime: '<(new DateTime("2016-01-02 11:00:00 UTC"))>'
+        callStatus: '@call_in_progress'
+        direction: '@call_incoming'
+    call3:
+        subject: 'Test Call 3'
+        phoneNumber: '3'
+        notes: 'test 3'
+        organization: '@organization'
+        owner: '@second_user'
+        callDateTime: '<(new DateTime("2016-01-03 11:00:00 UTC"))>'
+        callStatus: '@call_in_progress'
+        direction: '@call_incoming'
