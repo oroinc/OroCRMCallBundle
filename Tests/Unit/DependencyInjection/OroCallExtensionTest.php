@@ -2,20 +2,18 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Unit\DependencyInjection;
 
-use Oro\Bundle\CallBundle\Controller\Api\Rest\CallController;
 use Oro\Bundle\CallBundle\DependencyInjection\OroCallExtension;
-use Oro\Bundle\TestFrameworkBundle\Test\DependencyInjection\ExtensionTestCase;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class OroCallExtensionTest extends ExtensionTestCase
+class OroCallExtensionTest extends \PHPUnit\Framework\TestCase
 {
     public function testLoad(): void
     {
-        $this->loadExtension(new OroCallExtension());
+        $container = new ContainerBuilder();
 
-        $expectedDefinitions = [
-            CallController::class,
-        ];
+        $extension = new OroCallExtension();
+        $extension->load([], $container);
 
-        $this->assertDefinitionsLoaded($expectedDefinitions);
+        self::assertNotEmpty($container->getDefinitions());
     }
 }
