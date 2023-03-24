@@ -8,6 +8,7 @@ oro_behat_extension:
         - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\FixturesContext
         - Oro\Bundle\SecurityBundle\Tests\Behat\Context\ACLContext
         - Oro\Bundle\SearchBundle\Tests\Behat\Context\SearchContext
+        - Oro\Bundle\DashboardBundle\Tests\Behat\Context\FeatureContext
       paths:
         - '@OroCallBundle/Tests/Behat/Features'
 
