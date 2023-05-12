@@ -22,7 +22,7 @@ class OroCallExtension extends AbstractExtension implements ServiceSubscriberInt
     }
 
     /**
-     * {@inheritdoc }
+     * {@inheritdoc}
      */
     public function getFunctions()
     {
