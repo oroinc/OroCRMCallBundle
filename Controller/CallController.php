@@ -107,6 +107,7 @@ class CallController extends AbstractController
     /**
      * @Route("/view/{id}", name="oro_call_view")
      * @Template
+     * @AclAncestor("oro_call_view")
      */
     public function viewAction(Call $entity)
     {
