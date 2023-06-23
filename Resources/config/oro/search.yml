@@ -15,7 +15,7 @@ search:
             -
                 name: phoneNumber
                 target_type: text
-                target_fields: [phoneNumber]
+                target_fields: [phone]
             -
                 name: notes
                 target_type: text
