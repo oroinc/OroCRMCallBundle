@@ -3,7 +3,6 @@
 namespace Oro\Bundle\CallBundle\Tests\Functional\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\ActivityContactBundle\Direction\DirectionProviderInterface;
 use Oro\Bundle\CallBundle\Entity\Call;
@@ -22,53 +21,40 @@ class ActivityListenerTest extends WebTestCase
 
     public function testRemoveContactFromContextShouldDecreaseActivityCounter()
     {
-        $firstContact = $this->findContact(LoadContactEntitiesData::FIRST_ENTITY_NAME);
-        $secondContact = $this->findContact(LoadContactEntitiesData::SECOND_ENTITY_NAME);
+        /** @var ActivityManager $activityManager */
+        $activityManager = self::getContainer()->get('oro_activity.manager');
+        /** @var EntityManagerInterface $em */
+        $em = self::getContainer()->get('doctrine')->getManagerForClass(Call::class);
+
+        /** @var Contact $firstContact */
+        $firstContact = $em->getRepository(Contact::class)->findOneBy([
+            'firstName' => LoadContactEntitiesData::FIRST_ENTITY_NAME
+        ]);
+        /** @var Contact $secondContact */
+        $secondContact = $em->getRepository(Contact::class)->findOneBy([
+            'firstName' => LoadContactEntitiesData::SECOND_ENTITY_NAME
+        ]);
 
         $firstContacted = $firstContact->getAcContactCount();
         $secondContacted = $firstContact->getAcContactCount();
 
         $call = new Call();
-        $call
-            ->setPhoneNumber('3058304958')
-            ->setSubject('subj')
-            ->setDirection($this->findCallDirection(DirectionProviderInterface::DIRECTION_OUTGOING));
-        $this->getActivityManager()->addActivityTargets($call, [$firstContact, $secondContact]);
-        $this->getEntityManager()->persist($call);
-        $this->getEntityManager()->flush();
+        $call->setPhoneNumber('3058304958');
+        $call->setSubject('subj');
+        $call->setDirection($em->getRepository(CallDirection::class)->findOneBy([
+            'name' => DirectionProviderInterface::DIRECTION_OUTGOING
+        ]));
+        $activityManager->addActivityTargets($call, [$firstContact, $secondContact]);
+        $em->persist($call);
+        $em->flush();
 
         $this->assertEquals($firstContacted + 1, $firstContact->getAcContactCount());
         $this->assertEquals($secondContacted + 1, $secondContact->getAcContactCount());
 
-        $this->getActivityManager()->removeActivityTarget($call, $secondContact);
-        $this->getEntityManager()->flush();
+        $activityManager->removeActivityTarget($call, $secondContact);
+        $em->flush();
 
         $this->assertEquals($firstContacted + 1, $firstContact->getAcContactCount());
         $this->assertEquals($secondContacted, $secondContact->getAcContactCount());
-    }
-
-    private function getActivityManager(): ActivityManager
-    {
-        return $this->getContainer()->get('oro_activity.manager');
-    }
-
-    private function findCallDirection(string $name): CallDirection
-    {
-        return $this->getDoctrine()->getRepository(CallDirection::class)->findOneByName($name);
-    }
-
-    private function findContact(string $firstName): Contact
-    {
-        return $this->getDoctrine()->getRepository(Contact::class)->findOneByFirstName($firstName);
-    }
-
-    private function getEntityManager(): EntityManagerInterface
-    {
-        return $this->getDoctrine()->getManager();
-    }
-
-    private function getDoctrine(): ManagerRegistry
-    {
-        return self::getContainer()->get('doctrine');
     }
 }
