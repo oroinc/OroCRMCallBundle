@@ -378,7 +378,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param \DateTime|null $createdAt
      * @return $this
      */
     public function setCreatedAt(\DateTime $createdAt = null)
@@ -397,7 +397,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
     }
 
     /**
-     * @param \DateTime $updatedAt
+     * @param \DateTime|null $updatedAt
      *
      * @return $this
      */
@@ -424,7 +424,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
     /**
      * Set organization
      *
-     * @param Organization $organization
+     * @param Organization|null $organization
      * @return Call
      */
     public function setOrganization(Organization $organization = null)
