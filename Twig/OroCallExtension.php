@@ -44,7 +44,7 @@ class OroCallExtension extends AbstractExtension implements ServiceSubscriberInt
     /**
      * {@inheritdoc}
      */
-    public static function getSubscribedServices()
+    public static function getSubscribedServices(): array
     {
         return [
             'oro_call.placeholder.log_call.filter' => LogCallPlaceholderFilter::class,
