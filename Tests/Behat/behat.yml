@@ -23,7 +23,10 @@ oro_behat_extension:
       class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
       options:
         mapping:
-          Call date & time: 'oro_call_form[callDateTime]'
+          Call date & time:
+            type: 'css'
+            locator: '[name="oro_call_form[callDateTime]"]'
+            element: DateTimePicker
 
     Recent Calls:
         selector:
