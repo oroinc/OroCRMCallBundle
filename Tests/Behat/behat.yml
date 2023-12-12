@@ -27,6 +27,10 @@ oro_behat_extension:
             type: 'css'
             locator: '[name="oro_call_form[callDateTime]"]'
             element: DateTimePicker
+          Select Field:
+            type: 'css'
+            locator: '[name="oro_call_form[select_field]"]'
+            element: Select2Entity
 
     Recent Calls:
         selector:
