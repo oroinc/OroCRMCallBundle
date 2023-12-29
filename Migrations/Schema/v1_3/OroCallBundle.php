@@ -4,16 +4,15 @@ namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_3;
 
 use Doctrine\DBAL\Schema\Schema;
 use Oro\Bundle\ActivityBundle\EntityConfig\ActivityScope;
-use Oro\Bundle\EntityExtendBundle\Migration\Extension\ExtendExtension;
 use Oro\Bundle\EntityExtendBundle\Migration\Extension\ExtendExtensionAwareInterface;
-use Oro\Bundle\EntityExtendBundle\Tools\ExtendDbIdentifierNameGenerator;
+use Oro\Bundle\EntityExtendBundle\Migration\Extension\ExtendExtensionAwareTrait;
+use Oro\Bundle\EntityExtendBundle\Migration\Extension\ExtendNameGeneratorAwareTrait;
 use Oro\Bundle\EntityExtendBundle\Tools\ExtendHelper;
 use Oro\Bundle\MigrationBundle\Migration\Extension\NameGeneratorAwareInterface;
 use Oro\Bundle\MigrationBundle\Migration\Migration;
 use Oro\Bundle\MigrationBundle\Migration\OrderedMigrationInterface;
 use Oro\Bundle\MigrationBundle\Migration\ParametrizedSqlMigrationQuery;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
-use Oro\Bundle\MigrationBundle\Tools\DbIdentifierNameGenerator;
 
 class OroCallBundle implements
     Migration,
@@ -21,11 +20,8 @@ class OroCallBundle implements
     NameGeneratorAwareInterface,
     ExtendExtensionAwareInterface
 {
-    /** @var ExtendDbIdentifierNameGenerator */
-    protected $nameGenerator;
-
-    /** @var ExtendExtension */
-    protected $extendExtension;
+    use ExtendNameGeneratorAwareTrait;
+    use ExtendExtensionAwareTrait;
 
     /**
      * {@inheritdoc}
@@ -33,22 +29,6 @@ class OroCallBundle implements
     public function getOrder()
     {
         return 2;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setNameGenerator(DbIdentifierNameGenerator $nameGenerator)
-    {
-        $this->nameGenerator = $nameGenerator;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setExtendExtension(ExtendExtension $extendExtension)
-    {
-        $this->extendExtension = $extendExtension;
     }
 
     /**

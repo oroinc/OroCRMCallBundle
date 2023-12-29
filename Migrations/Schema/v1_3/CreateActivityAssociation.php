@@ -3,16 +3,15 @@
 namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_3;
 
 use Doctrine\DBAL\Schema\Schema;
-use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtension;
 use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtensionAwareInterface;
+use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtensionAwareTrait;
 use Oro\Bundle\MigrationBundle\Migration\Migration;
 use Oro\Bundle\MigrationBundle\Migration\OrderedMigrationInterface;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
 class CreateActivityAssociation implements Migration, OrderedMigrationInterface, ActivityExtensionAwareInterface
 {
-    /** @var ActivityExtension */
-    protected $activityExtension;
+    use ActivityExtensionAwareTrait;
 
     /**
      * {@inheritdoc}
@@ -20,14 +19,6 @@ class CreateActivityAssociation implements Migration, OrderedMigrationInterface,
     public function getOrder()
     {
         return 1;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setActivityExtension(ActivityExtension $activityExtension)
-    {
-        $this->activityExtension = $activityExtension;
     }
 
     /**
