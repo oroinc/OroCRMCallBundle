@@ -3,25 +3,17 @@
 namespace Oro\Bundle\CallBundle\Migrations\Schema;
 
 use Doctrine\DBAL\Schema\Schema;
-use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtension;
 use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtensionAwareInterface;
-use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtension;
+use Oro\Bundle\ActivityBundle\Migration\Extension\ActivityExtensionAwareTrait;
 use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtensionAwareInterface;
+use Oro\Bundle\CommentBundle\Migration\Extension\CommentExtensionAwareTrait;
 use Oro\Bundle\MigrationBundle\Migration\Installation;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
 class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInterface, CommentExtensionAwareInterface
 {
-    /** @var CommentExtension */
-    protected $comment;
-
-    /** @var ActivityExtension */
-    protected $activityExtension;
-
-    public function setCommentExtension(CommentExtension $commentExtension)
-    {
-        $this->comment = $commentExtension;
-    }
+    use ActivityExtensionAwareTrait;
+    use CommentExtensionAwareTrait;
 
     /**
      * {@inheritdoc}
@@ -29,14 +21,6 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     public function getMigrationVersion()
     {
         return 'v1_10';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setActivityExtension(ActivityExtension $activityExtension)
-    {
-        $this->activityExtension = $activityExtension;
     }
 
     /**
@@ -55,7 +39,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         /** Foreign keys generation **/
         $this->addOrocrmCallForeignKeys($schema);
 
-        $this->comment->addCommentAssociation($schema, 'orocrm_call');
+        $this->commentExtension->addCommentAssociation($schema, 'orocrm_call');
     }
 
     /**
