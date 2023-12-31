@@ -16,25 +16,24 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     use CommentExtensionAwareTrait;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public function getMigrationVersion()
+    public function getMigrationVersion(): string
     {
         return 'v1_10';
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public function up(Schema $schema, QueryBag $queries)
+    public function up(Schema $schema, QueryBag $queries): void
     {
         /** Tables generation **/
         $this->createOrocrmCallTable($schema);
         $this->createOrocrmCallDirectionTable($schema);
         $this->createOrocrmCallStatusTable($schema);
-
-        self::createCallDirectionTranslationTable($schema);
-        self::createCallStatusTranslationTable($schema);
+        $this->createCallDirectionTranslationTable($schema);
+        $this->createCallStatusTranslationTable($schema);
 
         /** Foreign keys generation **/
         $this->addOrocrmCallForeignKeys($schema);
@@ -45,7 +44,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     /**
      * Create orocrm_call table
      */
-    protected function createOrocrmCallTable(Schema $schema)
+    private function createOrocrmCallTable(Schema $schema): void
     {
         $table = $schema->createTable('orocrm_call');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
@@ -56,15 +55,15 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         $table->addColumn('subject', 'string', ['length' => 255]);
         $table->addColumn('phone_number', 'string', ['notnull' => false, 'length' => 255]);
         $table->addColumn('notes', 'text', ['notnull' => false]);
-        $table->addColumn('call_date_time', 'datetime', []);
+        $table->addColumn('call_date_time', 'datetime');
         $table->addColumn('duration', 'duration', ['notnull' => false, 'default' => null]);
-        $table->addColumn('created_at', 'datetime', []);
-        $table->addColumn('updated_at', 'datetime', []);
+        $table->addColumn('created_at', 'datetime');
+        $table->addColumn('updated_at', 'datetime');
         $table->setPrimaryKey(['id']);
-        $table->addIndex(['organization_id'], 'IDX_1FBD1A2432C8A3DE', []);
-        $table->addIndex(['owner_id'], 'IDX_1FBD1A247E3C61F9', []);
-        $table->addIndex(['call_status_name'], 'IDX_1FBD1A2476DB3689', []);
-        $table->addIndex(['call_direction_name'], 'IDX_1FBD1A249F3E257D', []);
+        $table->addIndex(['organization_id'], 'IDX_1FBD1A2432C8A3DE');
+        $table->addIndex(['owner_id'], 'IDX_1FBD1A247E3C61F9');
+        $table->addIndex(['call_status_name'], 'IDX_1FBD1A2476DB3689');
+        $table->addIndex(['call_direction_name'], 'IDX_1FBD1A249F3E257D');
         $table->addIndex(['call_date_time', 'id'], 'call_dt_idx');
 
         $this->activityExtension->addActivityAssociation($schema, 'orocrm_call', 'oro_user');
@@ -73,7 +72,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     /**
      * Create orocrm_call_direction table
      */
-    protected function createOrocrmCallDirectionTable(Schema $schema)
+    private function createOrocrmCallDirectionTable(Schema $schema): void
     {
         $table = $schema->createTable('orocrm_call_direction');
         $table->addColumn('name', 'string', ['length' => 32]);
@@ -85,7 +84,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     /**
      * Create orocrm_call table
      */
-    protected function createOrocrmCallStatusTable(Schema $schema)
+    private function createOrocrmCallStatusTable(Schema $schema): void
     {
         $table = $schema->createTable('orocrm_call_status');
         $table->addColumn('name', 'string', ['length' => 32]);
@@ -97,7 +96,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     /**
      * Create orocrm_call table
      */
-    protected function addOrocrmCallForeignKeys(Schema $schema)
+    private function addOrocrmCallForeignKeys(Schema $schema): void
     {
         $table = $schema->getTable('orocrm_call');
         $table->addForeignKeyConstraint(
@@ -127,11 +126,10 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     }
 
     /**
-     * Generate table orocrm_call_direction_trans
+     * Create orocrm_call_direction_trans table
      */
-    public static function createCallDirectionTranslationTable(Schema $schema)
+    private function createCallDirectionTranslationTable(Schema $schema): void
     {
-        /** Generate table orocrm_call_direction_trans **/
         $table = $schema->createTable('orocrm_call_direction_trans');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('foreign_key', 'string', ['length' => 32]);
@@ -142,18 +140,15 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         $table->setPrimaryKey(['id']);
         $table->addIndex(
             ['locale', 'object_class', 'field', 'foreign_key'],
-            'call_direction_translation_idx',
-            []
+            'call_direction_translation_idx'
         );
-        /** End of generate table orocrm_call_direction_trans **/
     }
 
     /**
-     * Generate table orocrm_call_status_trans
+     * Create orocrm_call_status_trans table
      */
-    public static function createCallStatusTranslationTable(Schema $schema)
+    private function createCallStatusTranslationTable(Schema $schema): void
     {
-        /** Generate table orocrm_call_status_trans **/
         $table = $schema->createTable('orocrm_call_status_trans');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('foreign_key', 'string', ['length' => 32]);
@@ -164,9 +159,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         $table->setPrimaryKey(['id']);
         $table->addIndex(
             ['locale', 'object_class', 'field', 'foreign_key'],
-            'call_status_translation_idx',
-            []
+            'call_status_translation_idx'
         );
-        /** End of generate table orocrm_call_status_trans **/
     }
 }
