@@ -12,10 +12,12 @@ use Oro\Bundle\DataGridBundle\Datasource\Orm\OrmDatasource;
 use Oro\Bundle\DataGridBundle\Event\BuildAfter;
 use Oro\Bundle\DataGridBundle\Event\BuildBefore;
 use Oro\Bundle\UserBundle\Entity\User;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-class CallListenerTest extends \PHPUnit\Framework\TestCase
+class CallListenerTest extends TestCase
 {
-    /** @var EntityManager|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var EntityManager|MockObject */
     private $entityManager;
 
     /** @var CallListener */
@@ -108,7 +110,7 @@ class CallListenerTest extends \PHPUnit\Framework\TestCase
 
         $this->entityManager->expects($this->once())
             ->method('find')
-            ->with('OroUserBundle:User', 12)
+            ->with(User::class, 12)
             ->willReturn($user);
 
         $queryBuilder->expects($this->once())

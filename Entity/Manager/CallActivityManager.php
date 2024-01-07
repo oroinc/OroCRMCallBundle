@@ -38,7 +38,7 @@ class CallActivityManager
      */
     public function handleOnFlush(OnFlushEventArgs $event)
     {
-        $em  = $event->getEntityManager();
+        $em  = $event->getObjectManager();
         $uow = $em->getUnitOfWork();
 
         $newEntities = $uow->getScheduledEntityInsertions();

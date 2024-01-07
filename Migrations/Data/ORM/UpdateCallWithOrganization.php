@@ -4,8 +4,12 @@ namespace Oro\Bundle\CallBundle\Migrations\Data\ORM;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\OrganizationBundle\Migrations\Data\ORM\UpdateWithOrganization;
 
+/**
+ * Updates calls with organization.
+ */
 class UpdateCallWithOrganization extends UpdateWithOrganization implements DependentFixtureInterface
 {
     /**
@@ -21,6 +25,6 @@ class UpdateCallWithOrganization extends UpdateWithOrganization implements Depen
      */
     public function load(ObjectManager $manager)
     {
-        $this->update($manager, 'OroCallBundle:Call');
+        $this->update($manager, Call::class);
     }
 }
