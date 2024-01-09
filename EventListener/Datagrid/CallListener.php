@@ -7,7 +7,11 @@ use Oro\Bundle\DataGridBundle\Datagrid\Common\DatagridConfiguration;
 use Oro\Bundle\DataGridBundle\Datasource\Orm\OrmDatasource;
 use Oro\Bundle\DataGridBundle\Event\BuildAfter;
 use Oro\Bundle\DataGridBundle\Event\BuildBefore;
+use Oro\Bundle\UserBundle\Entity\User;
 
+/**
+ * Add required filters and remove useless fields in case of filtering
+ */
 class CallListener
 {
     /**
@@ -60,7 +64,7 @@ class CallListener
         $parameters = $datagrid->getParameters();
 
         if ($parameters->has('userId')) {
-            $user = $this->entityManager->find('OroUserBundle:User', $parameters->get('userId'));
+            $user = $this->entityManager->find(User::class, $parameters->get('userId'));
             $queryBuilder
                 ->andWhere('call.owner = :user')
                 ->setParameter('user', $user);

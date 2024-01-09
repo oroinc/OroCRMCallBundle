@@ -2,7 +2,10 @@
 
 namespace Oro\Bundle\CallBundle\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\CallBundle\Entity\CallDirection;
+use Oro\Bundle\CallBundle\Entity\CallStatus;
 use Oro\Bundle\CallBundle\Form\Handler\CallHandler;
 use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Oro\Bundle\SecurityBundle\Annotation\Acl;
@@ -31,7 +34,7 @@ class CallController extends AbstractController
     public function activityAction($entityClass, $entityId)
     {
         return array(
-            'entity' => $this->get(EntityRoutingHelper::class)->getEntity($entityClass, $entityId)
+            'entity' => $this->container->get(EntityRoutingHelper::class)->getEntity($entityClass, $entityId)
         );
     }
 
@@ -42,7 +45,7 @@ class CallController extends AbstractController
      *      id="oro_call_create",
      *      type="entity",
      *      permission="CREATE",
-     *      class="OroCallBundle:Call"
+     *      class="Oro\Bundle\CallBundle\Entity\Call"
      * )
      * @param Request $request
      * @return array|RedirectResponse
@@ -51,17 +54,17 @@ class CallController extends AbstractController
     {
         $entity = new Call();
 
-        $callStatus = $this->getDoctrine()
-            ->getRepository('OroCallBundle:CallStatus')
+        $callStatus = $this->container->get('doctrine')
+            ->getRepository(CallStatus::class)
             ->findOneByName('completed');
         $entity->setCallStatus($callStatus);
 
-        $callDirection = $this->getDoctrine()
-            ->getRepository('OroCallBundle:CallDirection')
+        $callDirection = $this->container->get('doctrine')
+            ->getRepository(CallDirection::class)
             ->findOneByName('outgoing');
         $entity->setDirection($callDirection);
 
-        $formAction = $this->get(EntityRoutingHelper::class)
+        $formAction = $this->container->get(EntityRoutingHelper::class)
             ->generateUrlByRequest('oro_call_create', $request);
 
         return $this->update($request, $entity, $formAction);
@@ -74,7 +77,7 @@ class CallController extends AbstractController
      *      id="oro_call_update",
      *      type="entity",
      *      permission="EDIT",
-     *      class="OroCallBundle:Call"
+     *      class="Oro\Bundle\CallBundle\Entity\Call"
      * )
      * @param Request $request
      * @param Call $entity
@@ -82,7 +85,7 @@ class CallController extends AbstractController
      */
     public function updateAction(Request $request, Call $entity)
     {
-        $formAction = $this->get('router')->generate('oro_call_update', ['id' => $entity->getId()]);
+        $formAction = $this->container->get('router')->generate('oro_call_update', ['id' => $entity->getId()]);
 
         return $this->update($request, $entity, $formAction);
     }
@@ -94,7 +97,7 @@ class CallController extends AbstractController
      *      id="oro_call_view",
      *      type="entity",
      *      permission="VIEW",
-     *      class="OroCallBundle:Call"
+     *      class="Oro\Bundle\CallBundle\Entity\Call"
      * )
      */
     public function indexAction()
@@ -172,14 +175,14 @@ class CallController extends AbstractController
     {
         $saved = false;
 
-        if ($this->get(CallHandler::class)->process($entity)) {
+        if ($this->container->get(CallHandler::class)->process($entity)) {
             if (!$request->get('_widgetContainer')) {
                 $request->getSession()->getFlashBag()->add(
                     'success',
-                    $this->get(TranslatorInterface::class)->trans('oro.call.controller.call.saved.message')
+                    $this->container->get(TranslatorInterface::class)->trans('oro.call.controller.call.saved.message')
                 );
 
-                return $this->get(Router::class)->redirect($entity);
+                return $this->container->get(Router::class)->redirect($entity);
             }
             $saved = true;
         }
@@ -187,7 +190,7 @@ class CallController extends AbstractController
         return array(
             'entity'     => $entity,
             'saved'      => $saved,
-            'form'       => $this->get(CallHandler::class)->getForm()->createView(),
+            'form'       => $this->container->get(CallHandler::class)->getForm()->createView(),
             'formAction' => $formAction
         );
     }
@@ -204,6 +207,7 @@ class CallController extends AbstractController
                 EntityRoutingHelper::class,
                 CallHandler::class,
                 Router::class,
+                'doctrine' => ManagerRegistry::class,
             ]
         );
     }

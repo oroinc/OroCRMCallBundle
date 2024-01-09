@@ -5,29 +5,29 @@ namespace Oro\Bundle\CallBundle\Migrations\Data\ORM;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Oro\Bundle\DashboardBundle\Migrations\Data\ORM\AbstractDashboardFixture;
+use Oro\Bundle\DashboardBundle\Migrations\Data\ORM\LoadDashboardData as LoadMainDashboardData;
 
+/**
+ * Adds "recent_calls" widget to "main" dashboard.
+ */
 class LoadDashboardData extends AbstractDashboardFixture implements DependentFixtureInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public function getDependencies()
+    public function getDependencies(): array
     {
-        return ['Oro\Bundle\DashboardBundle\Migrations\Data\ORM\LoadDashboardData'];
+        return [LoadMainDashboardData::class];
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $mainDashboard = $this->findAdminDashboardModel($manager, 'main');
-
         if ($mainDashboard) {
-            $mainDashboard->addWidget(
-                $this->createWidgetModel('recent_calls', [0, 50])
-            );
-
+            $mainDashboard->addWidget($this->createWidgetModel('recent_calls', [0, 50]));
             $manager->flush();
         }
     }

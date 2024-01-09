@@ -1,0 +1,21 @@
+CallBundle
+----------
+* The following methods in class `OroCallBundleInstaller`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/OroCallBundleInstaller.php#L21 "Oro\Bundle\CallBundle\Migrations\Schema\OroCallBundleInstaller")</sup> were removed:
+   - `setCommentExtension`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/OroCallBundleInstaller.php#L21 "Oro\Bundle\CallBundle\Migrations\Schema\OroCallBundleInstaller::setCommentExtension")</sup>
+   - `setActivityExtension`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/OroCallBundleInstaller.php#L37 "Oro\Bundle\CallBundle\Migrations\Schema\OroCallBundleInstaller::setActivityExtension")</sup>
+* The following methods in class `OroCallBundle`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_7/OroCallBundle.php#L21 "Oro\Bundle\CallBundle\Migrations\Schema\v1_7\OroCallBundle")</sup> were removed:
+   - `setDatabasePlatform`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_7/OroCallBundle.php#L21 "Oro\Bundle\CallBundle\Migrations\Schema\v1_7\OroCallBundle::setDatabasePlatform")</sup>
+   - `setCommentExtension`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_5/OroCallBundle.php#L16 "Oro\Bundle\CallBundle\Migrations\Schema\v1_5\OroCallBundle::setCommentExtension")</sup>
+   - `setNameGenerator`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_3/OroCallBundle.php#L41 "Oro\Bundle\CallBundle\Migrations\Schema\v1_3\OroCallBundle::setNameGenerator")</sup>
+   - `setExtendExtension`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_3/OroCallBundle.php#L49 "Oro\Bundle\CallBundle\Migrations\Schema\v1_3\OroCallBundle::setExtendExtension")</sup>
+* The `CreateActivityAssociation::setActivityExtension`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_3/CreateActivityAssociation.php#L28 "Oro\Bundle\CallBundle\Migrations\Schema\v1_3\CreateActivityAssociation::setActivityExtension")</sup> method was removed.
+* The following properties in class `OroCallBundleInstaller`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/OroCallBundleInstaller.php#L16 "Oro\Bundle\CallBundle\Migrations\Schema\OroCallBundleInstaller")</sup> were removed:
+   - `$comment`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/OroCallBundleInstaller.php#L16 "Oro\Bundle\CallBundle\Migrations\Schema\OroCallBundleInstaller::$comment")</sup>
+   - `$activityExtension`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/OroCallBundleInstaller.php#L19 "Oro\Bundle\CallBundle\Migrations\Schema\OroCallBundleInstaller::$activityExtension")</sup>
+* The following properties in class `OroCallBundle`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_7/OroCallBundle.php#L18 "Oro\Bundle\CallBundle\Migrations\Schema\v1_7\OroCallBundle")</sup> were removed:
+   - `$platform`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_7/OroCallBundle.php#L18 "Oro\Bundle\CallBundle\Migrations\Schema\v1_7\OroCallBundle::$platform")</sup>
+   - `$comment`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_5/OroCallBundle.php#L14 "Oro\Bundle\CallBundle\Migrations\Schema\v1_5\OroCallBundle::$comment")</sup>
+   - `$nameGenerator`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_3/OroCallBundle.php#L25 "Oro\Bundle\CallBundle\Migrations\Schema\v1_3\OroCallBundle::$nameGenerator")</sup>
+   - `$extendExtension`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_3/OroCallBundle.php#L28 "Oro\Bundle\CallBundle\Migrations\Schema\v1_3\OroCallBundle::$extendExtension")</sup>
+* The `CreateActivityAssociation::$activityExtension`<sup>[[?]](https://github.com/oroinc/OroCRMCallBundle/tree/5.1.0/Migrations/Schema/v1_3/CreateActivityAssociation.php#L15 "Oro\Bundle\CallBundle\Migrations\Schema\v1_3\CreateActivityAssociation::$activityExtension")</sup> property was removed.
+

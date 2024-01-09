@@ -105,7 +105,7 @@ class CallController extends RestController
      *      id="oro_call_delete",
      *      type="entity",
      *      permission="DELETE",
-     *      class="OroCallBundle:Call"
+     *      class="Oro\Bundle\CallBundle\Entity\Call"
      * )
      * @return Response
      */
@@ -121,7 +121,7 @@ class CallController extends RestController
      */
     public function getManager()
     {
-        return $this->get('oro_call.call.manager.api');
+        return $this->container->get('oro_call.call.manager.api');
     }
 
     /**
@@ -129,7 +129,7 @@ class CallController extends RestController
      */
     public function getForm()
     {
-        return $this->get('oro_call.call.form.api');
+        return $this->container->get('oro_call.call.form.api');
     }
 
     /**
@@ -137,6 +137,6 @@ class CallController extends RestController
      */
     public function getFormHandler()
     {
-        return $this->get('oro_call.call.form.handler.api');
+        return $this->container->get('oro_call.call.form.handler.api');
     }
 }

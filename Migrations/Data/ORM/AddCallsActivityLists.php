@@ -5,25 +5,29 @@ namespace Oro\Bundle\CallBundle\Migrations\Data\ORM;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Oro\Bundle\ActivityListBundle\Migrations\Data\ORM\AddActivityListsData;
+use Oro\Bundle\CallBundle\Entity\Call;
 
+/**
+ * Adds activity lists for Call entity.
+ */
 class AddCallsActivityLists extends AddActivityListsData implements DependentFixtureInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public function getDependencies()
+    public function getDependencies(): array
     {
-        return ['Oro\Bundle\CallBundle\Migrations\Data\ORM\UpdateCallWithOrganization'];
+        return [UpdateCallWithOrganization::class];
     }
 
     /**
      * {@inheritDoc}
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->addActivityListsForActivityClass(
             $manager,
-            'OroCallBundle:Call',
+            Call::class,
             'owner',
             'organization'
         );
