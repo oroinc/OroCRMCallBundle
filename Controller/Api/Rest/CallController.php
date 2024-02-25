@@ -4,8 +4,9 @@ namespace Oro\Bundle\CallBundle\Controller\Api\Rest;
 
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Oro\Bundle\SecurityBundle\Annotation\Acl;
-use Oro\Bundle\SecurityBundle\Annotation\AclAncestor;
+use Oro\Bundle\CallBundle\Entity\Call;
+use Oro\Bundle\SecurityBundle\Attribute\Acl;
+use Oro\Bundle\SecurityBundle\Attribute\AclAncestor;
 use Oro\Bundle\SoapBundle\Controller\Api\Rest\RestController;
 use Oro\Bundle\SoapBundle\Entity\Manager\ApiEntityManager;
 use Oro\Bundle\SoapBundle\Form\Handler\ApiFormHandler;
@@ -20,25 +21,25 @@ class CallController extends RestController
     /**
      * REST GET list
      *
-     * @QueryParam(
-     *      name="page",
-     *      requirements="\d+",
-     *      nullable=true,
-     *      description="Page number, starting from 1. Defaults to 1."
-     * )
-     * @QueryParam(
-     *      name="limit",
-     *      requirements="\d+",
-     *      nullable=true,
-     *      description="Number of items per page. defaults to 10."
-     * )
      * @ApiDoc(
      *      description="Get all calls items",
      *      resource=true
      * )
-     * @AclAncestor("oro_call_view")
      * @return Response
      */
+    #[QueryParam(
+        name: 'page',
+        requirements: '\d+',
+        description: 'Page number, starting from 1. Defaults to 1.',
+        nullable: true
+    )]
+    #[QueryParam(
+        name: 'limit',
+        requirements: '\d+',
+        description: 'Number of items per page. defaults to 10.',
+        nullable: true
+    )]
+    #[AclAncestor('oro_call_view')]
     public function cgetAction()
     {
         return $this->handleGetListRequest();
@@ -53,9 +54,9 @@ class CallController extends RestController
      *      description="Get call item",
      *      resource=true
      * )
-     * @AclAncestor("oro_call_view")
      * @return Response
      */
+    #[AclAncestor('oro_call_view')]
     public function getAction(int $id)
     {
         return $this->handleGetRequest($id);
@@ -70,9 +71,9 @@ class CallController extends RestController
      *      description="Update call",
      *      resource=true
      * )
-     * @AclAncestor("oro_call_update")
      * @return Response
      */
+    #[AclAncestor('oro_call_update')]
     public function putAction(int $id)
     {
         return $this->handleUpdateRequest($id);
@@ -85,8 +86,8 @@ class CallController extends RestController
      *      description="Create new call",
      *      resource=true
      * )
-     * @AclAncestor("oro_call_create")
      */
+    #[AclAncestor('oro_call_create')]
     public function postAction()
     {
         return $this->handleCreateRequest();
@@ -101,14 +102,9 @@ class CallController extends RestController
      *      description="Delete call",
      *      resource=true
      * )
-     * @Acl(
-     *      id="oro_call_delete",
-     *      type="entity",
-     *      permission="DELETE",
-     *      class="Oro\Bundle\CallBundle\Entity\Call"
-     * )
      * @return Response
      */
+    #[Acl(id: 'oro_call_delete', type: 'entity', class: Call::class, permission: 'DELETE')]
     public function deleteAction(int $id)
     {
         return $this->handleDeleteRequest($id);

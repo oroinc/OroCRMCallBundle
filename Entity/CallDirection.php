@@ -2,52 +2,36 @@
 
 namespace Oro\Bundle\CallBundle\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
-use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
+use Oro\Bundle\EntityConfigBundle\Metadata\Attribute\Config;
 
 /**
- * CallDirection
- *
- * @ORM\Table(name="orocrm_call_direction")
- * @ORM\Entity
- * @Gedmo\TranslationEntity(class="Oro\Bundle\CallBundle\Entity\CallDirectionTranslation")
- * @Config(
- *      defaultValues={
- *          "grouping"={
- *              "groups"={"dictionary"}
- *          },
- *          "dictionary"={
- *              "virtual_fields"={"label"},
- *              "search_fields"={"label"},
- *              "representation_field"="label",
- *          }
- *      }
- * )
+ * Entity that represents Call Direction
  */
+#[ORM\Entity]
+#[ORM\Table(name: 'orocrm_call_direction')]
+#[Gedmo\TranslationEntity(class: CallDirectionTranslation::class)]
+#[Config(
+    defaultValues: [
+        'grouping' => ['groups' => ['dictionary']],
+        'dictionary' => ['virtual_fields' => ['label'], 'search_fields' => ['label'], 'representation_field' => 'label']
+    ]
+)]
 class CallDirection implements Translatable
 {
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=32)
-     * @ORM\Id
-     */
-    protected $name;
+    #[ORM\Column(name: 'name', type: Types::STRING, length: 32)]
+    #[ORM\Id]
+    protected ?string $name = null;
 
-    /**
-     * @var string
-     *
-     * @Gedmo\Translatable
-     * @ORM\Column(name="label", type="string", length=255, unique=true)
-     */
-    protected $label;
+    #[ORM\Column(name: 'label', type: Types::STRING, length: 255, unique: true)]
+    #[Gedmo\Translatable]
+    protected ?string $label = null;
 
-    /**
-     * @Gedmo\Locale
-     */
-    protected $locale;
+    #[Gedmo\Locale]
+    protected ?string $locale = null;
 
     /**
      * @param string $name
