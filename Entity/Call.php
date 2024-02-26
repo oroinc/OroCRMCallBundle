@@ -2,169 +2,102 @@
 
 namespace Oro\Bundle\CallBundle\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Extend\Entity\Autocomplete\OroCallBundle_Entity_Call;
 use Oro\Bundle\ActivityBundle\Model\ActivityInterface;
 use Oro\Bundle\ActivityBundle\Model\ExtendActivity;
 use Oro\Bundle\EntityBundle\EntityProperty\DatesAwareInterface;
-use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
-use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\ConfigField;
+use Oro\Bundle\EntityConfigBundle\Metadata\Attribute\Config;
+use Oro\Bundle\EntityConfigBundle\Metadata\Attribute\ConfigField;
 use Oro\Bundle\EntityExtendBundle\Entity\ExtendEntityInterface;
 use Oro\Bundle\EntityExtendBundle\Entity\ExtendEntityTrait;
 use Oro\Bundle\OrganizationBundle\Entity\Organization;
+use Oro\Bundle\OrganizationBundle\Entity\OrganizationInterface;
 use Oro\Bundle\UserBundle\Entity\User;
 
 /**
  * Entity that represents Call
  *
- * @ORM\Table(
- *      name="orocrm_call",
- *      indexes={@ORM\Index(name="call_dt_idx",columns={"call_date_time", "id"})}
- * )
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
- * @Config(
- *      routeName="oro_call_index",
- *      defaultValues={
- *          "entity"={
- *              "icon"="fa-phone-square"
- *          },
- *          "ownership"={
- *              "owner_type"="USER",
- *              "owner_field_name"="owner",
- *              "owner_column_name"="owner_id",
- *              "organization_field_name"="organization",
- *              "organization_column_name"="organization_id"
- *          },
- *          "security"={
- *              "type"="ACL",
- *              "group_name"="",
- *              "category"="account_management"
- *          },
- *          "grouping"={
- *              "groups"={"activity"}
- *          },
- *          "activity"={
- *              "route"="oro_call_activity_view",
- *              "acl"="oro_call_view",
- *              "action_button_widget"="oro_log_call_button",
- *              "action_link_widget"="oro_log_call_link"
- *          },
- *          "grid"={
- *              "default"="calls-grid",
- *              "context"="call-for-context-grid"
- *          }
- *      }
- * )
  * @mixin OroCallBundle_Entity_Call
  */
+#[ORM\Entity]
+#[ORM\Table(name: 'orocrm_call')]
+#[ORM\Index(columns: ['call_date_time', 'id'], name: 'call_dt_idx')]
+#[ORM\HasLifecycleCallbacks]
+#[Config(
+    routeName: 'oro_call_index',
+    defaultValues: [
+        'entity' => ['icon' => 'fa-phone-square'],
+        'ownership' => [
+            'owner_type' => 'USER',
+            'owner_field_name' => 'owner',
+            'owner_column_name' => 'owner_id',
+            'organization_field_name' => 'organization',
+            'organization_column_name' => 'organization_id'
+        ],
+        'security' => ['type' => 'ACL', 'group_name' => '', 'category' => 'account_management'],
+        'grouping' => ['groups' => ['activity']],
+        'activity' => [
+            'route' => 'oro_call_activity_view',
+            'acl' => 'oro_call_view',
+            'action_button_widget' => 'oro_log_call_button',
+            'action_link_widget' => 'oro_log_call_link'
+        ],
+        'grid' => ['default' => 'calls-grid', 'context' => 'call-for-context-grid']
+    ]
+)]
 class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterface
 {
     use ExtendActivity;
     use ExtendEntityTrait;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
+    #[ORM\Column(name: 'id', type: Types::INTEGER)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    protected ?int $id = null;
 
-    /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="Oro\Bundle\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    protected $owner;
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'owner_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    protected ?User $owner = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="subject", type="string", length=255)
-     */
-    protected $subject;
+    #[ORM\Column(name: 'subject', type: Types::STRING, length: 255)]
+    protected ?string $subject = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="phone_number", type="string", length=255, nullable=true)
-     */
-    protected $phoneNumber;
+    #[ORM\Column(name: 'phone_number', type: Types::STRING, length: 255, nullable: true)]
+    protected ?string $phoneNumber = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="notes", type="text", nullable=true)
-     */
-    protected $notes;
+    #[ORM\Column(name: 'notes', type: Types::TEXT, nullable: true)]
+    protected ?string $notes = null;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="call_date_time", type="datetime")
-     */
-    protected $callDateTime;
+    #[ORM\Column(name: 'call_date_time', type: Types::DATETIME_MUTABLE)]
+    protected ?\DateTimeInterface $callDateTime = null;
 
-    /**
-     * @var CallStatus
-     *
-     * @ORM\ManyToOne(targetEntity="Oro\Bundle\CallBundle\Entity\CallStatus")
-     * @ORM\JoinColumn(name="call_status_name", referencedColumnName="name", onDelete="SET NULL")
-     */
-    protected $callStatus;
+    #[ORM\ManyToOne(targetEntity: CallStatus::class)]
+    #[ORM\JoinColumn(name: 'call_status_name', referencedColumnName: 'name', onDelete: 'SET NULL')]
+    protected ?CallStatus $callStatus = null;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="duration", type="duration", nullable=true)
      */
+    #[ORM\Column(name: 'duration', type: 'duration', nullable: true)]
     protected $duration;
 
-    /**
-     * @var CallDirection
-     *
-     * @ORM\ManyToOne(targetEntity="Oro\Bundle\CallBundle\Entity\CallDirection")
-     * @ORM\JoinColumn(name="call_direction_name", referencedColumnName="name", onDelete="SET NULL")
-     */
-    protected $direction;
+    #[ORM\ManyToOne(targetEntity: CallDirection::class)]
+    #[ORM\JoinColumn(name: 'call_direction_name', referencedColumnName: 'name', onDelete: 'SET NULL')]
+    protected ?CallDirection $direction = null;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime")
-     * @ConfigField(
-     *      defaultValues={
-     *          "entity"={
-     *              "label"="oro.ui.created_at"
-     *          }
-     *      }
-     * )
-     */
-    protected $createdAt;
+    #[ORM\Column(name: 'created_at', type: Types::DATETIME_MUTABLE)]
+    #[ConfigField(defaultValues: ['entity' => ['label' => 'oro.ui.created_at']])]
+    protected ?\DateTimeInterface $createdAt = null;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime")
-     * @ConfigField(
-     *      defaultValues={
-     *          "entity"={
-     *              "label"="oro.ui.updated_at"
-     *          }
-     *      }
-     * )
-     */
-    protected $updatedAt;
+    #[ORM\Column(name: 'updated_at', type: Types::DATETIME_MUTABLE)]
+    #[ConfigField(defaultValues: ['entity' => ['label' => 'oro.ui.updated_at']])]
+    protected ?\DateTimeInterface $updatedAt = null;
 
-    /**
-     * @var Organization
-     *
-     * @ORM\ManyToOne(targetEntity="Oro\Bundle\OrganizationBundle\Entity\Organization")
-     * @ORM\JoinColumn(name="organization_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    protected $organization;
+    #[ORM\ManyToOne(targetEntity: Organization::class)]
+    #[ORM\JoinColumn(name: 'organization_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    protected ?OrganizationInterface $organization = null;
 
     /**
      * @var bool

@@ -8,8 +8,8 @@ use Oro\Bundle\CallBundle\Entity\CallDirection;
 use Oro\Bundle\CallBundle\Entity\CallStatus;
 use Oro\Bundle\CallBundle\Form\Handler\CallHandler;
 use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
-use Oro\Bundle\SecurityBundle\Annotation\Acl;
-use Oro\Bundle\SecurityBundle\Annotation\AclAncestor;
+use Oro\Bundle\SecurityBundle\Attribute\Acl;
+use Oro\Bundle\SecurityBundle\Attribute\AclAncestor;
 use Oro\Bundle\UIBundle\Route\Router;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,11 +26,10 @@ class CallController extends AbstractController
     /**
      * This action is used to render the list of calls associated with the given entity
      * on the view page of this entity
-     *
-     * @Route("/activity/view/{entityClass}/{entityId}", name="oro_call_activity_view")
-     * @AclAncestor("oro_call_view")
-     * @Template
      */
+    #[Route(path: '/activity/view/{entityClass}/{entityId}', name: 'oro_call_activity_view')]
+    #[Template]
+    #[AclAncestor('oro_call_view')]
     public function activityAction($entityClass, $entityId)
     {
         return array(
@@ -39,17 +38,12 @@ class CallController extends AbstractController
     }
 
     /**
-     * @Route("/create", name="oro_call_create")
-     * @Template("@OroCall/Call/update.html.twig")
-     * @Acl(
-     *      id="oro_call_create",
-     *      type="entity",
-     *      permission="CREATE",
-     *      class="Oro\Bundle\CallBundle\Entity\Call"
-     * )
      * @param Request $request
      * @return array|RedirectResponse
      */
+    #[Route(path: '/create', name: 'oro_call_create')]
+    #[Template('@OroCall/Call/update.html.twig')]
+    #[Acl(id: 'oro_call_create', type: 'entity', class: Call::class, permission: 'CREATE')]
     public function createAction(Request $request)
     {
         $entity = new Call();
@@ -71,18 +65,13 @@ class CallController extends AbstractController
     }
 
     /**
-     * @Route("/update/{id}", name="oro_call_update", requirements={"id"="\d+"})
-     * @Template
-     * @Acl(
-     *      id="oro_call_update",
-     *      type="entity",
-     *      permission="EDIT",
-     *      class="Oro\Bundle\CallBundle\Entity\Call"
-     * )
      * @param Request $request
      * @param Call $entity
      * @return array|RedirectResponse
      */
+    #[Route(path: '/update/{id}', name: 'oro_call_update', requirements: ['id' => '\d+'])]
+    #[Template]
+    #[Acl(id: 'oro_call_update', type: 'entity', class: Call::class, permission: 'EDIT')]
     public function updateAction(Request $request, Call $entity)
     {
         $formAction = $this->container->get('router')->generate('oro_call_update', ['id' => $entity->getId()]);
@@ -90,16 +79,9 @@ class CallController extends AbstractController
         return $this->update($request, $entity, $formAction);
     }
 
-    /**
-     * @Route(name="oro_call_index")
-     * @Template
-     * @Acl(
-     *      id="oro_call_view",
-     *      type="entity",
-     *      permission="VIEW",
-     *      class="Oro\Bundle\CallBundle\Entity\Call"
-     * )
-     */
+    #[Route(name: 'oro_call_index')]
+    #[Template]
+    #[Acl(id: 'oro_call_view', type: 'entity', class: Call::class, permission: 'VIEW')]
     public function indexAction()
     {
         return array(
@@ -107,11 +89,9 @@ class CallController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/view/{id}", name="oro_call_view")
-     * @Template
-     * @AclAncestor("oro_call_view")
-     */
+    #[Route(path: '/view/{id}', name: 'oro_call_view')]
+    #[Template]
+    #[AclAncestor('oro_call_view')]
     public function viewAction(Call $entity)
     {
         return [
@@ -120,13 +100,12 @@ class CallController extends AbstractController
     }
 
     /**
-     * @Route("/widget", name="oro_call_widget_calls")
-     * @Template
-     * @AclAncestor("oro_call_view")
-     *
      * @param Request $request
      * @return array
      */
+    #[Route(path: '/widget', name: 'oro_call_widget_calls')]
+    #[Template]
+    #[AclAncestor('oro_call_view')]
     public function callsAction(Request $request)
     {
         return array(
@@ -134,11 +113,9 @@ class CallController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/base-widget", name="oro_call_base_widget_calls")
-     * @Template
-     * @AclAncestor("oro_call_view")
-     */
+    #[Route(path: '/base-widget', name: 'oro_call_base_widget_calls')]
+    #[Template]
+    #[AclAncestor('oro_call_view')]
     public function baseCallsAction(Request $request)
     {
         return array(
@@ -146,16 +123,14 @@ class CallController extends AbstractController
         );
     }
 
-    /**
-     * @Route(
-     *      "/widget/info/{id}/{renderContexts}",
-     *      name="oro_call_widget_info",
-     *      requirements={"id"="\d+", "renderContexts"="\d+"},
-     *      defaults={"renderContexts"=true}
-     * )
-     * @Template("@OroCall/Call/widget/info.html.twig")
-     * @AclAncestor("oro_call_view")
-     */
+    #[Route(
+        path: '/widget/info/{id}/{renderContexts}',
+        name: 'oro_call_widget_info',
+        requirements: ['id' => '\d+', 'renderContexts' => '\d+'],
+        defaults: ['renderContexts' => true]
+    )]
+    #[Template('@OroCall/Call/widget/info.html.twig')]
+    #[AclAncestor('oro_call_view')]
     public function infoAction(Call $entity, $renderContexts)
     {
         return [
