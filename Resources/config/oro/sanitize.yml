@@ -1,0 +1,5 @@
+oro_sanitize:
+    entity:
+        orocrm_call:
+            fields:
+                phone_number: md5
