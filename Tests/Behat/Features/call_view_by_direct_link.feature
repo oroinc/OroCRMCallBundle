@@ -1,3 +1,4 @@
+@regression
 @ticket-CRM-9408
 @fixture-OroCallBundle:CallFixture.yml
 
