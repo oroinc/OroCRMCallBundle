@@ -1,3 +1,4 @@
+@regression
 @fixture-OroUserBundle:user.yml
 @fixture-OroCallBundle:CallFixture.yml
 
