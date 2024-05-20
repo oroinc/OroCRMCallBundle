@@ -1,0 +1,59 @@
+dependencies:
+    - Oro\Bundle\TestFrameworkBundle\Tests\Functional\DataFixtures\LoadUser
+    - Oro\Bundle\TestFrameworkBundle\Tests\Functional\DataFixtures\LoadBusinessUnit
+    - Oro\Bundle\TestFrameworkBundle\Tests\Functional\DataFixtures\LoadOrganization
+    - Oro\Bundle\CallBundle\Tests\Functional\DataFixtures\LoadCallStatusData
+    - Oro\Bundle\CallBundle\Tests\Functional\DataFixtures\LoadCallDirectionData
+    - Oro\Bundle\ContactBundle\Tests\Functional\Api\DataFixtures\LoadContactsData
+
+Oro\Bundle\UserBundle\Entity\User:
+    user1:
+        username: 'user1'
+        email: 'user1@example.com'
+        firstName: 'John'
+        lastName: 'Doe'
+        enabled: true
+        owner: '@business_unit'
+        businessUnits: ['@business_unit']
+        organization: '@organization'
+        organizations: ['@organization']
+        password: <userPassword(@user1->username)>
+    user2:
+        username: 'user2'
+        email: 'user2@example.com'
+        firstName: 'Merry'
+        lastName: 'Backwards'
+        enabled: true
+        owner: '@business_unit'
+        businessUnits: ['@business_unit']
+        organization: '@organization'
+        organizations: ['@organization']
+        password: <userPassword(@user2->username)>
+
+Oro\Bundle\CallBundle\Entity\Call:
+    call1:
+        subject: 'Create New Contact'
+        phoneNumber: '123-123'
+        notes: 'clarify contact information'
+        owner: '@user'
+        organization: '@organization'
+        callStatus: '@call_status_completed'
+        direction: '@call_direction_incoming'
+        duration: 100
+        callDateTime: '<dateTimeBetween("-10 days", "now")>'
+        createdAt: '<dateTimeBetween("-20 days", "now")>'
+        updatedAt: '<dateTimeBetween($createdAt, "now")>'
+        contact_a6d273bd: ['@contact1']
+    call2:
+        subject: 'Call 2'
+        owner: '@user1'
+        organization: '@organization'
+        callStatus: '@call_status_completed'
+        direction: '@call_direction_incoming'
+        contact_a6d273bd: ['@contact1', '@contact2']
+    call3:
+        subject: 'Call 3'
+        owner: '@user'
+        organization: '@organization'
+        callStatus: '@call_status_in_progress'
+        direction: '@call_direction_outgoing'

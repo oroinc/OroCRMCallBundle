@@ -1,0 +1,38 @@
+data:
+    type: calls
+    id: '<toString(@call1->id)>'
+    attributes:
+        subject: 'Create New Contact'
+        phoneNumber: 123-123
+        notes: 'clarify contact information'
+        callDateTime: '@call1->callDateTime->format("Y-m-d\TH:i:s\Z")'
+        duration: 100
+        createdAt: '@call1->createdAt->format("Y-m-d\TH:i:s\Z")'
+        updatedAt: '@call1->updatedAt->format("Y-m-d\TH:i:s\Z")'
+    relationships:
+        owner:
+            data:
+                type: users
+                id: '<toString(@user->id)>'
+        callStatus:
+            data:
+                type: callstatuses
+                id: '<toString(@call_status_completed->name)>'
+        direction:
+            data:
+                type: calldirections
+                id: '<toString(@call_direction_incoming->name)>'
+        organization:
+            data:
+                type: organizations
+                id: '<toString(@organization->id)>'
+        activityTargets:
+            data:
+                -
+                    type: users
+                    id: '<toString(@user->id)>'
+                -
+                    type: contacts
+                    id: '<toString(@contact1->id)>'
+        comments:
+            data: []
