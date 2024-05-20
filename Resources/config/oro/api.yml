@@ -8,6 +8,8 @@ api:
             filters:
                 fields:
                     updatedAt: ~ # enable manually because this field is not indexed
+            actions:
+                update_list: true
 
         Oro\Bundle\CallBundle\Entity\CallDirection:
             documentation_resource: '@OroCallBundle/Resources/doc/api/call.md'
