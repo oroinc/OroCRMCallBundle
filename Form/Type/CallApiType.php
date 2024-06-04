@@ -88,7 +88,7 @@ class CallApiType extends AbstractType
                 $context->addViolation(
                     'Invalid association provided at position {{index}}. Entity Name and Entity ID should not be null.',
                     [
-                        '{{index}}' => $index+1
+                        '{{index}}' => $index + 1
                     ]
                 );
             }
