@@ -4,9 +4,9 @@ namespace Oro\Bundle\CallBundle\Migrations\Schema\v1_3;
 
 use Doctrine\DBAL\Schema\Schema;
 use Oro\Bundle\ActivityBundle\EntityConfig\ActivityScope;
-use Oro\Bundle\EntityExtendBundle\Migration\Extension\ExtendExtensionAwareInterface;
-use Oro\Bundle\EntityExtendBundle\Migration\Extension\ExtendExtensionAwareTrait;
 use Oro\Bundle\EntityExtendBundle\Migration\Extension\ExtendNameGeneratorAwareTrait;
+use Oro\Bundle\EntityExtendBundle\Migration\Extension\OutdatedExtendExtensionAwareInterface;
+use Oro\Bundle\EntityExtendBundle\Migration\Extension\OutdatedExtendExtensionAwareTrait;
 use Oro\Bundle\EntityExtendBundle\Tools\ExtendHelper;
 use Oro\Bundle\MigrationBundle\Migration\Extension\NameGeneratorAwareInterface;
 use Oro\Bundle\MigrationBundle\Migration\Migration;
@@ -18,10 +18,10 @@ class OroCallBundle implements
     Migration,
     OrderedMigrationInterface,
     NameGeneratorAwareInterface,
-    ExtendExtensionAwareInterface
+    OutdatedExtendExtensionAwareInterface
 {
     use ExtendNameGeneratorAwareTrait;
-    use ExtendExtensionAwareTrait;
+    use OutdatedExtendExtensionAwareTrait;
 
     /**
      * {@inheritdoc}
@@ -116,8 +116,8 @@ class OroCallBundle implements
      */
     protected function getAssociationTableName($targetTableName)
     {
-        $sourceClassName = $this->extendExtension->getEntityClassByTableName('orocrm_call');
-        $targetClassName = $this->extendExtension->getEntityClassByTableName($targetTableName);
+        $sourceClassName = $this->outdatedExtendExtension->getEntityClassByTableName('orocrm_call');
+        $targetClassName = $this->outdatedExtendExtension->getEntityClassByTableName($targetTableName);
 
         $associationName = ExtendHelper::buildAssociationName(
             $targetClassName,
@@ -155,7 +155,7 @@ class OroCallBundle implements
             . ' WHERE class_name = :class'
             . ' )';
 
-        $callClassName = $this->extendExtension->getEntityClassByTableName('orocrm_call');
+        $callClassName = $this->outdatedExtendExtension->getEntityClassByTableName('orocrm_call');
 
         $query = new ParametrizedSqlMigrationQuery();
         $query->addSql(
