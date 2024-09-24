@@ -21,9 +21,7 @@ class OroCallExtension extends AbstractExtension implements ServiceSubscriberInt
         $this->container = $container;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getFunctions()
     {
         return [
@@ -41,9 +39,7 @@ class OroCallExtension extends AbstractExtension implements ServiceSubscriberInt
         return $this->getLogCallPlaceholderFilter()->isApplicable($entity);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public static function getSubscribedServices(): array
     {
         return [

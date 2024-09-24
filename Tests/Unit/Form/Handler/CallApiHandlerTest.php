@@ -29,6 +29,7 @@ class CallApiHandlerTest extends \PHPUnit\Framework\TestCase
     /** @var CallApiHandler */
     private $handler;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->form = $this->createMock(Form::class);

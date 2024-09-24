@@ -115,6 +115,7 @@ class CallController extends RestController
      *
      * @return ApiEntityManager
      */
+    #[\Override]
     public function getManager()
     {
         return $this->container->get('oro_call.call.manager.api');
@@ -123,6 +124,7 @@ class CallController extends RestController
     /**
      * @return FormInterface
      */
+    #[\Override]
     public function getForm()
     {
         return $this->container->get('oro_call.call.form.api');
@@ -131,6 +133,7 @@ class CallController extends RestController
     /**
      * @return ApiFormHandler
      */
+    #[\Override]
     public function getFormHandler()
     {
         return $this->container->get('oro_call.call.form.handler.api');

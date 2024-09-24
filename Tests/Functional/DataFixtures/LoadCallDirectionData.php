@@ -12,9 +12,7 @@ class LoadCallDirectionData extends AbstractFixture
     public const CALL_DIRECTION_INCOMING = 'call_direction_incoming';
     public const CALL_DIRECTION_OUTGOING = 'call_direction_outgoing';
 
-    /**
-     * {@inheritDoc}
-     */
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         /** @var EntityRepository $repository */

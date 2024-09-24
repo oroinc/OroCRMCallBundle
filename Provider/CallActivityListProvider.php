@@ -45,9 +45,7 @@ class CallActivityListProvider implements
         $this->commentAssociationHelper  = $commentAssociationHelper;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function isApplicableTarget($entityClass, $accessible = true)
     {
         return $this->activityAssociationHelper->isActivityAssociationEnabled(
@@ -58,78 +56,72 @@ class CallActivityListProvider implements
     }
 
     /**
-     * {@inheritdoc}
      * @param Call $entity
      */
+    #[\Override]
     public function getSubject($entity)
     {
         return $entity->getSubject();
     }
 
     /**
-     * {@inheritdoc}
      * @param Call $entity
      */
+    #[\Override]
     public function getDescription($entity)
     {
         return trim(strip_tags($entity->getNotes()));
     }
 
     /**
-     * {@inheritdoc}
      * @param Call $entity
      */
+    #[\Override]
     public function getOwner($entity)
     {
         return $entity->getOwner();
     }
 
     /**
-     * {@inheritdoc}
      * @param Call $entity
      */
+    #[\Override]
     public function getCreatedAt($entity)
     {
         return $entity->getCreatedAt();
     }
 
     /**
-     * {@inheritdoc}
      * @param Call $entity
      */
+    #[\Override]
     public function getUpdatedAt($entity)
     {
         return $entity->getUpdatedAt();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getData(ActivityList $activityList)
     {
         return [];
     }
 
     /**
-     * {@inheritdoc}
      * @param Call $entity
      */
+    #[\Override]
     public function getOrganization($entity)
     {
         return $entity->getOrganization();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getTemplate()
     {
         return '@OroCall/Call/js/activityItemTemplate.html.twig';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getRoutes($entity)
     {
         return [
@@ -139,17 +131,13 @@ class CallActivityListProvider implements
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getActivityId($entity)
     {
         return $this->doctrineHelper->getSingleEntityIdentifier($entity);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function isApplicable($entity)
     {
         if (\is_object($entity)) {
@@ -160,26 +148,24 @@ class CallActivityListProvider implements
     }
 
     /**
-     * {@inheritdoc}
      * @param Call $entity
      */
+    #[\Override]
     public function getTargetEntities($entity)
     {
         return $entity->getActivityTargets();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function isCommentsEnabled($entityClass)
     {
         return $this->commentAssociationHelper->isCommentAssociationEnabled($entityClass);
     }
 
     /**
-     * {@inheritdoc}
      * @param Call $entity
      */
+    #[\Override]
     public function getActivityOwners($entity, ActivityList $activityList)
     {
         $organization = $this->getOrganization($entity);
@@ -197,9 +183,7 @@ class CallActivityListProvider implements
         return [$activityOwner];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    #[\Override]
     public function isActivityListApplicable(ActivityList $activityList): bool
     {
         return true;

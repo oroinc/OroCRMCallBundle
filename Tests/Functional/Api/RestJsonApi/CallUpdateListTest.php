@@ -10,6 +10,7 @@ use Oro\Bundle\CallBundle\Entity\Call;
  */
 class CallUpdateListTest extends RestJsonApiUpdateListTestCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

@@ -12,9 +12,7 @@ class LoadCallStatusData extends AbstractFixture
     public const CALL_STATUS_IN_PROGRESS = 'call_status_in_progress';
     public const CALL_STATUS_COMPLETED = 'call_status_completed';
 
-    /**
-     * {@inheritDoc}
-     */
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         /** @var EntityRepository $repository */

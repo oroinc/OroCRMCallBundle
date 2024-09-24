@@ -19,6 +19,7 @@ class CallTypeTest extends FormIntegrationTestCase
     /** @var CallType */
     private $type;
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
