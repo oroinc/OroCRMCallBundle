@@ -13,17 +13,13 @@ class CreateActivityAssociation implements Migration, OrderedMigrationInterface,
 {
     use ActivityExtensionAwareTrait;
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getOrder()
     {
         return 1;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function up(Schema $schema, QueryBag $queries)
     {
         $this->activityExtension->addActivityAssociation($schema, 'orocrm_call', 'oro_user');

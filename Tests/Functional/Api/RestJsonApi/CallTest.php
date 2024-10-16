@@ -14,6 +14,7 @@ use Oro\Bundle\UserProBundle\Tests\Functional\DataFixtures\LoadOrganizationData;
  */
 class CallTest extends RestJsonApiTestCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

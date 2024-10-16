@@ -305,6 +305,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
     /**
      * @return \DateTime
      */
+    #[\Override]
     public function getCreatedAt()
     {
         return $this->createdAt;
@@ -314,6 +315,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
      * @param \DateTime|null $createdAt
      * @return $this
      */
+    #[\Override]
     public function setCreatedAt(\DateTime $createdAt = null)
     {
         $this->createdAt = $createdAt;
@@ -324,6 +326,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
     /**
      * @return \DateTime
      */
+    #[\Override]
     public function getUpdatedAt()
     {
         return $this->updatedAt;
@@ -334,6 +337,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
      *
      * @return $this
      */
+    #[\Override]
     public function setUpdatedAt(\DateTime $updatedAt = null)
     {
         $this->updatedAtSet = false;
@@ -349,6 +353,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
     /**
      * @return bool
      */
+    #[\Override]
     public function isUpdatedAtSet()
     {
         return $this->updatedAtSet;
@@ -380,6 +385,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
     /**
      * @return string
      */
+    #[\Override]
     public function __toString()
     {
         return (string)$this->getSubject();

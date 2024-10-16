@@ -12,17 +12,13 @@ use Oro\Bundle\CallBundle\Entity\Call;
  */
 class AddCallsActivityLists extends AddActivityListsData implements DependentFixtureInterface
 {
-    /**
-     * {@inheritDoc}
-     */
+    #[\Override]
     public function getDependencies(): array
     {
         return [UpdateCallWithOrganization::class];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         $this->addActivityListsForActivityClass(

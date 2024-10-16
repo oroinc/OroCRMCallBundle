@@ -15,6 +15,7 @@ class CallActivityManagerTest extends \PHPUnit\Framework\TestCase
     /** @var CallActivityManager */
     private $manager;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->activityManager = $this->createMock(ActivityManager::class);
