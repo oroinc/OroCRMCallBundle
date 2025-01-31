@@ -195,7 +195,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
      * @param \DateTime|null $callDateTime
      * @return Call
      */
-    public function setCallDateTime(\DateTime $callDateTime = null)
+    public function setCallDateTime(?\DateTime $callDateTime = null)
     {
         $this->callDateTime = $callDateTime;
 
@@ -316,7 +316,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
      * @return $this
      */
     #[\Override]
-    public function setCreatedAt(\DateTime $createdAt = null)
+    public function setCreatedAt(?\DateTime $createdAt = null)
     {
         $this->createdAt = $createdAt;
 
@@ -338,7 +338,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
      * @return $this
      */
     #[\Override]
-    public function setUpdatedAt(\DateTime $updatedAt = null)
+    public function setUpdatedAt(?\DateTime $updatedAt = null)
     {
         $this->updatedAtSet = false;
         if ($updatedAt !== null) {
@@ -365,7 +365,7 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
      * @param Organization|null $organization
      * @return Call
      */
-    public function setOrganization(Organization $organization = null)
+    public function setOrganization(?Organization $organization = null)
     {
         $this->organization = $organization;
 
