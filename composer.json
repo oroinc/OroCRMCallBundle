@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": { "Oro\\Bundle\\CallBundle\\": "" },
-        "exclude-from-classmap": ["/Tests/"]
+        "exclude-from-classmap": ["**/Tests/"]
     },
     "repositories": {
         "oro": {
