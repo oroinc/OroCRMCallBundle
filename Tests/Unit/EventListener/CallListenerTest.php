@@ -2,8 +2,9 @@
 
 namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\Persistence\ManagerRegistry;
 use Oro\Bundle\CallBundle\EventListener\Datagrid\CallListener;
 use Oro\Bundle\DataGridBundle\Datagrid\Common\DatagridConfiguration;
 use Oro\Bundle\DataGridBundle\Datagrid\DatagridInterface;
@@ -17,17 +18,14 @@ use PHPUnit\Framework\TestCase;
 
 class CallListenerTest extends TestCase
 {
-    /** @var EntityManager|MockObject */
-    private $entityManager;
-
-    /** @var CallListener */
-    private $listener;
+    private ManagerRegistry&MockObject $doctrine;
+    private CallListener $listener;
 
     protected function setUp(): void
     {
-        $this->entityManager = $this->createMock(EntityManager::class);
+        $this->doctrine = $this->createMock(ManagerRegistry::class);
 
-        $this->listener = new CallListener($this->entityManager);
+        $this->listener = new CallListener($this->doctrine);
     }
 
     /**
@@ -91,8 +89,8 @@ class CallListenerTest extends TestCase
         $parameters = [];
         $queryBuilder = $this->createMock(QueryBuilder::class);
 
-        $this->entityManager->expects($this->never())
-            ->method('find');
+        $this->doctrine->expects($this->never())
+            ->method('getManagerForClass');
 
         $queryBuilder->expects($this->never())
             ->method($this->anything());
@@ -108,10 +106,15 @@ class CallListenerTest extends TestCase
         $user = new User();
         $queryBuilder = $this->createMock(QueryBuilder::class);
 
-        $this->entityManager->expects($this->once())
+        $entityManager = $this->createMock(EntityManagerInterface::class);
+        $entityManager->expects($this->once())
             ->method('find')
             ->with(User::class, 12)
             ->willReturn($user);
+        $this->doctrine->expects($this->once())
+            ->method('getManagerForClass')
+            ->with(User::class)
+            ->willReturn($entityManager);
 
         $queryBuilder->expects($this->once())
             ->method('andWhere')

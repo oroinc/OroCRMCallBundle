@@ -2,7 +2,7 @@ services:
     oro_call.event_listener.datagrid.call:
         class: Oro\Bundle\CallBundle\EventListener\Datagrid\CallListener
         arguments:
-          - "@doctrine.orm.entity_manager"
+            - "@doctrine"
         tags:
             - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.before.widget-base-calls-grid, method: onBuildBefore }
             - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.after.widget-base-calls-grid, method: onBuildAfter }
