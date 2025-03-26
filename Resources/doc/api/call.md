@@ -209,7 +209,7 @@ Delete a collection of call records.
 
 #### get_subresource
 
-Retrieve the record of the status configured for a specific call.
+Retrieve a record of the status configured for a specific call.
 
 #### get_relationship
 
@@ -236,7 +236,7 @@ Example:
 
 #### get_subresource
 
-Retrieve the record of the direction (outgoing, incoming) configured for a specific call.
+Retrieve a record of the direction (outgoing, incoming) configured for a specific call.
 
 #### get_relationship
 
@@ -263,7 +263,7 @@ Example:
 
 #### get_subresource
 
-Retrieve the record of the organization a specific call record belongs to.
+Retrieve a record of the organization a specific call record belongs to.
 
 #### get_relationship
 
@@ -290,7 +290,7 @@ Example:
 
 #### get_subresource
 
-Retrieve the records of the user who is an owner of a specific call record.
+Retrieve a record of the user who is an owner of a specific call record.
 
 #### get_relationship
 

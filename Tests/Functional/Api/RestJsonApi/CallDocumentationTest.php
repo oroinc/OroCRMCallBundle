@@ -76,7 +76,7 @@ class CallDocumentationTest extends RestJsonApiTestCase
         $resourceData = $this->getResourceData($this->getSimpleFormatter()->format($docs));
         self::assertEquals('Get activity calls', $resourceData['description']);
         self::assertEquals(
-            '<p>Retrieve the records of the calls associated with a specific contact record.</p>',
+            '<p>Retrieve records of the calls associated with a specific contact record.</p>',
             $resourceData['documentation']
         );
     }
