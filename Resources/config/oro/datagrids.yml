@@ -186,7 +186,7 @@ datagrids:
         columns:
             callDirection:
                 type: twig
-                label: ~
+                label: oro.call.calldirection.label_name
                 frontend_type: html
                 template: '@OroCall/Datagrid/Column/direction.html.twig'
             dateTime:
