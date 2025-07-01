@@ -93,6 +93,7 @@ oro:
             name:
                 label:            Name
                 description:      The unique identifier of the call's direction record.
+            label_name: Call Direction
 
 
         block:
