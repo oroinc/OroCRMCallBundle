@@ -21,6 +21,7 @@ class CallListenerTest extends TestCase
     private ManagerRegistry&MockObject $doctrine;
     private CallListener $listener;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->doctrine = $this->createMock(ManagerRegistry::class);
@@ -31,7 +32,7 @@ class CallListenerTest extends TestCase
     /**
      * @dataProvider onBuildBeforeDataProvider
      */
-    public function testOnBuildBefore(array $parameters, array $expectedUnsets = [])
+    public function testOnBuildBefore(array $parameters, array $expectedUnsets = []): void
     {
         $config = $this->createMock(DatagridConfiguration::class);
         if ($expectedUnsets) {
@@ -84,7 +85,7 @@ class CallListenerTest extends TestCase
         ];
     }
 
-    public function testOnBuildAfterWithoutParameters()
+    public function testOnBuildAfterWithoutParameters(): void
     {
         $parameters = [];
         $queryBuilder = $this->createMock(QueryBuilder::class);
@@ -98,7 +99,7 @@ class CallListenerTest extends TestCase
         $this->listener->onBuildAfter($this->createBuildAfterEvent($queryBuilder, $parameters));
     }
 
-    public function testOnBuildAfterFilterByUser()
+    public function testOnBuildAfterFilterByUser(): void
     {
         $parameters = [
             'userId' => 12

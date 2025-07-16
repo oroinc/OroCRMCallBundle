@@ -16,8 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CallTypeTest extends FormIntegrationTestCase
 {
-    /** @var CallType */
-    private $type;
+    private CallType $type;
 
     #[\Override]
     protected function setUp(): void

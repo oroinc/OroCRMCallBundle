@@ -8,13 +8,14 @@ use Oro\Bundle\CallBundle\Entity\CallStatus;
 use Oro\Bundle\EntityExtendBundle\PropertyAccess;
 use Oro\Bundle\OrganizationBundle\Entity\Organization;
 use Oro\Bundle\UserBundle\Entity\User;
+use PHPUnit\Framework\TestCase;
 
-class CallTest extends \PHPUnit\Framework\TestCase
+class CallTest extends TestCase
 {
     /**
      * @dataProvider getSetDataProvider
      */
-    public function testGetSet(string $property, mixed $value)
+    public function testGetSet(string $property, mixed $value): void
     {
         $obj = new Call();
 
@@ -38,7 +39,7 @@ class CallTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function testIsUpdatedFlags()
+    public function testIsUpdatedFlags(): void
     {
         $date = new \DateTime('2012-12-12 12:12:12');
         $call = new Call();
@@ -47,7 +48,7 @@ class CallTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($call->isUpdatedAtSet());
     }
 
-    public function testIsNotUpdatedFlags()
+    public function testIsNotUpdatedFlags(): void
     {
         $call = new Call();
         $call->setUpdatedAt(null);

@@ -3,9 +3,10 @@
 namespace Oro\Bundle\CallBundle\Tests\Unit\DependencyInjection;
 
 use Oro\Bundle\CallBundle\DependencyInjection\OroCallExtension;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class OroCallExtensionTest extends \PHPUnit\Framework\TestCase
+class OroCallExtensionTest extends TestCase
 {
     public function testLoad(): void
     {

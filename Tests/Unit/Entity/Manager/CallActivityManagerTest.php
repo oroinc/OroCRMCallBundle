@@ -6,14 +6,13 @@ use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Entity\Manager\CallActivityManager;
 use Oro\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-class CallActivityManagerTest extends \PHPUnit\Framework\TestCase
+class CallActivityManagerTest extends TestCase
 {
-    /** @var ActivityManager|\PHPUnit\Framework\MockObject\MockObject */
-    private $activityManager;
-
-    /** @var CallActivityManager */
-    private $manager;
+    private ActivityManager&MockObject $activityManager;
+    private CallActivityManager $manager;
 
     #[\Override]
     protected function setUp(): void
@@ -23,7 +22,7 @@ class CallActivityManagerTest extends \PHPUnit\Framework\TestCase
         $this->manager = new CallActivityManager($this->activityManager);
     }
 
-    public function testAddAssociation()
+    public function testAddAssociation(): void
     {
         $call = new Call();
         $target = new TestTarget();
