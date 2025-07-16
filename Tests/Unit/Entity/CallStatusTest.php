@@ -3,13 +3,14 @@
 namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
 use Oro\Bundle\CallBundle\Entity\CallStatus;
+use PHPUnit\Framework\TestCase;
 
-class CallStatusTest extends \PHPUnit\Framework\TestCase
+class CallStatusTest extends TestCase
 {
     /**
      * @dataProvider getSetDataProvider
      */
-    public function testGetSet(string $property, mixed $value, mixed $expected)
+    public function testGetSet(string $property, mixed $value, mixed $expected): void
     {
         $statusName = 'completed';
         $obj = new CallStatus($statusName);

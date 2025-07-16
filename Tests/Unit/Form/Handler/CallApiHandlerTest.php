@@ -5,29 +5,22 @@ namespace Oro\Bundle\CallBundle\Tests\Unit\Form\Handler;
 use Doctrine\Persistence\ObjectManager;
 use Oro\Bundle\CallBundle\Entity\Call;
 use Oro\Bundle\CallBundle\Form\Handler\CallApiHandler;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class CallApiHandlerTest extends \PHPUnit\Framework\TestCase
+class CallApiHandlerTest extends TestCase
 {
     private const FORM_DATA = ['field' => 'value'];
 
-    /** @var FormInterface|\PHPUnit\Framework\MockObject\MockObject */
-    private $form;
-
-    /** @var Request */
-    private $request;
-
-    /** @var ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
-    private $manager;
-
-    /** @var Call */
-    private $entity;
-
-    /** @var CallApiHandler */
-    private $handler;
+    private FormInterface&MockObject $form;
+    private Request $request;
+    private ObjectManager&MockObject $manager;
+    private Call $entity;
+    private CallApiHandler $handler;
 
     #[\Override]
     protected function setUp(): void

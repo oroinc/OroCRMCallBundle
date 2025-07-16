@@ -12,45 +12,28 @@ use Oro\Bundle\CallBundle\Tests\Unit\Fixtures\Entity\TestTarget;
 use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Oro\Bundle\UserBundle\Entity\User;
 use Oro\Component\Testing\ReflectionUtil;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class CallHandlerTest extends \PHPUnit\Framework\TestCase
+class CallHandlerTest extends TestCase
 {
     private const FORM_DATA = ['field' => 'value'];
 
-    /** @var FormInterface|\PHPUnit\Framework\MockObject\MockObject */
-    private $form;
-
-    /** @var Request */
-    private $request;
-
-    /** @var ObjectManager|\PHPUnit\Framework\MockObject\MockObject */
-    private $manager;
-
-    /** @var PhoneProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
-    private $phoneProvider;
-
-    /** @var ActivityManager|\PHPUnit\Framework\MockObject\MockObject */
-    private $activityManager;
-
-    /** @var CallActivityManager|\PHPUnit\Framework\MockObject\MockObject */
-    private $callActivityManager;
-
-    /** @var EntityRoutingHelper|\PHPUnit\Framework\MockObject\MockObject */
-    private $entityRoutingHelper;
-
-    /** @var FormFactory|\PHPUnit\Framework\MockObject\MockObject */
-    private $formFactory;
-
-    /** @var Call */
-    private $entity;
-
-    /** @var CallHandler */
-    private $handler;
+    private FormInterface&MockObject $form;
+    private Request $request;
+    private ObjectManager&MockObject $manager;
+    private PhoneProviderInterface&MockObject $phoneProvider;
+    private ActivityManager&MockObject $activityManager;
+    private CallActivityManager&MockObject $callActivityManager;
+    private EntityRoutingHelper&MockObject $entityRoutingHelper;
+    private FormFactory&MockObject $formFactory;
+    private Call $entity;
+    private CallHandler $handler;
 
     #[\Override]
     protected function setUp(): void
@@ -80,7 +63,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testProcessWithContexts()
+    public function testProcessWithContexts(): void
     {
         $context = new User();
         ReflectionUtil::setId($context, 123);
@@ -127,7 +110,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testProcessGetRequestWithoutTargetEntity()
+    public function testProcessGetRequestWithoutTargetEntity(): void
     {
         $this->phoneProvider->expects($this->never())
             ->method('getPhoneNumber');
@@ -145,7 +128,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->handler->process($this->entity));
     }
 
-    public function testProcessGetRequestWithTargetEntity()
+    public function testProcessGetRequestWithTargetEntity(): void
     {
         ReflectionUtil::setId($this->entity, 123);
         $targetEntity = new TestTarget(123);
@@ -188,7 +171,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->handler->process($this->entity));
     }
 
-    public function testProcessGetRequestWithNewEntity()
+    public function testProcessGetRequestWithNewEntity(): void
     {
         $targetEntity = new TestTarget(123);
         $targetEntity1 = new TestTarget(456);
@@ -236,7 +219,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider supportedMethods
      */
-    public function testProcessInvalidData(string $method)
+    public function testProcessInvalidData(string $method): void
     {
         $this->formFactory->expects($this->once())
             ->method('createNamed')
@@ -268,7 +251,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider supportedMethods
      */
-    public function testProcessValidDataWithoutTargetEntity(string $method)
+    public function testProcessValidDataWithoutTargetEntity(string $method): void
     {
         $this->formFactory->expects($this->once())
             ->method('createNamed')
@@ -306,7 +289,7 @@ class CallHandlerTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider supportedMethods
      */
-    public function testProcessValidDataWithTargetEntity(string $method)
+    public function testProcessValidDataWithTargetEntity(string $method): void
     {
         $this->entity->setPhoneNumber('phone1');
 

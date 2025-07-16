@@ -3,13 +3,14 @@
 namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
 
 use Oro\Bundle\CallBundle\Entity\CallDirection;
+use PHPUnit\Framework\TestCase;
 
-class CallDirectionTest extends \PHPUnit\Framework\TestCase
+class CallDirectionTest extends TestCase
 {
     /**
      * @dataProvider getSetDataProvider
      */
-    public function testGetSet(string $property, mixed $value, mixed $expected)
+    public function testGetSet(string $property, mixed $value, mixed $expected): void
     {
         $directionName = 'forward';
         $obj = new CallDirection($directionName);
