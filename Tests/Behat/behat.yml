@@ -9,6 +9,8 @@ oro_behat_extension:
         - Oro\Bundle\SecurityBundle\Tests\Behat\Context\ACLContext
         - Oro\Bundle\SearchBundle\Tests\Behat\Context\SearchContext
         - Oro\Bundle\DashboardBundle\Tests\Behat\Context\FeatureContext
+        - Oro\Bundle\EmailBundle\Tests\Behat\Context\EmailContext
+        - Oro\Bundle\ImportExportBundle\Tests\Behat\Context\ImportExportContext
       paths:
         - '@OroCallBundle/Tests/Behat/Features'
 
