@@ -11,7 +11,7 @@ use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 use Oro\Bundle\SecurityBundle\Attribute\Acl;
 use Oro\Bundle\SecurityBundle\Attribute\AclAncestor;
 use Oro\Bundle\UIBundle\Route\Router;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +28,7 @@ class CallController extends AbstractController
      * on the view page of this entity
      */
     #[Route(path: '/activity/view/{entityClass}/{entityId}', name: 'oro_call_activity_view')]
-    #[Template]
+    #[Template('@OroCall/Call/activity.html.twig')]
     #[AclAncestor('oro_call_view')]
     public function activityAction($entityClass, $entityId)
     {
@@ -70,7 +70,7 @@ class CallController extends AbstractController
      * @return array|RedirectResponse
      */
     #[Route(path: '/update/{id}', name: 'oro_call_update', requirements: ['id' => '\d+'])]
-    #[Template]
+    #[Template('@OroCall/Call/update.html.twig')]
     #[Acl(id: 'oro_call_update', type: 'entity', class: Call::class, permission: 'EDIT')]
     public function updateAction(Request $request, Call $entity)
     {
@@ -80,7 +80,7 @@ class CallController extends AbstractController
     }
 
     #[Route(name: 'oro_call_index')]
-    #[Template]
+    #[Template('@OroCall/Call/index.html.twig')]
     #[Acl(id: 'oro_call_view', type: 'entity', class: Call::class, permission: 'VIEW')]
     public function indexAction()
     {
@@ -90,7 +90,7 @@ class CallController extends AbstractController
     }
 
     #[Route(path: '/view/{id}', name: 'oro_call_view')]
-    #[Template]
+    #[Template('@OroCall/Call/view.html.twig')]
     #[AclAncestor('oro_call_view')]
     public function viewAction(Call $entity)
     {
@@ -104,7 +104,7 @@ class CallController extends AbstractController
      * @return array
      */
     #[Route(path: '/widget', name: 'oro_call_widget_calls')]
-    #[Template]
+    #[Template('@OroCall/Call/calls.html.twig')]
     #[AclAncestor('oro_call_view')]
     public function callsAction(Request $request)
     {
@@ -114,7 +114,7 @@ class CallController extends AbstractController
     }
 
     #[Route(path: '/base-widget', name: 'oro_call_base_widget_calls')]
-    #[Template]
+    #[Template('@OroCall/Call/baseCalls.html.twig')]
     #[AclAncestor('oro_call_view')]
     public function baseCallsAction(Request $request)
     {
