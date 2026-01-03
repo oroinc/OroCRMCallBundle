@@ -11,7 +11,7 @@ class OroCallBundle implements Migration
     #[\Override]
     public function up(Schema $schema, QueryBag $queries)
     {
-        // @codingStandardsIgnoreStart
+        // phpcs:disable
 
         /** Generate table orocrm_call **/
         $table = $schema->createTable('orocrm_call');
@@ -62,6 +62,6 @@ class OroCallBundle implements Migration
         $table->addForeignKeyConstraint($schema->getTable('orocrm_contact_phone'), ['contact_phone_id'], ['id'], ['onDelete' => 'SET NULL', 'onUpdate' => null]);
         /** End of generate foreign keys for table orocrm_call **/
 
-        // @codingStandardsIgnoreEnd
+        // phpcs:enable
     }
 }
