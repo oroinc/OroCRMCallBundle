@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class CallApiType extends AbstractType
 {
-    const NAME = 'oro_call_form_api';
+    public const NAME = 'oro_call_form_api';
 
     #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options)
