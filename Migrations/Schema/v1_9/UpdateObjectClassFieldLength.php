@@ -16,9 +16,9 @@ class UpdateObjectClassFieldLength implements Migration
     public function up(Schema $schema, QueryBag $queries)
     {
         $table = $schema->getTable('orocrm_call_direction_trans');
-        $table->changeColumn('object_class', ['length' => 191]);
+        $table->modifyColumn('object_class', ['length' => 191]);
 
         $table = $schema->getTable('orocrm_call_status_trans');
-        $table->changeColumn('object_class', ['length' => 191]);
+        $table->modifyColumn('object_class', ['length' => 191]);
     }
 }
