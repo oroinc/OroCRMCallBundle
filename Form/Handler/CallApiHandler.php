@@ -9,6 +9,9 @@ use Oro\Bundle\FormBundle\Form\Handler\RequestHandlerTrait;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Processes {@see Call} entity form submissions via API.
+ */
 class CallApiHandler
 {
     use RequestHandlerTrait;
