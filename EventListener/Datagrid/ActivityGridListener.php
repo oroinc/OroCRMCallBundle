@@ -7,6 +7,10 @@ use Oro\Bundle\DataGridBundle\Datasource\Orm\OrmDatasource;
 use Oro\Bundle\DataGridBundle\Event\BuildAfter;
 use Oro\Bundle\EntityBundle\Tools\EntityRoutingHelper;
 
+/**
+ * Filters call activity datagrid results by target entity using {@see ActivityManager}
+ * and {@see EntityRoutingHelper} to resolve entity classes from datagrid parameters.
+ */
 class ActivityGridListener
 {
     /** @var ActivityManager */

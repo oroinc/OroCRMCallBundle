@@ -6,6 +6,11 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Oro\Bundle\CallBundle\Entity\CallDirection;
 
+/**
+ * Fixture for loading call direction reference data.
+ *
+ * Loads predefined {@see CallDirection} entities (incoming and outgoing).
+ */
 class LoadCallDirectionData extends AbstractFixture
 {
     /**

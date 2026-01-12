@@ -6,6 +6,12 @@ use Doctrine\Common\Util\ClassUtils;
 use Oro\Bundle\ActivityBundle\Manager\ActivityManager;
 use Oro\Bundle\CallBundle\Entity\Call;
 
+/**
+ * Filter for determining call log action applicability.
+ *
+ * Checks if the call log action is applicable to entities as activities using
+ * {@see ActivityManager} and {@see Call} entity activity target support.
+ */
 class LogCallPlaceholderFilter
 {
     /** @var Call */
