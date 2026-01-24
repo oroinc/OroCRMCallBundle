@@ -6,6 +6,11 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Oro\Bundle\CallBundle\Entity\CallStatus;
 
+/**
+ * Fixture for loading call status reference data.
+ *
+ * Loads predefined {@see CallStatus} entities (in progress and completed).
+ */
 class LoadCallStatusData extends AbstractFixture
 {
     /**

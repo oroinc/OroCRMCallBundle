@@ -15,6 +15,9 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Form type for {@see Call} entity creation and editing.
+ */
 class CallType extends AbstractType
 {
     /** @var PhoneProviderInterface */

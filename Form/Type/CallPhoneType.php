@@ -9,6 +9,9 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Form type for call phone number input field with autocomplete suggestions.
+ */
 class CallPhoneType extends AbstractType
 {
     #[\Override]
