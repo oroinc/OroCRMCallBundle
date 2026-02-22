@@ -44,12 +44,12 @@ services:
             - "@oro_activity.manager"
 
     oro_call.twig.call_extension:
-        class: Oro\Bundle\CallBundle\Twig\OroCallExtension
-        public: false
+        class: Oro\Bundle\CallBundle\Twig\CallExtension
         arguments:
-            - "@oro_platform.twig.service_locator"
+            - '@oro_platform.twig.service_locator'
         tags:
             - { name: twig.extension }
+            - { name: container.service_subscriber, id: oro_call.placeholder.log_call.filter, key: Oro\Bundle\CallBundle\Placeholder\LogCallPlaceholderFilter }
 
     oro_call.event_listener.datagrid.my_contacts_activity:
         class: Oro\Bundle\UserBundle\Datagrid\WidgetOwnerListener
