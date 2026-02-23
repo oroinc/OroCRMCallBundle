@@ -12,13 +12,11 @@ use Twig\TwigFunction;
  * Provides a Twig function to check if call log is available for an entity:
  *   - isCallLogApplicable
  */
-class OroCallExtension extends AbstractExtension implements ServiceSubscriberInterface
+class CallExtension extends AbstractExtension implements ServiceSubscriberInterface
 {
-    private ContainerInterface $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
+    public function __construct(
+        private readonly ContainerInterface $container
+    ) {
     }
 
     #[\Override]
@@ -29,12 +27,7 @@ class OroCallExtension extends AbstractExtension implements ServiceSubscriberInt
         ];
     }
 
-    /**
-     * @param object|null $entity
-     *
-     * @return bool
-     */
-    public function isCallLogApplicable($entity)
+    public function isCallLogApplicable(?object $entity): bool
     {
         return $this->getLogCallPlaceholderFilter()->isApplicable($entity);
     }
@@ -43,12 +36,12 @@ class OroCallExtension extends AbstractExtension implements ServiceSubscriberInt
     public static function getSubscribedServices(): array
     {
         return [
-            'oro_call.placeholder.log_call.filter' => LogCallPlaceholderFilter::class,
+            LogCallPlaceholderFilter::class
         ];
     }
 
     private function getLogCallPlaceholderFilter(): LogCallPlaceholderFilter
     {
-        return $this->container->get('oro_call.placeholder.log_call.filter');
+        return $this->container->get(LogCallPlaceholderFilter::class);
     }
 }
