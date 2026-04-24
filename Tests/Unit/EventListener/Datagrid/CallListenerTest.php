@@ -1,6 +1,6 @@
 <?php
 
-namespace Oro\Bundle\CallBundle\Tests\Unit\Entity;
+namespace Oro\Bundle\CallBundle\Tests\Unit\EventListener\Datagrid;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
