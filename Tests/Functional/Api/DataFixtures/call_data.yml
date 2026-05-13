@@ -40,6 +40,7 @@ Oro\Bundle\CallBundle\Entity\Call:
         callStatus: '@call_status_completed'
         direction: '@call_direction_incoming'
         duration: 100
+        external_id: ext_1
         callDateTime: '<dateTimeBetween("-10 days", "now")>'
         createdAt: '<dateTimeBetween("-20 days", "now")>'
         updatedAt: '<dateTimeBetween($createdAt, "now")>'
@@ -50,6 +51,7 @@ Oro\Bundle\CallBundle\Entity\Call:
         organization: '@organization'
         callStatus: '@call_status_completed'
         direction: '@call_direction_incoming'
+        external_id: ext_2
         contact_a6d273bd: ['@contact1', '@contact2']
     call3:
         subject: 'Call 3'

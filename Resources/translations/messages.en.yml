@@ -57,6 +57,9 @@ oro:
         id:
             label:             Id
             description:       The unique identifier of the call record.
+        external_id:
+            label:             External ID
+            description:       A unique identifier from an external system.
         subject:
             label:             Subject
             description:       Defines what the call was about.
