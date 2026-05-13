@@ -5,9 +5,13 @@ api:
             fields:
                 direction:
                     exclude: false # override exclude rule from entity.yml
+                externalId:
+                    property_path: external_id
             filters:
                 fields:
                     updatedAt: ~ # enable manually because this field is not indexed
+                    externalId:
+                        allow_array: true
             actions:
                 update_list: true
 
