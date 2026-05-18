@@ -7,6 +7,7 @@ data:
         notes: 'clarify contact information'
         callDateTime: '@call1->callDateTime->format("Y-m-d\TH:i:s\Z")'
         duration: 100
+        externalId: ext_1
         createdAt: '@call1->createdAt->format("Y-m-d\TH:i:s\Z")'
         updatedAt: '@call1->updatedAt->format("Y-m-d\TH:i:s\Z")'
     relationships:

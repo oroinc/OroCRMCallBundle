@@ -47,6 +47,32 @@ class CallTest extends RestJsonApiTestCase
         $this->assertResponseContains('cget_call.yml', $response);
     }
 
+    public function testGetListFilteredByExternalId(): void
+    {
+        $response = $this->cget(['entity' => 'calls'], ['filter[externalId]' => 'ext_1,ext_2']);
+        $this->assertResponseContains(
+            [
+                'data' => [
+                    [
+                        'type' => 'calls',
+                        'id' => '<toString(@call1->id)>',
+                        'attributes' => [
+                            'externalId' => 'ext_1'
+                        ]
+                    ],
+                    [
+                        'type' => 'calls',
+                        'id' => '<toString(@call2->id)>',
+                        'attributes' => [
+                            'externalId' => 'ext_2'
+                        ]
+                    ]
+                ]
+            ],
+            $response
+        );
+    }
+
     public function testGet(): void
     {
         $response = $this->get(
@@ -67,6 +93,7 @@ class CallTest extends RestJsonApiTestCase
                     'attributes'    => [
                         'subject'     => 'Subject of test call',
                         'phoneNumber' => '123-123',
+                        'externalId'  => 'ext_new_call'
                     ],
                     'relationships' => [
                         'direction'       => [
@@ -90,11 +117,47 @@ class CallTest extends RestJsonApiTestCase
         $call = $this->getEntityManager()->find(Call::class, $callId);
         self::assertEquals('Subject of test call', $call->getSubject());
         self::assertEquals('123-123', $call->getPhoneNumber());
+        self::assertEquals('ext_new_call', $call->getExternalId());
         self::assertNull($call->getNotes());
         self::assertNotNull($call->getCallDateTime());
         self::assertEquals('Incoming', $call->getDirection()->getLabel());
         self::assertEquals('in_progress', $call->getCallStatus()->getName());
         self::assertEquals([$contact1Id], $this->getActivityTargetIds($call, Contact::class));
+    }
+
+    public function testTryToCreateWithExternalIdWhenThereIsAnotherCallWithThisExternalId(): void
+    {
+        $response = $this->post(
+            ['entity' => 'calls'],
+            [
+                'data' => [
+                    'type'          => 'calls',
+                    'attributes'    => [
+                        'subject'     => 'Subject of test call',
+                        'phoneNumber' => '123-123',
+                        'externalId'  => 'ext_1'
+                    ],
+                    'relationships' => [
+                        'direction'       => [
+                            'data' => ['type' => 'calldirections', 'id' => '<toString(@call_direction_incoming->name)>']
+                        ],
+                        'callStatus'      => [
+                            'data' => ['type' => 'callstatuses', 'id' => '<toString(@call_status_in_progress->name)>']
+                        ]
+                    ]
+                ]
+            ],
+            [],
+            false
+        );
+
+        $this->assertResponseValidationError(
+            [
+                'title' => 'unique entity constraint',
+                'detail' => 'Value for field "External ID" must be unique'
+            ],
+            $response
+        );
     }
 
     public function testUpdate(): void
@@ -107,7 +170,8 @@ class CallTest extends RestJsonApiTestCase
                 'attributes'    => [
                     'subject'      => 'New subject of test call',
                     'notes'        => 'New notes of test call',
-                    'callDateTime' => '2036-02-16T22:36:37Z'
+                    'callDateTime' => '2036-02-16T22:36:37Z',
+                    'externalId'   => 'ext_1_updated'
                 ],
                 'relationships' => [
                     'direction'       => [
@@ -132,6 +196,7 @@ class CallTest extends RestJsonApiTestCase
         self::assertEquals('New subject of test call', $call->getSubject());
         self::assertEquals('New notes of test call', $call->getNotes());
         self::assertEquals(new \DateTime('2036-02-16T22:36:37Z'), $call->getCallDateTime());
+        self::assertEquals('ext_1_updated', $call->getExternalId());
         self::assertEquals('Incoming', $call->getDirection()->getLabel());
         self::assertEquals('completed', $call->getCallStatus()->getName());
     }
