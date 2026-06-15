@@ -44,7 +44,8 @@ use Oro\Bundle\UserBundle\Entity\User;
             'action_button_widget' => 'oro_log_call_button',
             'action_link_widget' => 'oro_log_call_link'
         ],
-        'grid' => ['default' => 'calls-grid', 'context' => 'call-for-context-grid']
+        'grid' => ['default' => 'calls-grid', 'context' => 'call-for-context-grid'],
+        'email' => ['available_in_template' => true]
     ]
 )]
 class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterface
@@ -55,48 +56,64 @@ class Call implements DatesAwareInterface, ActivityInterface, ExtendEntityInterf
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(name: 'owner_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected ?User $owner = null;
 
     #[ORM\Column(name: 'subject', type: Types::STRING, length: 255)]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected ?string $subject = null;
 
     #[ORM\Column(name: 'phone_number', type: Types::STRING, length: 255, nullable: true)]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected ?string $phoneNumber = null;
 
     #[ORM\Column(name: 'notes', type: Types::TEXT, nullable: true)]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected ?string $notes = null;
 
     #[ORM\Column(name: 'call_date_time', type: Types::DATETIME_MUTABLE)]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected ?\DateTimeInterface $callDateTime = null;
 
     #[ORM\ManyToOne(targetEntity: CallStatus::class)]
     #[ORM\JoinColumn(name: 'call_status_name', referencedColumnName: 'name', onDelete: 'SET NULL')]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected ?CallStatus $callStatus = null;
 
     /**
      * @var int
      */
     #[ORM\Column(name: 'duration', type: 'duration', nullable: true)]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected $duration;
 
     #[ORM\ManyToOne(targetEntity: CallDirection::class)]
     #[ORM\JoinColumn(name: 'call_direction_name', referencedColumnName: 'name', onDelete: 'SET NULL')]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected ?CallDirection $direction = null;
 
     #[ORM\Column(name: 'created_at', type: Types::DATETIME_MUTABLE)]
-    #[ConfigField(defaultValues: ['entity' => ['label' => 'oro.ui.created_at']])]
+    #[ConfigField(defaultValues: [
+        'entity' => ['label' => 'oro.ui.created_at'],
+        'email' => ['available_in_template' => true],
+    ])]
     protected ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(name: 'updated_at', type: Types::DATETIME_MUTABLE)]
-    #[ConfigField(defaultValues: ['entity' => ['label' => 'oro.ui.updated_at']])]
+    #[ConfigField(defaultValues: [
+        'entity' => ['label' => 'oro.ui.updated_at'],
+        'email' => ['available_in_template' => true],
+    ])]
     protected ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\ManyToOne(targetEntity: Organization::class)]
     #[ORM\JoinColumn(name: 'organization_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    #[ConfigField(defaultValues: ['email' => ['available_in_template' => true]])]
     protected ?OrganizationInterface $organization = null;
 
     /**
