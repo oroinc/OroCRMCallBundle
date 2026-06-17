@@ -52,6 +52,9 @@ use Oro\Bundle\UserBundle\Entity\User;
  *          "grid"={
  *              "default"="calls-grid",
  *              "context"="call-for-context-grid"
+ *          },
+ *          "email"={
+ *              "available_in_template"=true
  *          }
  *      }
  * )
