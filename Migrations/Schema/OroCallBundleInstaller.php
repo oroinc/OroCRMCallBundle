@@ -23,7 +23,7 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
     #[\Override]
     public function getMigrationVersion(): string
     {
-        return 'v1_11';
+        return 'v1_12';
     }
 
     #[\Override]
@@ -66,7 +66,9 @@ class OroCallBundleInstaller implements Installation, ActivityExtensionAwareInte
         $table->addColumn('external_id', 'string', ['length' => 36, 'notnull' => false, OroOptions::KEY => [
             ExtendOptionsManager::MODE_OPTION => ConfigModel::MODE_READONLY,
             'extend' => ['is_extend' => true, 'owner' => ExtendScope::OWNER_CUSTOM],
-            'datagrid' => ['is_visible' => DatagridScope::IS_VISIBLE_HIDDEN],
+            'datagrid' => ['is_visible' => DatagridScope::IS_VISIBLE_FALSE],
+            'form' => ['is_enabled' => false],
+            'view' => ['is_displayable' => false],
             'importexport' => ['excluded' => true],
             'dataaudit' => ['auditable' => true]
         ]]);
