@@ -2,8 +2,8 @@
 {% import '@OroEntityConfig/macros.html.twig' as entityConfig %}
 {% import '@OroActivity/macros.html.twig' as AC %}
 
-<div class="responsive-with-extra-block">
-    <div class="widget-content form-horizontal">
+<div class="widget-content responsive-with-extra-block">
+    <div class="row-fluid form-horizontal">
         <div class="responsive-block">
             {# Display contexts targets in the activity list item view #}
             {% if renderContexts is defined and renderContexts %}
@@ -12,7 +12,6 @@
                 </div>
             {% endif %}
             {{ ui.renderProperty('oro.call.subject.label'|trans, entity.subject) }}
-            {#{{ ui.renderProperty('oro.call.call_status.label'|trans, entity.callStatus ? entity.callStatus.label : null) }}#}
             {{ ui.renderSwitchableHtmlProperty('oro.call.notes.label'|trans, entity.notes) }}
             {{ ui.renderProperty('oro.call.call_date_time.label'|trans, entity.callDateTime|oro_format_datetime) }}
         </div>
@@ -22,10 +21,8 @@
             {# Don't use time formatting here because it's a time interval #}
             {{ ui.renderProperty('oro.call.duration.label'|trans, entity.duration|oro_format_duration({default: true})) }}
         </div>
-    </div>
-</div>
-<div class="row-fluid">
-    <div class="responsive-block">
-        {{ entityConfig.renderDynamicFields(entity) }}
+        <div class="responsive-block">
+            {{ entityConfig.renderDynamicFields(entity) }}
+        </div>
     </div>
 </div>
